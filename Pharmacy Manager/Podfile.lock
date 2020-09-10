@@ -7,20 +7,18 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - NVActivityIndicatorView (5.0.0):
-    - NVActivityIndicatorView/Base (= 5.0.0)
-  - NVActivityIndicatorView/Base (5.0.0)
   - Result (4.0.1)
   - SwiftGen (6.3.0)
+  - TPKeyboardAvoiding (1.3.4)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AlamofireImage (~> 4.1)
   - EventsTree
   - Moya (~> 14.0)
-  - NVActivityIndicatorView
   - Result (~> 4.0.0)
   - SwiftGen (~> 6.0)
+  - TPKeyboardAvoiding
 
 SPEC REPOS:
   trunk:
@@ -28,19 +26,19 @@ SPEC REPOS:
     - AlamofireImage
     - EventsTree
     - Moya
-    - NVActivityIndicatorView
     - Result
     - SwiftGen
+    - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   EventsTree: 137f90ebbfd9f3aa57040f4da972583d6196f0d0
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  NVActivityIndicatorView: f109ed069924ac1b4adbc1ae9cfaeac0be1d6c2c
   Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SwiftGen: 3d5024a47ea79e408cded20763d7a17d18a4548c
+  TPKeyboardAvoiding: 7c2187e2338052b2c5be4a8052f297fdb124e261
 
-PODFILE CHECKSUM: 8e2504677e9441a006ad51517534e35103f4062c
+PODFILE CHECKSUM: 3b8b058f1bae2722e764d16e32257eb2df2ca3e7
 
 COCOAPODS: 1.9.3

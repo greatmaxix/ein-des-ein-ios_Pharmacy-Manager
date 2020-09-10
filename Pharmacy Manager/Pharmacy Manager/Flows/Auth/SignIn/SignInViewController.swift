@@ -36,22 +36,6 @@ class SignInViewController: UIViewController {
         passwordTextView.placeholder = "Пароль"
     }
 
-    @IBAction func close(_ sender: Any) {
-        model.close()
-    }
-
-    @IBAction func signUp(_ sender: Any) {
-        model.openSignUp()
-    }
-
-    @IBAction func signIn(_ sender: Any) {
-        performSignIn()
-    }
-
-    @IBAction func resetPassword(_ sender: Any) {
-        model.openResetPassword()
-    }
-
     private func performSignIn() {
         guard let email = emailTextView.text, let password = passwordTextView.text, emailTextView.isValid(), passwordTextView.isValid() else {
             return
