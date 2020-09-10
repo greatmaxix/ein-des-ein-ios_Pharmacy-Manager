@@ -141,30 +141,23 @@ extension StateTextField {
     private func validate(text: String) -> (Bool, String?) {
         switch validationType {
         case .email:
-            let validator = Validator(rules: [EmailRegexRule(errorMessage: L10n.Validator.WrongEmailFormat.title)])
+            let validator = Validator(rules: [EmailRegexRule(errorMessage: "Ой! Неверный формат почты!")])
             if validator.validate(text) == false {
-                return (false,L10n.Validator.WrongEmailFormat.text)
+                return (false, "Ой! Неверный формат почты!")
             } else {
                 return (true, nil)
             }
         case .password:
-            let validator = Validator(rules: [PasswordRule(errorMessage: L10n.Validator.WrongPasswordLenght.title)])
+            let validator = Validator(rules: [PasswordRule(errorMessage: "Ой! Неверный пароль!")])
             if validator.validate(text) == false {
-                return (false, L10n.Validator.WrongPasswordLenght.text)
-            } else {
-                return (true, nil)
-            }
-        case .phone:
-            let validator = Validator(rules: [PhoneRule(errorMessage: L10n.Validator.WrongPhone.title)])
-            if validator.validate(text) == false {
-                return (false, L10n.Validator.WrongPhone.text)
+                return (false, "Ой! Неверная длинна пароля!")
             } else {
                 return (true, nil)
             }
         case .nonEmpty:
-            let validator = Validator(rules: [RequiredRule(errorMessage: L10n.Validator.WrongEmptyField.title)])
+            let validator = Validator(rules: [RequiredRule(errorMessage: "Ой! Неверные данные!")])
             if validator.validate(text) == false {
-                return (false, L10n.Validator.WrongEmptyField.text)
+                return (false, "Ой! Неверные данные!")
             } else {
                 return (true, nil)
             }

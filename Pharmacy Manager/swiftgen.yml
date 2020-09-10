@@ -53,8 +53,14 @@
 ##
 ## For more info, use `swiftgen config doc` to open the full documentation on GitHub.
 ## https://github.com/SwiftGen/SwiftGen/tree/6.2.0/Documentation/
+ strings:
+  inputs:
+    - Resources/en.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift4
+      output: Strings+Generated.swift
 
-#strings:
+# strings:
 #  inputs: Resources/en.lproj/Localizable.strings
 #  outputs:
 #    templateName: structured-swift4

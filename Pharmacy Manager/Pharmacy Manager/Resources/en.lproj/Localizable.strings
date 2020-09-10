@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Pharmacy Manager
+
+  Created by Mikhail Timoscenko on 10.09.2020.
+  Copyright © 2020 PharmacyManager. All rights reserved.
+*/
+
+// General
+
+"tabbar.profile" = "Profile";
+"tabbar.chat" = "";
+"tabbar.home" = "Home";

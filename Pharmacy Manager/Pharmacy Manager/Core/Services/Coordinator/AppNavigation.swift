@@ -21,7 +21,7 @@ final class AppNavigation: EventNode {
     }
 
     func startFlow() {
-        
+        presentAuthFlow()
     }
 
 }
@@ -37,14 +37,18 @@ extension AppNavigation {
         coordinator.addTabCoordinators(coordinators: tabBarRootCoordinators(for: coordinator))
     }
 
-    private func tabBarRootCoordinators(for coordinator: TabBarCoordinator) -> [TabBarEmbedCoordinable] {
-        let exploreFlow = ExploreFlowCoordinator(parent: coordinator)
-        let savedFlow = SavedFlowCoordinator(parent: coordinator)
-        let myPostFlow = MyPostFlowCoordinator(parent: coordinator)
-        let notificationFlow = NotificationFlowCoordinator(parent: coordinator)
-        let archiveFlow = ArchieveFlowCoordinator(parent: coordinator)
+    fileprivate func presentAuthFlow() {
+        let coordinator = AuthFlowCoordinator(parent: self)
 
-        return [exploreFlow, savedFlow, myPostFlow, notificationFlow, archiveFlow]
+        presentCoordinatorFlow(coordinator)
+    }
+
+    private func tabBarRootCoordinators(for coordinator: TabBarCoordinator) -> [TabBarEmbedCoordinable] {
+        let welcomeFlow = WelcomeFlowCoordinator(parent: coordinator)
+        let chatFlow = ChatFlowCoordinator(parent: coordinator)
+        let profileFlow = ProfileFlowCoordinator(parent: coordinator)
+
+        return [welcomeFlow, chatFlow, profileFlow]
     }
 
     private func presentCoordinatorFlow(_ coordinator: Coordinator) {

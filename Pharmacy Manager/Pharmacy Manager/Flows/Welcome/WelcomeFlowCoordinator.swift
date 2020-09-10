@@ -1,15 +1,21 @@
 //
-//  AuthCoordinator.swift
-//  KyivPost
+//  WelcomeFlowCoordinator.swift
+//  Pharmacy Manager
 //
-//  Created by Mikhail Timoscenko on 25.06.2020.
-//  Copyright © 2020 KyivPost. All rights reserved.
+//  Created by Mikhail Timoscenko on 10.09.2020.
+//  Copyright © 2020 PharmacyManager. All rights reserved.
 //
 
 import Foundation
 import EventsTree
 
-class AuthFlowCoordinator: EventNode, Coordinator {
+class WelcomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
+
+    let tabItemInfo = TabBarItemInfo(
+        title: L10n.Tabbar.home,
+        icon: Asset.TabBar.tabbarHome.image,
+        highlightedIcon: Asset.TabBar.tabbarHome.image
+    )
 
     private var navigationController: UINavigationController!
 
@@ -31,14 +37,14 @@ class AuthFlowCoordinator: EventNode, Coordinator {
         addHandler { [weak self] (event: SignInEvent) in
             guard let `self` = self else { return }
 
-//            switch event {
-//
-//            }
+            //            switch event {
+            //
+            //            }
         }
     }
 
 }
 
-extension AuthFlowCoordinator {
+extension WelcomeFlowCoordinator {
 
 }

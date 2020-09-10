@@ -28,12 +28,12 @@ class SignInViewController: UIViewController {
         emailTextView.delegate = self
         emailTextView.apply(configuration: StateTextFieldConfiguration.emailConfiguration())
         emailTextView.state = .plain
-        emailTextView.placeholder = L10n.email
+        emailTextView.placeholder = "Почта"
 
         passwordTextView.delegate = self
         passwordTextView.apply(configuration: StateTextFieldConfiguration.passwordConfiguration())
         passwordTextView.state = .plain
-        passwordTextView.placeholder = L10n.password
+        passwordTextView.placeholder = "Пароль"
     }
 
     @IBAction func close(_ sender: Any) {
@@ -57,7 +57,7 @@ class SignInViewController: UIViewController {
             return
         }
 
-        startLoadingIndicator()
+//        startLoadingIndicator()
         model.signIn(email: email, password: password)
     }
 }
@@ -65,7 +65,7 @@ class SignInViewController: UIViewController {
 extension SignInViewController: SignInViewControllerInput {
 
     func networkingDidComplete(errorText: String?) {
-        stopLoadingIndicator()
+//        stopLoadingIndicator()
 
         guard let error = errorText else {
             return

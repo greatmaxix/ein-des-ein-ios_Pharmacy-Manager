@@ -1,18 +1,24 @@
 //
-//  AuthCoordinator.swift
-//  KyivPost
+//  ProfileFlowCoordinator.swift
+//  Pharmacy Manager
 //
-//  Created by Mikhail Timoscenko on 25.06.2020.
-//  Copyright © 2020 KyivPost. All rights reserved.
+//  Created by Mikhail Timoscenko on 10.09.2020.
+//  Copyright © 2020 PharmacyManager. All rights reserved.
 //
 
 import Foundation
 import EventsTree
 
-class AuthFlowCoordinator: EventNode, Coordinator {
+class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
+
+    let tabItemInfo = TabBarItemInfo(
+        title: L10n.Tabbar.profile,
+        icon: Asset.TabBar.tabbarProfile.image,
+        highlightedIcon: Asset.TabBar.tabbarProfile.image
+    )
 
     private var navigationController: UINavigationController!
-
+    
     func createFlow() -> UIViewController {
         let root = StoryboardScene.Auth.signInViewController.instantiate()
         let model = SignInModel(parent: self)
@@ -31,14 +37,14 @@ class AuthFlowCoordinator: EventNode, Coordinator {
         addHandler { [weak self] (event: SignInEvent) in
             guard let `self` = self else { return }
 
-//            switch event {
-//
-//            }
+            //            switch event {
+            //
+            //            }
         }
     }
 
 }
 
-extension AuthFlowCoordinator {
+extension ProfileFlowCoordinator {
 
 }
