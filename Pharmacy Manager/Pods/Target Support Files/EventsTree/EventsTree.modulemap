@@ -1,0 +1,6 @@
+framework module EventsTree {
+  umbrella header "EventsTree-umbrella.h"
+
+  export *
+  module * { export * }
+}
