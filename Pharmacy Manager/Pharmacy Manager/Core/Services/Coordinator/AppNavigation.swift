@@ -18,6 +18,15 @@ final class AppNavigation: EventNode {
         self.window = window
 
         super.init(parent: nil)
+
+        addHandler { [weak self] (event: SignInEvent) in
+            guard let `self` = self else { return }
+
+            switch event {
+            case .userSignedIn:
+                self.presentMainFlow()
+            }
+        }
     }
 
     func startFlow() {

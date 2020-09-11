@@ -23,15 +23,27 @@ class StateTextField: UIView {
         case error
         case plain
         case errorActive
+        case valid
 
-        func underlineColor() -> UIColor? {
+        func borderColor() -> UIColor {
             switch self {
-            case .active:
-                return .black
-            case .error, .errorActive:
-                return UIColor(named: "indication_red")
+            case .active, .errorActive:
+                return Asset.Colors.appBluePrimary.color
+            case .error:
+                return Asset.Colors.appError.color
+            case .valid:
+                return Asset.Colors.appGreen.color
             default:
-                return UIColor(named: "light_grey")
+                return Asset.Colors.appGreyMedium.color
+            }
+        }
+
+        func backgroundColor() -> UIColor {
+            switch self {
+            case .plain:
+                return Asset.Colors.appGreyLight.color
+            default:
+                return .white
             }
         }
     }
@@ -44,10 +56,9 @@ class StateTextField: UIView {
         case nonEmpty
     }
 
-    @IBOutlet private weak var alertImageView: UIImageView!
+    @IBOutlet private weak var stateIconImageView: UIImageView!
     @IBOutlet private weak var controlsView: UIView!
     @IBOutlet private weak var contentView: UIView!
-    @IBOutlet private weak var stateView: UIView!
     @IBOutlet private weak var textField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
 
@@ -84,7 +95,7 @@ class StateTextField: UIView {
     var placeholder: String? {
         didSet {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
-                                                                 attributes: [NSAttributedString.Key.font: UIFont(name: "OpenSans-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)] )
+                                                                 attributes: [NSAttributedString.Key.font: UIFont(name: "OpenSans-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)] )
         }
     }
 
@@ -118,6 +129,11 @@ class StateTextField: UIView {
 
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        controlsView.layer.borderWidth = 1
+        controlsView.layer.borderColor = state.borderColor().cgColor
+
+        stateIconImageView.isHidden = true
+
         textField.delegate = self
         textField.keyboardType = keyboardType
 //        textField.typingAttributes = typingAttributes()
@@ -125,7 +141,19 @@ class StateTextField: UIView {
 
     func setActive(state: TextFieldState) {
         self.backgroundColor = .clear
-        stateView.backgroundColor = state.underlineColor()
+        controlsView.layer.borderColor = state.borderColor().cgColor
+        controlsView.backgroundColor = state.backgroundColor()
+
+        if state == .error {
+            stateIconImageView.isHidden = false
+            stateIconImageView.image = Asset.General.iconError.image
+        } else if state == .valid {
+            stateIconImageView.isHidden = false
+            stateIconImageView.image = Asset.General.iconCheck.image
+        } else {
+            stateIconImageView.isHidden = true
+            stateIconImageView.image = Asset.General.iconError.image
+        }
     }
 
     func isValid() -> Bool {
@@ -192,13 +220,11 @@ extension StateTextField: UITextFieldDelegate {
 
             if validation.0 == true {
                 errorLabel.isHidden = true
-                alertImageView.isHidden = true
                 state = .active
             } else if let text = validation.1 {
                 state = .errorActive
                 setErrorDescription(text: text)
                 errorLabel.isHidden = false
-                alertImageView.isHidden = false
             }
         }
 
@@ -217,7 +243,7 @@ extension StateTextField: UITextFieldDelegate {
         if validation.0 == true {
             errorLabel.isHidden = true
             delegate?.didEndEditing(with: true)
-            state = .plain
+            state = .valid
         } else {
             state = .error
             errorLabel.text = validation.1

@@ -33,14 +33,7 @@ class ChatFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
-        
-        addHandler { [weak self] (event: SignInEvent) in
-            guard let `self` = self else { return }
-            
-            //            switch event {
-            //
-            //            }
-        }
+
     }
     
 }

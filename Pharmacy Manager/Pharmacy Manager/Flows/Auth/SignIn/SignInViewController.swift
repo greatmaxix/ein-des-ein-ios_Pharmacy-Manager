@@ -15,7 +15,9 @@ class SignInViewController: UIViewController {
 
     @IBOutlet private weak var emailTextView: StateTextField!
     @IBOutlet private weak var passwordTextView: StateTextField!
-    
+    @IBOutlet weak var enterLabel: UILabel!
+    @IBOutlet weak var signInButton: UIButton!
+
     var model: SignInViewControllerOutput!
 
     override func viewDidLoad() {
@@ -36,28 +38,19 @@ class SignInViewController: UIViewController {
         passwordTextView.placeholder = "Пароль"
     }
 
-    @IBAction func close(_ sender: Any) {
-        model.close()
-    }
-
-    @IBAction func signUp(_ sender: Any) {
-        model.openSignUp()
-    }
-
-    @IBAction func signIn(_ sender: Any) {
-        performSignIn()
-    }
-
-    @IBAction func resetPassword(_ sender: Any) {
-        model.openResetPassword()
-    }
-
     private func performSignIn() {
         guard let email = emailTextView.text, let password = passwordTextView.text, emailTextView.isValid(), passwordTextView.isValid() else {
             return
         }
 
 //        startLoadingIndicator()
+        model.signIn(email: email, password: password)
+    }
+
+    @IBAction func signIn(_ sender: Any) {
+        guard let email = emailTextView.text, let password = passwordTextView.text else {
+            return
+        }
         model.signIn(email: email, password: password)
     }
 }
@@ -79,7 +72,15 @@ extension SignInViewController: SignInViewControllerInput {
 extension SignInViewController: StateTextFieldDelegate {
 
     func didChange(validation: Bool) {
-
+        if emailTextView.isValid() && passwordTextView.isValid() {
+            signInButton.isUserInteractionEnabled = true
+            signInButton.setImage(Asset.Auth.btnGoActive.image, for: .normal)
+            enterLabel.textColor = Asset.Colors.appBluePrimary.color
+        } else {
+            signInButton.isUserInteractionEnabled = false
+            signInButton.setImage(Asset.Auth.btnGoInactive.image, for: .normal)
+            enterLabel.textColor = Asset.Colors.appGrey.color
+        }
     }
 
     func didBeginEditing() {
