@@ -23,6 +23,7 @@ class StateTextField: UIView {
         case error
         case plain
         case errorActive
+        case valid
 
         func borderColor() -> UIColor {
             switch self {
@@ -30,6 +31,8 @@ class StateTextField: UIView {
                 return Asset.Colors.appBluePrimary.color
             case .error:
                 return Asset.Colors.appError.color
+            case .valid:
+                return Asset.Colors.appGreen.color
             default:
                 return Asset.Colors.appGreyMedium.color
             }
@@ -53,6 +56,7 @@ class StateTextField: UIView {
         case nonEmpty
     }
 
+    @IBOutlet private weak var stateIconImageView: UIImageView!
     @IBOutlet private weak var controlsView: UIView!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var textField: UITextField!
@@ -91,7 +95,7 @@ class StateTextField: UIView {
     var placeholder: String? {
         didSet {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder ?? "",
-                                                                 attributes: [NSAttributedString.Key.font: UIFont(name: "OpenSans-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)] )
+                                                                 attributes: [NSAttributedString.Key.font: UIFont(name: "OpenSans-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)] )
         }
     }
 
@@ -127,6 +131,9 @@ class StateTextField: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         controlsView.layer.borderWidth = 1
         controlsView.layer.borderColor = state.borderColor().cgColor
+
+        stateIconImageView.isHidden = true
+
         textField.delegate = self
         textField.keyboardType = keyboardType
 //        textField.typingAttributes = typingAttributes()
@@ -136,6 +143,17 @@ class StateTextField: UIView {
         self.backgroundColor = .clear
         controlsView.layer.borderColor = state.borderColor().cgColor
         controlsView.backgroundColor = state.backgroundColor()
+
+        if state == .error {
+            stateIconImageView.isHidden = false
+            stateIconImageView.image = Asset.General.iconError.image
+        } else if state == .valid {
+            stateIconImageView.isHidden = false
+            stateIconImageView.image = Asset.General.iconCheck.image
+        } else {
+            stateIconImageView.isHidden = true
+            stateIconImageView.image = Asset.General.iconError.image
+        }
     }
 
     func isValid() -> Bool {
@@ -225,7 +243,7 @@ extension StateTextField: UITextFieldDelegate {
         if validation.0 == true {
             errorLabel.isHidden = true
             delegate?.didEndEditing(with: true)
-            state = .plain
+            state = .valid
         } else {
             state = .error
             errorLabel.text = validation.1

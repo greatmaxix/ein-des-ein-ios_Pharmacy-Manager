@@ -11,9 +11,6 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans-Regular</string>
         </array>
-        <array key="OpenSans-SemiBold.ttf">
-            <string>OpenSans-SemiBold</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StateTextField" customModule="Pharmacy_Manager" customModuleProvider="target">
@@ -21,6 +18,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="dnA-mW-Mpq"/>
                 <outlet property="controlsView" destination="P6D-fd-aa4" id="64P-GA-O3A"/>
                 <outlet property="errorLabel" destination="3rq-Dk-2cp" id="1Ym-u0-BVb"/>
+                <outlet property="stateIconImageView" destination="VMv-C1-Jdh" id="Vjm-pi-mO5"/>
                 <outlet property="textField" destination="wmV-qC-Gw9" id="D99-aY-yjC"/>
             </connections>
         </placeholder>
@@ -54,15 +52,20 @@
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wmV-qC-Gw9">
                             <rect key="frame" x="16" y="12" width="288" height="24"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="16"/>
+                            <color key="textColor" name="app_blue_dark"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-error" translatesAutoresizingMaskIntoConstraints="NO" id="VMv-C1-Jdh">
+                            <rect key="frame" x="281" y="12" width="24" height="24"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="wmV-qC-Gw9" firstAttribute="top" secondItem="P6D-fd-aa4" secondAttribute="top" constant="12" id="9JW-cX-BUu"/>
+                        <constraint firstAttribute="trailing" secondItem="VMv-C1-Jdh" secondAttribute="trailing" constant="15" id="HRK-eh-lSb"/>
                         <constraint firstAttribute="bottom" secondItem="wmV-qC-Gw9" secondAttribute="bottom" constant="12" id="Iqr-o0-94L"/>
+                        <constraint firstItem="VMv-C1-Jdh" firstAttribute="centerY" secondItem="P6D-fd-aa4" secondAttribute="centerY" id="Nb5-kB-NV7"/>
                         <constraint firstItem="wmV-qC-Gw9" firstAttribute="leading" secondItem="P6D-fd-aa4" secondAttribute="leading" constant="16" id="dcn-VV-frx"/>
                         <constraint firstAttribute="trailing" secondItem="wmV-qC-Gw9" secondAttribute="trailing" constant="16" id="r2W-xR-4sR"/>
                     </constraints>
@@ -91,6 +94,10 @@
         </view>
     </objects>
     <resources>
+        <image name="icon-error" width="24" height="24"/>
+        <namedColor name="app_blue_dark">
+            <color red="0.0" green="0.039215686274509803" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="indication_red">
             <color red="0.92941176470588238" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

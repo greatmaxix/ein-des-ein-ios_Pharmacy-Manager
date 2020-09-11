@@ -80,6 +80,9 @@
                                                     <constraint firstAttribute="width" constant="64" id="qy5-kf-wA8"/>
                                                 </constraints>
                                                 <state key="normal" image="btn-go-inactive"/>
+                                                <connections>
+                                                    <action selector="signIn:" destination="TFe-DJ-xFE" eventType="touchUpInside" id="87W-tz-2MO"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Войти" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3X-dk-ftQ">
                                                 <rect key="frame" x="274" y="655" width="51.5" height="21"/>
@@ -134,7 +137,9 @@
                     </view>
                     <connections>
                         <outlet property="emailTextView" destination="arz-SD-5NC" id="p6I-6f-Dsy"/>
+                        <outlet property="enterLabel" destination="Q3X-dk-ftQ" id="ZEN-ii-8tc"/>
                         <outlet property="passwordTextView" destination="tAB-4A-zUz" id="N2r-FQ-gQr"/>
+                        <outlet property="signInButton" destination="7R6-Sx-z1G" id="z5s-FY-rLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRc-UZ-KsI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
