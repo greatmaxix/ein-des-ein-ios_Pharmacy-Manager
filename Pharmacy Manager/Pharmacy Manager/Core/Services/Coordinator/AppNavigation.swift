@@ -30,7 +30,7 @@ final class AppNavigation: EventNode {
     }
 
     func startFlow() {
-        presentAuthFlow()
+        presentMainFlow()
     }
 
 }
@@ -53,11 +53,11 @@ extension AppNavigation {
     }
 
     private func tabBarRootCoordinators(for coordinator: TabBarCoordinator) -> [TabBarEmbedCoordinable] {
-        let welcomeFlow = WelcomeFlowCoordinator(parent: coordinator)
+        let homeFlow = HomeFlowCoordinator(parent: coordinator)
         let chatFlow = ChatFlowCoordinator(parent: coordinator)
         let profileFlow = ProfileFlowCoordinator(parent: coordinator)
 
-        return [welcomeFlow, chatFlow, profileFlow]
+        return [homeFlow, chatFlow, profileFlow]
     }
 
     private func presentCoordinatorFlow(_ coordinator: Coordinator) {
