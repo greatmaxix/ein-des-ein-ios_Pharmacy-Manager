@@ -17,10 +17,25 @@ internal enum StoryboardScene {
 
     internal static let signInViewController = SceneType<Pharmacy_Manager.SignInViewController>(storyboard: Auth.self, identifier: "SignInViewController")
   }
+  internal enum Chat: StoryboardType {
+    internal static let storyboardName = "Chat"
+
+    internal static let chatsViewController = SceneType<Pharmacy_Manager.ChatsViewController>(storyboard: Chat.self, identifier: "ChatsViewController")
+  }
+  internal enum Home: StoryboardType {
+    internal static let storyboardName = "Home"
+
+    internal static let homeViewController = SceneType<Pharmacy_Manager.HomeViewController>(storyboard: Home.self, identifier: "HomeViewController")
+  }
   internal enum LaunchScreen: StoryboardType {
     internal static let storyboardName = "LaunchScreen"
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
+  }
+  internal enum Profile: StoryboardType {
+    internal static let storyboardName = "Profile"
+
+    internal static let profileViewController = SceneType<Pharmacy_Manager.ProfileViewController>(storyboard: Profile.self, identifier: "ProfileViewController")
   }
   internal enum Tabbar: StoryboardType {
     internal static let storyboardName = "Tabbar"

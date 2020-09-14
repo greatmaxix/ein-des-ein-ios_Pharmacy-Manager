@@ -13,20 +13,18 @@ class ChatFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     
     let tabItemInfo = TabBarItemInfo(
         title: L10n.Tabbar.chat,
-        icon: Asset.TabBar.tabbarChat.image,
-        highlightedIcon: Asset.TabBar.tabbarChat.image
+        icon: Asset.TabBar.tabbarChat.image.withRenderingMode(.alwaysOriginal),
+        highlightedIcon: Asset.TabBar.tabbarChat.image.withRenderingMode(.alwaysOriginal)
     )
     
     private var navigationController: UINavigationController!
     
     func createFlow() -> UIViewController {
-        let root = StoryboardScene.Auth.signInViewController.instantiate()
-        let model = SignInModel(parent: self)
+        let root = StoryboardScene.Chat.chatsViewController.instantiate()
+        let model = ChatsListModel(parent: self)
         root.model = model
         model.output = root
         navigationController = UINavigationController(rootViewController: root)
-        
-        navigationController.setNavigationBarHidden(true, animated: false)
         
         return navigationController
     }

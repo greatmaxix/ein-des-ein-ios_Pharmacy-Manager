@@ -27,6 +27,8 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         model.controllerDidBecomeVisible()
+
+        applyStyle()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

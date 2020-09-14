@@ -1,5 +1,5 @@
 //
-//  WelcomeFlowCoordinator.swift
+//  HomeFlowCoordinator.swift
 //  Pharmacy Manager
 //
 //  Created by Mikhail Timoscenko on 10.09.2020.
@@ -9,7 +9,7 @@
 import Foundation
 import EventsTree
 
-class WelcomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
+class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
     let tabItemInfo = TabBarItemInfo(
         title: L10n.Tabbar.home,
@@ -20,12 +20,12 @@ class WelcomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     private var navigationController: UINavigationController!
 
     func createFlow() -> UIViewController {
-        let root = StoryboardScene.Auth.signInViewController.instantiate()
-        let model = SignInModel(parent: self)
+        let root = StoryboardScene.Home.homeViewController.instantiate()
+        let model = HomeModel(parent: self)
         root.model = model
         model.output = root
-        navigationController = UINavigationController(rootViewController: root)
 
+        navigationController = UINavigationController(rootViewController: root)
         navigationController.setNavigationBarHidden(true, animated: false)
 
         return navigationController
@@ -38,6 +38,6 @@ class WelcomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
 }
 
-extension WelcomeFlowCoordinator {
+extension HomeFlowCoordinator {
 
 }
