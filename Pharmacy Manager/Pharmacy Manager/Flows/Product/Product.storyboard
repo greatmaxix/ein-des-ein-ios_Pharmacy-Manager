@@ -137,12 +137,60 @@
             </objects>
             <point key="canvasLocation" x="858" y="-98"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="Vf5-aO-Hbi">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="wng-hb-Ca9" customClass="SearchViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7dT-AS-gsQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMF-aF-rSZ" customClass="EmptySearchView" customModule="Pharmacy_Manager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ItL-vX-Xod">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="wng-hb-Ca9" id="hTE-a6-fzj"/>
+                                    <outlet property="delegate" destination="wng-hb-Ca9" id="Ack-f5-04y"/>
+                                    <outlet property="prefetchDataSource" destination="wng-hb-Ca9" id="Tbl-y3-sPS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6SP-bV-Hnf"/>
+                        <color key="backgroundColor" name="backgroundGray"/>
+                        <constraints>
+                            <constraint firstItem="ItL-vX-Xod" firstAttribute="top" secondItem="6SP-bV-Hnf" secondAttribute="top" id="6tV-i7-5o0"/>
+                            <constraint firstItem="ItL-vX-Xod" firstAttribute="trailing" secondItem="6SP-bV-Hnf" secondAttribute="trailing" id="8I8-HD-zXR"/>
+                            <constraint firstItem="ItL-vX-Xod" firstAttribute="leading" secondItem="6SP-bV-Hnf" secondAttribute="leading" id="C9p-6k-tBe"/>
+                            <constraint firstItem="BMF-aF-rSZ" firstAttribute="trailing" secondItem="6SP-bV-Hnf" secondAttribute="trailing" id="NfC-JK-DV7"/>
+                            <constraint firstItem="BMF-aF-rSZ" firstAttribute="top" secondItem="6SP-bV-Hnf" secondAttribute="top" id="ZEd-BT-nOj"/>
+                            <constraint firstItem="BMF-aF-rSZ" firstAttribute="bottom" secondItem="6SP-bV-Hnf" secondAttribute="bottom" id="b6Z-4B-9qj"/>
+                            <constraint firstItem="BMF-aF-rSZ" firstAttribute="leading" secondItem="6SP-bV-Hnf" secondAttribute="leading" id="mVV-QJ-8T1"/>
+                            <constraint firstItem="6SP-bV-Hnf" firstAttribute="bottom" secondItem="ItL-vX-Xod" secondAttribute="bottom" id="oRK-4k-2on"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="emptyView" destination="BMF-aF-rSZ" id="KfI-DV-ban"/>
+                        <outlet property="tableView" destination="ItL-vX-Xod" id="wgb-tg-K3c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krB-tD-hfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807" y="-121"/>
+        </scene>
     </scenes>
     <resources>
         <image name="add_to_wish_list_fill2" width="48" height="48"/>
         <image name="button_default_bg" width="280" height="48"/>
         <image name="button_pressed_bg" width="280" height="48"/>
         <image name="button_wishlist" width="48" height="48"/>
+        <namedColor name="backgroundGray">
+            <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="confirmCircleGray">
             <color red="0.77254901960784317" green="0.77254901960784317" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

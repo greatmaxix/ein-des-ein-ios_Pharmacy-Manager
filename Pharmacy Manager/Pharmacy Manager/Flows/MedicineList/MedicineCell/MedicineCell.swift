@@ -46,7 +46,7 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
         super.prepareForReuse()
         
         downloadTask?.cancel()
-        self.farmacyImageView.backgroundColor = R.color.mediumGrey()
+        self.farmacyImageView.backgroundColor = Asset.LegacyColors.mediumGrey.color
     }
     
     // MARK: - Public methods
@@ -63,11 +63,11 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
         if medicine.minPrice != nil {
             setAvaliableStyle()
             costLabel.attributedText = NSAttributedString.fromPriceAttributed(for: medicine.price)
-            placeholder = R.image.medicineImagePlaceholder()
+            placeholder = Asset.Images.Catalogs.medicineImagePlaceholder.image
         } else {
             setUnavaliableStyle()
-            costLabel.text = R.string.localize.productTemporarilyUnavailable()
-            placeholder = R.image.medicineImageGrayscalePlaceholder()
+            costLabel.text = "Временно недоступен"
+            placeholder = Asset.Images.Catalogs.medicineImageGrayscalePlaceholder.image
         }
         
         guard let urlString = medicine.pictureUrls.first,
@@ -119,18 +119,18 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
 extension MedicineCell {
     
     private func setAvaliableStyle() {
-        titleLabel.textColor = R.color.textDarkBlue()
-        costLabel.textColor = R.color.textDarkBlue()
-        typeLabel.textColor = R.color.textDarkBlue()
-        factoryLabel.textColor = R.color.textDarkBlue()
+        titleLabel.textColor = Asset.LegacyColors.textDarkBlue.color
+        costLabel.textColor = Asset.LegacyColors.textDarkBlue.color
+        typeLabel.textColor = Asset.LegacyColors.textDarkBlue.color
+        factoryLabel.textColor = Asset.LegacyColors.textDarkBlue.color
     }
     
     private func setUnavaliableStyle() {
-        titleLabel.textColor = R.color.greyText()
-        costLabel.textColor = R.color.greyText()
-        typeLabel.textColor = R.color.greyText()
-        factoryLabel.textColor = R.color.greyText()
+        titleLabel.textColor = Asset.LegacyColors.greyText.color
+        costLabel.textColor = Asset.LegacyColors.greyText.color
+        typeLabel.textColor = Asset.LegacyColors.greyText.color
+        factoryLabel.textColor = Asset.LegacyColors.greyText.color
         
-        costLabel.textColor = R.color.applyBlueGray()
+        costLabel.textColor = Asset.LegacyColors.applyBlueGray.color
     }
 }

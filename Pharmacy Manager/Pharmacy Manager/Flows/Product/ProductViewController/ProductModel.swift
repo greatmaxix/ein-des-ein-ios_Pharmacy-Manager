@@ -17,8 +17,8 @@ enum ProductModelEvent: Event {
 protocol ProductModelInput: class {
     var dataSource: TableDataSource<ProductCellSection> { get }
     var title: String { get }
+
     func load()
-    func saveToCoreData(medicine: Medicine)
     func didSelectCell(at indexPath: IndexPath)
     func addToWishList()
     func removeFromWishList()
@@ -75,21 +75,6 @@ extension ProductModel: ProductViewControllerOutput {
         }
     }
     
-    func saveToCoreData(medicine: Medicine) {
-        let min = NSDecimalNumber.init(decimal: medicine.minPrice ?? 0).doubleValue
-        let max = NSDecimalNumber.init(decimal: medicine.maxPrice ?? 0).doubleValue
-        
-        let data = RecentMedicineDTO.init(productId: medicine.id,
-                                          liked: medicine.liked,
-                                          minPrice: min,
-                                          maxPrice: max,
-                                          name: medicine.name,
-                                          releaseForm: medicine.releaseForm,
-                                          imageURL: medicine.pictureUrls.first ?? "")
-        
-        UserSession.shared.save(medicine: data)
-    }
-    
     var title: String {
         medicine.title
     }
@@ -103,8 +88,6 @@ extension ProductModel: ProductViewControllerOutput {
             switch result {
             case .success(let product):
                 self.product = product.item
-                
-                self.saveToCoreData(medicine: self.medicine)
                 
                 self.dataSource.cells = ProductCellSection.allSectionsFor(product: self.product)
                 self.output.didLoad(product: self.product)

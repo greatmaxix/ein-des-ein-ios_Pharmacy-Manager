@@ -32,11 +32,11 @@ enum NavigationBarStyle {
 final class NavigationBar: UINavigationBar {
 
     fileprivate enum GUI {
-        static let largeTitleFont = R.font.openSansBold(size: 32)!
-        static let normalTitleFont = R.font.openSansBold(size: 16)!
+        static let largeTitleFont = FontFamily.OpenSans.bold.font(size: 32)
+        static let normalTitleFont = FontFamily.OpenSans.bold.font(size: 16)
         static let animationDurartion: TimeInterval = 0.3
         static let textFiledNormalTextColor = UIColor.white
-        static let textFiledDarkTextColor = R.color.textDarkBlue()!
+        static let textFiledDarkTextColor = Asset.LegacyColors.textDarkBlue.color
         static let largeHeight: CGFloat = 90
         static let smallHeight: CGFloat = 16
         static let cornerRadius: CGFloat = 10
@@ -139,7 +139,7 @@ extension NavigationBar {
         barStyle = .black
         titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         tintColor = .clear
-        barTintColor = R.color.welcomeBlue()
+        barTintColor = Asset.LegacyColors.welcomeBlue.color
         isTranslucent = false
         
         contentView = configFromNib()!

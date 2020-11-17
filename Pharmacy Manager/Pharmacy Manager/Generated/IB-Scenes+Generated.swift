@@ -47,11 +47,18 @@ internal enum StoryboardScene {
     internal static let storyboardName = "Product"
 
     internal static let initialScene = InitialSceneType<Pharmacy_Manager.ProductViewController>(storyboard: Product.self)
+
+    internal static let searchViewController = SceneType<Pharmacy_Manager.SearchViewController>(storyboard: Product.self, identifier: "SearchViewController")
   }
   internal enum Profile: StoryboardType {
     internal static let storyboardName = "Profile"
 
     internal static let profileViewController = SceneType<Pharmacy_Manager.ProfileViewController>(storyboard: Profile.self, identifier: "ProfileViewController")
+  }
+  internal enum Scan: StoryboardType {
+    internal static let storyboardName = "Scan"
+
+    internal static let initialScene = InitialSceneType<Pharmacy_Manager.ScanViewController>(storyboard: Scan.self)
   }
   internal enum Tabbar: StoryboardType {
     internal static let storyboardName = "Tabbar"

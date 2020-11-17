@@ -122,7 +122,7 @@ extension ProductViewController: ProductViewControllerInput {
             likeButton.isSelected.toggle()
         }
 
-        viewControllers = product.imageURLs.count == 0 ? [ProductPageViewController.createWith(image: R.image.medicineImagePlaceholder()!, title: "")] : product.imageURLs.map {ProductPageViewController.createWith(url: $0, title: "")}
+        viewControllers = product.imageURLs.count == 0 ? [ProductPageViewController.createWith(image: Asset.Images.Catalogs.medicineImagePlaceholder.image, title: "")] : product.imageURLs.map {ProductPageViewController.createWith(url: $0, title: "")}
         pageController?.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
         pageControl.numberOfPages = viewControllers.count
         pageControl.isHidden = (viewControllers.count == 1) ? true : false

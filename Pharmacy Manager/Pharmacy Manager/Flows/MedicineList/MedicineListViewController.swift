@@ -56,14 +56,14 @@ extension MedicineListViewController {
     
     private func configUI() {
         title = model.title
-        sortButton.setTitle(R.string.localize.medicineSort(), for: .normal)
+        sortButton.setTitle("Сортировать", for: .normal)
         sortButton.setTrailingImageViewWith(padding: GUI.sortButtonImagePadding)
     }
     
     private func setupTableView() {
         tableView.separatorInset = GUI.separatorInset
         tableView.separatorColor = GUI.separatorColor
-        tableView.backgroundColor = R.color.lightGray()
+        tableView.backgroundColor = Asset.LegacyColors.lightGray.color
         tableView.register(cellType: MedicineCell.self)
     }
 }
@@ -146,14 +146,14 @@ extension MedicineListViewController: UITableViewDelegate {
 extension MedicineListViewController {
     
     fileprivate func titleAttributed(count: Int) -> NSAttributedString {
-        let foundText = R.string.localize.medicineFound()
+        let foundText = "Найдено"
         let countText = "\(count)"
-        let productText = count == 1 ?  R.string.localize.medicineFoundProduct() : R.string.localize.medicineFoundProducts()
+        let productText = count == 1 ?  "продукт" : "продукт(ов)"
         let text = "\(foundText) \(countText) \(productText)"
         
-        let countFont = R.font.openSansBold(size: 16)!
-        let font =  R.font.openSansRegular(size: 14)!
-        let color = R.color.textDarkBlue()!
+        let countFont = FontFamily.OpenSans.bold.font(size: 16)
+        let font =  FontFamily.OpenSans.regular.font(size: 14)
+        let color = Asset.LegacyColors.textDarkBlue.color
         
         let att = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font: font, .foregroundColor: color])
         att.addAttribute(.font, value: countFont, range: NSRange(location: foundText.count + 1, length: countText.count))
@@ -168,7 +168,7 @@ extension MedicineListViewController {
     enum GUI {
         static let sortButtonImagePadding: CGFloat = 9
         static let separatorInset = UIEdgeInsets.only(left: 135)
-        static let separatorColor = R.color.applyBlueGray()?.withAlphaComponent(0.2)
+        static let separatorColor = Asset.LegacyColors.applyBlueGray.color.withAlphaComponent(0.2)
     }
 }
 
@@ -176,7 +176,7 @@ extension UIViewController {
     func maskNavigation() {
         guard navigationController?.isNavigationBarHidden ?? true == false else { return }
         let background = UIView()
-        background.backgroundColor = R.color.welcomeBlue()
+        background.backgroundColor = Asset.LegacyColors.welcomeBlue.color
         background.layer.cornerRadius = 10.0
         background.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         background.translatesAutoresizingMaskIntoConstraints = false
