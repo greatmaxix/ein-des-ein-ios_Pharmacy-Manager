@@ -19,8 +19,6 @@ enum ProductCellSection: ProductCellSections {
     case category(Product)
     case description(Product)
     case instruction(Product)
-    case advice(Product)
-    case questions(Product)
     
     static func allSectionsFor(product: Product) -> [ProductCellSection] {
         [
@@ -28,9 +26,7 @@ enum ProductCellSection: ProductCellSections {
             .analog(product),
             .category(product),
             .description(product),
-            .instruction(product),
-            .advice(product),
-            .questions(product)
+            .instruction(product)
         ]
     }
     
@@ -39,10 +35,8 @@ enum ProductCellSection: ProductCellSections {
         case .info(let product),
              .analog(let product),
              .category(let product),
-             .advice(let product),
              .description(let product),
-             .instruction(let product),
-             .questions(let product):
+             .instruction(let product):
             return product
         }
     }
@@ -63,10 +57,6 @@ enum ProductCellSection: ProductCellSections {
             return ProductDescriptionTableViewCell.self
         case .instruction:
             return ProductInstructionTableViewCell.self
-        case .questions:
-            return ProductQuestionsTableViewCell.self
-        case .advice:
-            return ProductAdviceTableViewCell.self
         }
     }
     

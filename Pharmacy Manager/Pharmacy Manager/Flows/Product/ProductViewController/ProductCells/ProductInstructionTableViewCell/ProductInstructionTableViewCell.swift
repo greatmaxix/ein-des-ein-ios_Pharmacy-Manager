@@ -18,6 +18,6 @@ final class ProductInstructionTableViewCell: HighlightedTableViewCell, Container
     
     override func awakeFromNib() {
         containerView.layer.cornerRadius = GUI.cornerRadius
-        containerView.dropBlueShadow()
+        containerView.dropLightBlueShadow()
     }
 }

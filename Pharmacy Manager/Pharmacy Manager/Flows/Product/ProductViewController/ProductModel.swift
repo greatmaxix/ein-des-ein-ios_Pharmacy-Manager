@@ -20,13 +20,10 @@ protocol ProductModelInput: class {
 
     func load()
     func didSelectCell(at indexPath: IndexPath)
-    func addToWishList()
-    func removeFromWishList()
 }
 
 protocol ProductModelOutput: class {
     func didLoad(product: Product)
-    func addRemoveFromFavoriteError()
 }
 
 final class ProductModel: Model {
@@ -36,7 +33,6 @@ final class ProductModel: Model {
     private var product: Product!
     
     private let provider = DataManager<ProductAPI, SingleItemContainerResponse<Product>>()
-    private let wishListProvider = DataManager<WishListAPI, PostResponse>()
     
     let dataSource = TableDataSource<ProductCellSection>()
     var searchTerm: String = ""
@@ -50,31 +46,7 @@ final class ProductModel: Model {
 // MARK: - ProductViewControllerOutput
 
 extension ProductModel: ProductViewControllerOutput {
-    
-    func addToWishList() {
-        wishListProvider.load(target: .addToWishList(medicineId: self.product.identifier)) { (result) in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                print("error is \(error.localizedDescription)")
-                self.output.addRemoveFromFavoriteError()
-            }
-        }
-    }
-    
-    func removeFromWishList() {
-        wishListProvider.load(target: .removeFromWishList(medicineId: self.product.identifier)) { (result) in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                print("error is \(error.localizedDescription)")
-                self.output.addRemoveFromFavoriteError()
-                }
-        }
-    }
-    
+
     var title: String {
         medicine.title
     }

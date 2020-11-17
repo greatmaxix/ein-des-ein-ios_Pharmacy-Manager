@@ -31,13 +31,10 @@ final class ProductViewController: UIViewController, NavigationBarStyled {
         return hud
     }()
     
-    @IBOutlet weak var findButton: UIButton!
-    
     @IBOutlet private weak var productContainerView: UIView!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var likeButton: UIButton!
+
     @IBOutlet private weak var pageControl: UIPageControl!
-    @IBOutlet private weak var bottomView: UIView!
     
     var style: NavigationBarStyle { .normalWithoutSearch }
     
@@ -67,21 +64,12 @@ final class ProductViewController: UIViewController, NavigationBarStyled {
     private func configUI() {
         title = model.title
 
-        likeButton.buttonDropBlueShadow()
-        likeButton.setImage(Asset.Images.Actions.wishList.image, for: .normal)
-        likeButton.setImage(Asset.Images.Actions.wishListSelected.image, for: .selected)
-        
         productContainerView.clipsToBounds = true
         productContainerView.layer.cornerRadius = GUI.cornerRadius
         tableView.delegate = self
         tableView.contentInset = GUI.contentInset
         tableView.separatorInset = GUI.separatorInset
         tableView.separatorColor = GUI.separatorColor
-        
-        bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        bottomView.layer.cornerRadius = GUI.cornerRadius
-        bottomView.bottomViewDropGrayShadow()
-        findButton.buttonDropBlueShadow()
         
         pageController?.dataSource = self
         pageController?.delegate = self
@@ -91,36 +79,13 @@ final class ProductViewController: UIViewController, NavigationBarStyled {
         tableView.tableFooterView = nil
         tableView.tableHeaderView = productContainerView
     }
-    
-    // MARK: - Actions
-    
-    @IBAction func wishListAction(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        if sender.isSelected {
-            model.addToWishList()
-        } else {
-            model.removeFromWishList()
-        }
-        
-    }
-    
-    @IBAction func findAction(_ sender: UIButton) {
-        
-    }
 }
 
 // MARK: - ProductViewControllerInput
 
 extension ProductViewController: ProductViewControllerInput {
     
-    func addRemoveFromFavoriteError() {
-        self.likeButton.isSelected.toggle()
-    }
-    
     func didLoad(product: Product) {
-        if product.isLiked && likeButton.isSelected == false {
-            likeButton.isSelected.toggle()
-        }
 
         viewControllers = product.imageURLs.count == 0 ? [ProductPageViewController.createWith(image: Asset.Images.Catalogs.medicineImagePlaceholder.image, title: "")] : product.imageURLs.map {ProductPageViewController.createWith(url: $0, title: "")}
         pageController?.setViewControllers([viewControllers[0]], direction: .forward, animated: true, completion: nil)
