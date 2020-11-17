@@ -3,6 +3,16 @@ PODS:
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
   - EventsTree (1.0.0)
+  - InputBarAccessoryView (5.2.1):
+    - InputBarAccessoryView/Core (= 5.2.1)
+  - InputBarAccessoryView/Core (5.2.1)
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
+  - LDSwiftEventSource (1.2.0)
+  - MBProgressHUD (1.2.0)
+  - MessageKit (3.4.2):
+    - InputBarAccessoryView (~> 5.2.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -15,6 +25,10 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AlamofireImage (~> 4.1)
   - EventsTree
+  - Kingfisher (~> 5.0)
+  - LDSwiftEventSource (~> 1.2)
+  - MBProgressHUD (~> 1.2.0)
+  - MessageKit
   - Moya (~> 14.0)
   - Result (~> 4.0.0)
   - SwiftGen (~> 6.0)
@@ -25,6 +39,11 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - EventsTree
+    - InputBarAccessoryView
+    - Kingfisher
+    - LDSwiftEventSource
+    - MBProgressHUD
+    - MessageKit
     - Moya
     - Result
     - SwiftGen
@@ -34,11 +53,16 @@ SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   EventsTree: 137f90ebbfd9f3aa57040f4da972583d6196f0d0
+  InputBarAccessoryView: 39a7ed22727baf3b8550ecdf6c8a4d28b2c6aa91
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
+  LDSwiftEventSource: fcbd7dd561f0bf4130c9667735cb8d2454c38555
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MessageKit: 5ff0908bce5a7b6e11bd0b60e13a33e03697d161
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SwiftGen: 3d5024a47ea79e408cded20763d7a17d18a4548c
   TPKeyboardAvoiding: 7c2187e2338052b2c5be4a8052f297fdb124e261
 
-PODFILE CHECKSUM: 3b8b058f1bae2722e764d16e32257eb2df2ca3e7
+PODFILE CHECKSUM: 3a98e6c7ccd8df7004b2a6838033b0f43cafb904
 
 COCOAPODS: 1.9.3
