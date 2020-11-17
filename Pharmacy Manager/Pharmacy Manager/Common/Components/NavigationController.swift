@@ -30,7 +30,7 @@ class NavigationController: UINavigationController {
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBar.tintColor = .white
         navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(Asset.Images.NavigationBar.navigationBarCircles.image.stretchableImage(withLeftCapWidth: 20,
+        navigationBar.setBackgroundImage(Asset.Images.Common.navigationBar.image.stretchableImage(withLeftCapWidth: 20,
                                                                                     topCapHeight: 20),
                                           for: .default)
     }

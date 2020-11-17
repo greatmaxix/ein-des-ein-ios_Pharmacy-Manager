@@ -9,17 +9,14 @@
 import Foundation
 import EventsTree
 
-struct CatalogueFlowConfiguration {
-    let parent: EventNode
-}
 
 final class CatalogueCoordinator: EventNode, Coordinator {
 
     var navigation: UINavigationController!
     
     // MARK: - Init / Deinit methods
-    init(configuration: CatalogueFlowConfiguration) {
-        super.init(parent: configuration.parent)
+    init(parent: EventNode) {
+        super.init(parent: parent)
 
         addHandler(.onRaise) { [weak self] (event: CatalogueEvent) in
             switch event {
@@ -27,6 +24,8 @@ final class CatalogueCoordinator: EventNode, Coordinator {
                 self?.popController()
             case .openMedicineListFor(let category):
                 self?.openMedicineListFor(category: category)
+            case .openCategories(let category):
+                self?.openCategories(category: category)
             }
         }
 

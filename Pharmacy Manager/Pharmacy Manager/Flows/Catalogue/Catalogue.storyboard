@@ -19,7 +19,7 @@
         <!--Catalogue View Controller-->
         <scene sceneID="eu1-oH-FCF">
             <objects>
-                <viewController storyboardIdentifier="CatalogueViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aOw-CT-Nq4" customClass="CatalogueViewController" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CatalogueViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aOw-CT-Nq4" customClass="CatalogueViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OVV-dy-KMQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
         <!--Subcategory View Controller-->
         <scene sceneID="Sin-Dz-IYf">
             <objects>
-                <viewController storyboardIdentifier="SubcategoryViewController" id="nou-XH-6px" customClass="SubcategoryViewController" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SubcategoryViewController" id="nou-XH-6px" customClass="SubcategoryViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eci-wx-6dj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,7 +87,7 @@
         <!--Medicine List View Controller-->
         <scene sceneID="rL9-ug-eZT">
             <objects>
-                <viewController storyboardIdentifier="MedicineListViewController" id="m5H-nj-DFx" customClass="MedicineListViewController" customModule="Pharmacy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MedicineListViewController" id="m5H-nj-DFx" customClass="MedicineListViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dJ9-7t-jGb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,31 +102,21 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PsE-Mx-yTM">
-                                <rect key="frame" x="16" y="64" width="358" height="50"/>
+                                <rect key="frame" x="16" y="64" width="382" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOR-xg-iaM">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                         <color key="textColor" name="textDarkBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-4F-PCr">
-                                        <rect key="frame" x="255" y="0.0" width="103" height="50"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
-                                        <state key="normal" title="Сортировать" image="sort">
-                                            <color key="titleColor" name="textDarkBlue"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sortAction:" destination="m5H-nj-DFx" eventType="touchUpInside" id="e2F-7e-7ER"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Jec-vp-RM8"/>
                         <color key="backgroundColor" name="lightGray"/>
                         <constraints>
-                            <constraint firstItem="Jec-vp-RM8" firstAttribute="trailing" secondItem="PsE-Mx-yTM" secondAttribute="trailing" constant="40" id="CLA-Dh-0ZO"/>
+                            <constraint firstItem="Jec-vp-RM8" firstAttribute="trailing" secondItem="PsE-Mx-yTM" secondAttribute="trailing" constant="16" id="CLA-Dh-0ZO"/>
                             <constraint firstItem="eHY-ft-uld" firstAttribute="top" secondItem="PsE-Mx-yTM" secondAttribute="bottom" constant="20" id="K6T-dN-Uor"/>
                             <constraint firstItem="Jec-vp-RM8" firstAttribute="bottom" secondItem="eHY-ft-uld" secondAttribute="bottom" id="SUW-jC-rbN"/>
                             <constraint firstItem="Jec-vp-RM8" firstAttribute="trailing" secondItem="eHY-ft-uld" secondAttribute="trailing" id="eCH-rZ-aGM"/>
@@ -137,7 +127,6 @@
                     </view>
                     <connections>
                         <outlet property="productCountLabel" destination="cOR-xg-iaM" id="DyW-Ox-Mv6"/>
-                        <outlet property="sortButton" destination="Jnb-4F-PCr" id="JGa-QB-1jJ"/>
                         <outlet property="tableView" destination="eHY-ft-uld" id="v7A-He-LgU"/>
                     </connections>
                 </viewController>
@@ -147,7 +136,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="sort" width="16" height="16"/>
         <namedColor name="lightGray">
             <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -13,8 +13,6 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
     
     // MARK: - Outlets
     @IBOutlet private weak var farmacyImageView: UIImageView!
-    @IBOutlet private weak var likedButton: UIButton!
-    @IBOutlet private weak var buyButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var typeLabel: UILabel!
     @IBOutlet private weak var factoryLabel: UILabel!
@@ -51,13 +49,12 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
     
     // MARK: - Public methods
     func apply(medicine: Medicine) {
-        likedButton.isSelected = medicine.liked
         defaultLikedStatus = medicine.liked
-        titleLabel.text = medicine.title
         costLabel.text = medicine.price
         typeLabel.text = medicine.releaseFormFormatted
         factoryLabel.text = medicine.manufacturerName
         medicineProductID = medicine.id
+        titleLabel.text = medicine.name
         
         let placeholder: UIImage?
         if medicine.minPrice != nil {
@@ -97,22 +94,7 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
                                                         }
         }
     }
-    
-    func setPreviousFavoriteButtonState() {
-        self.likedButton.isSelected = defaultLikedStatus
-    }
-    
-    // MARK: - Actions
-    @IBAction private func likeAction(sender: UIButton) {
-        favoriteButtonHandler?(!sender.isSelected)
-        sender.isSelected.toggle()
-    }
-    
-    @IBAction private func buyAction(sender: UIButton) {
-        sender.isSelected.toggle()
-        
-        addToPurchesesHandler?()
-    }
+
 }
 
 // MARK: - Private methods

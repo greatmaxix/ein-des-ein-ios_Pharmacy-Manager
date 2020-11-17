@@ -11,6 +11,7 @@ import EventsTree
 import Moya
 
 enum CatalogueEvent: Event {
+    case openCategories(category: Category)
     case openMedicineListFor(category: Category)
     case close
 }
@@ -102,7 +103,7 @@ extension CatalogueModel: CatalogueModelInput {
         if category.subCategories?.isEmpty ?? true {
             raise(event: CatalogueEvent.openMedicineListFor(category: category))
         } else {
-//            raise(event: WelcomeEvent.openCategories(category: category))
+            raise(event: CatalogueEvent.openCategories(category: category))
         }
     }
     
@@ -112,7 +113,7 @@ extension CatalogueModel: CatalogueModelInput {
         if category.subCategories?.isEmpty ?? true {
             raise(event: CatalogueEvent.openMedicineListFor(category: category))
         } else {
-//            raise(event: WelcomeEvent.openCategories(category: category))
+            raise(event: CatalogueEvent.openCategories(category: category))
         }
     }
     

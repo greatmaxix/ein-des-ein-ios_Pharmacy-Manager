@@ -17,7 +17,6 @@ final class MedicineListViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var productCountLabel: UILabel!
-    @IBOutlet private weak var sortButton: UIButton!
     
     // MARK: - Properties
     var model: MedicineListViewControllerOutput!
@@ -43,21 +42,11 @@ final class MedicineListViewController: UIViewController {
     }
 }
 
-// MARK: - Actions
-extension MedicineListViewController {
-    
-    @IBAction func sortAction(_ sender: UIButton) {
-        model.openFilter()
-    }
-}
-
 // MARK: - Private
 extension MedicineListViewController {
     
     private func configUI() {
         title = model.title
-        sortButton.setTitle("Сортировать", for: .normal)
-        sortButton.setTrailingImageViewWith(padding: GUI.sortButtonImagePadding)
     }
     
     private func setupTableView() {
@@ -70,15 +59,6 @@ extension MedicineListViewController {
 
 // MARK: - FarmacyListViewControllerInput
 extension MedicineListViewController: MedicineListViewControllerInput {
-    
-    func addRemoveFromFavoriteError(indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? MedicineCell else {return}
-        cell.setPreviousFavoriteButtonState()
-    }
-    
-    func favoriteAciontReloadCell(cellAt indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-    }
     
     func retrivesNewResults() {
         productCountLabel.attributedText = titleAttributed(count: model.totalNumberOfItems)
@@ -114,14 +94,6 @@ extension MedicineListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(at: indexPath, cellType: MedicineCell.self)
         cell.apply(medicine: model.medicines[indexPath.row])
-        
-        cell.favoriteButtonHandler = {[weak self] state in
-            if state {
-                self?.model.addToWishList(productId: cell.medicineProductID, indexPath: indexPath)
-            } else {
-                self?.model.removeFromWishList(productId: cell.medicineProductID, indexPath: indexPath)
-            }
-        }
         
         if model.isEndOfList == false && indexPath.row == model.medicines.count - 1 {
             activityIndicator.show(animated: true)

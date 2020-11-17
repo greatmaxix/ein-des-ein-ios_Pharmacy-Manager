@@ -80,7 +80,7 @@ extension SubcategoryModel: SubcategoryModelInput {
         if category.subCategories?.isEmpty ?? true {
             raise(event: CatalogueEvent.openMedicineListFor(category: category))
         } else {
-//            raise(event: WelcomeEvent.openCategories(category: category))
+            raise(event: CatalogueEvent.openCategories(category: category))
         }
     }
 }

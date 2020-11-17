@@ -1687,6 +1687,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 10EA233D287B47068DCFD07D /* Pods-Pharmacy Manager.debug.xcconfig */;
 			buildSettings = {
+				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
@@ -1706,6 +1707,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF10604725809160F6D8148F /* Pods-Pharmacy Manager.release.xcconfig */;
 			buildSettings = {
+				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
