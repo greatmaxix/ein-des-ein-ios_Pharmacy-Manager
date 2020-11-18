@@ -54,10 +54,11 @@ extension AppNavigation {
 
     private func tabBarRootCoordinators(for coordinator: TabBarCoordinator) -> [TabBarEmbedCoordinable] {
         let homeFlow = HomeFlowCoordinator(parent: coordinator)
+        let catalogFlow = CatalogueCoordinator(parent: coordinator)
         let chatFlow = ChatFlowCoordinator(parent: coordinator)
         let profileFlow = ProfileFlowCoordinator(parent: coordinator)
 
-        return [homeFlow, chatFlow, profileFlow]
+        return [homeFlow, catalogFlow, chatFlow, profileFlow]
     }
 
     private func presentCoordinatorFlow(_ coordinator: Coordinator) {

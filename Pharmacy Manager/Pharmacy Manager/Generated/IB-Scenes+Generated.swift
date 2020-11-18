@@ -17,6 +17,17 @@ internal enum StoryboardScene {
 
     internal static let signInViewController = SceneType<Pharmacy_Manager.SignInViewController>(storyboard: Auth.self, identifier: "SignInViewController")
   }
+  internal enum Catalogue: StoryboardType {
+    internal static let storyboardName = "Catalogue"
+
+    internal static let initialScene = InitialSceneType<Pharmacy_Manager.CatalogueViewController>(storyboard: Catalogue.self)
+
+    internal static let catalogueViewController = SceneType<Pharmacy_Manager.CatalogueViewController>(storyboard: Catalogue.self, identifier: "CatalogueViewController")
+
+    internal static let medicineListViewController = SceneType<Pharmacy_Manager.MedicineListViewController>(storyboard: Catalogue.self, identifier: "MedicineListViewController")
+
+    internal static let subcategoryViewController = SceneType<Pharmacy_Manager.SubcategoryViewController>(storyboard: Catalogue.self, identifier: "SubcategoryViewController")
+  }
   internal enum Chat: StoryboardType {
     internal static let storyboardName = "Chat"
 
@@ -32,10 +43,22 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
   }
+  internal enum Product: StoryboardType {
+    internal static let storyboardName = "Product"
+
+    internal static let initialScene = InitialSceneType<Pharmacy_Manager.ProductViewController>(storyboard: Product.self)
+
+    internal static let searchViewController = SceneType<Pharmacy_Manager.SearchViewController>(storyboard: Product.self, identifier: "SearchViewController")
+  }
   internal enum Profile: StoryboardType {
     internal static let storyboardName = "Profile"
 
     internal static let profileViewController = SceneType<Pharmacy_Manager.ProfileViewController>(storyboard: Profile.self, identifier: "ProfileViewController")
+  }
+  internal enum Scan: StoryboardType {
+    internal static let storyboardName = "Scan"
+
+    internal static let initialScene = InitialSceneType<Pharmacy_Manager.ScanViewController>(storyboard: Scan.self)
   }
   internal enum Tabbar: StoryboardType {
     internal static let storyboardName = "Tabbar"

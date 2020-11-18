@@ -14,5 +14,9 @@ target 'Pharmacy Manager' do
   pod 'Result', '~> 4.0.0'
   pod 'SwiftGen', '~> 6.0'
   pod "TPKeyboardAvoiding"
+  pod 'Kingfisher', '~> 5.0'
+  pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'MessageKit'
+  pod 'LDSwiftEventSource', '~> 1.2'
 
 end

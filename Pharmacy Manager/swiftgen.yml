@@ -60,6 +60,12 @@
     - templateName: structured-swift4
       output: Strings+Generated.swift
 
+ fonts:
+    inputs: Resources/Fonts/
+    outputs:
+     - templateName: swift4
+       output: Fonts+Generated.swift
+
 # strings:
 #  inputs: Resources/en.lproj/Localizable.strings
 #  outputs:
