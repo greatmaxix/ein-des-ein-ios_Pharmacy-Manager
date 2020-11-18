@@ -60,6 +60,9 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<Pharmacy_Manager.ScanViewController>(storyboard: Scan.self)
   }
+  internal enum Search: StoryboardType {
+    internal static let storyboardName = "Search"
+  }
   internal enum Tabbar: StoryboardType {
     internal static let storyboardName = "Tabbar"
 
