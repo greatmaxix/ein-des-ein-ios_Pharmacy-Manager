@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,34 +23,106 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-background" translatesAutoresizingMaskIntoConstraints="NO" id="2mX-X1-kAt">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="194"/>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationBarCircles" translatesAutoresizingMaskIntoConstraints="NO" id="GzD-1P-gJ6">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="226"/>
+                                    </imageView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caB-lH-9D7">
+                                        <rect key="frame" x="16" y="142" width="334" height="36"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcomeSearch" translatesAutoresizingMaskIntoConstraints="NO" id="Ewy-VF-VHd">
+                                                <rect key="frame" x="16" y="6" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="3Rg-fO-pFB"/>
+                                                    <constraint firstAttribute="height" constant="24" id="alp-p7-Vky"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SW-H1-Pwj">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="36"/>
+                                                <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Что необходимо найти?">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="3SW-H1-Pwj" firstAttribute="leading" secondItem="caB-lH-9D7" secondAttribute="leading" id="6er-g9-dCz"/>
+                                            <constraint firstAttribute="trailing" secondItem="3SW-H1-Pwj" secondAttribute="trailing" id="DM1-3Q-NxT"/>
+                                            <constraint firstAttribute="bottom" secondItem="3SW-H1-Pwj" secondAttribute="bottom" id="Yhd-Qq-ymB"/>
+                                            <constraint firstItem="Ewy-VF-VHd" firstAttribute="centerY" secondItem="caB-lH-9D7" secondAttribute="centerY" id="bHz-6H-mmk"/>
+                                            <constraint firstItem="3SW-H1-Pwj" firstAttribute="top" secondItem="caB-lH-9D7" secondAttribute="top" id="dCu-hm-5rR"/>
+                                            <constraint firstAttribute="height" constant="36" id="m5W-kq-f2P"/>
+                                            <constraint firstItem="Ewy-VF-VHd" firstAttribute="leading" secondItem="caB-lH-9D7" secondAttribute="leading" constant="16" id="tjG-VO-RGs"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EeO-fY-Nbs">
+                                        <rect key="frame" x="366" y="144" width="32" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE9-nV-rah">
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <state key="normal" image="barcode"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.16078431372549018" green="0.85098039215686272" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="NE9-nV-rah" secondAttribute="trailing" id="1Aj-U9-S1P"/>
+                                            <constraint firstAttribute="height" constant="32" id="IyL-UB-hKq"/>
+                                            <constraint firstItem="NE9-nV-rah" firstAttribute="top" secondItem="EeO-fY-Nbs" secondAttribute="top" id="Uev-vG-nBm"/>
+                                            <constraint firstItem="NE9-nV-rah" firstAttribute="leading" secondItem="EeO-fY-Nbs" secondAttribute="leading" id="Xkd-AJ-9gr"/>
+                                            <constraint firstAttribute="bottom" secondItem="NE9-nV-rah" secondAttribute="bottom" id="Ydd-TM-0AA"/>
+                                            <constraint firstAttribute="width" constant="32" id="z1v-kx-1mA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="2mX-X1-kAt" secondAttribute="trailing" id="1d4-oV-QqW"/>
+                                    <constraint firstItem="GzD-1P-gJ6" firstAttribute="leading" secondItem="g0F-yg-yxE" secondAttribute="leading" id="3A1-AA-cgG"/>
                                     <constraint firstItem="2mX-X1-kAt" firstAttribute="leading" secondItem="g0F-yg-yxE" secondAttribute="leading" id="4Pb-a4-M2c"/>
+                                    <constraint firstItem="caB-lH-9D7" firstAttribute="leading" secondItem="g0F-yg-yxE" secondAttribute="leading" constant="16" id="AOA-K1-QQ9"/>
+                                    <constraint firstAttribute="bottom" secondItem="caB-lH-9D7" secondAttribute="bottom" constant="16" id="CkW-Jc-1NB"/>
                                     <constraint firstAttribute="bottom" secondItem="2mX-X1-kAt" secondAttribute="bottom" id="Cpw-Ni-y4K"/>
+                                    <constraint firstAttribute="bottom" secondItem="GzD-1P-gJ6" secondAttribute="bottom" constant="-32" id="DGs-f7-fkA"/>
+                                    <constraint firstAttribute="trailing" secondItem="EeO-fY-Nbs" secondAttribute="trailing" constant="16" id="RRA-E3-zAk"/>
+                                    <constraint firstAttribute="trailing" secondItem="GzD-1P-gJ6" secondAttribute="trailing" id="RZS-k4-02T"/>
                                     <constraint firstAttribute="height" constant="194" id="Skw-Dw-qjo"/>
+                                    <constraint firstItem="EeO-fY-Nbs" firstAttribute="leading" secondItem="caB-lH-9D7" secondAttribute="trailing" constant="16" id="ZeJ-xL-H8Q"/>
+                                    <constraint firstItem="GzD-1P-gJ6" firstAttribute="top" secondItem="g0F-yg-yxE" secondAttribute="top" id="jqC-kd-Ggc"/>
+                                    <constraint firstAttribute="bottom" secondItem="EeO-fY-Nbs" secondAttribute="bottom" constant="18" id="oP5-6D-Lfl"/>
                                     <constraint firstItem="2mX-X1-kAt" firstAttribute="top" secondItem="g0F-yg-yxE" secondAttribute="top" id="wL0-dp-1cm"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="FZv-1d-YZe"/>
                         <color key="backgroundColor" name="app_grey_light"/>
                         <constraints>
                             <constraint firstItem="FZv-1d-YZe" firstAttribute="trailing" secondItem="g0F-yg-yxE" secondAttribute="trailing" id="O5s-Zw-elK"/>
                             <constraint firstItem="g0F-yg-yxE" firstAttribute="top" secondItem="CQy-Yj-9vp" secondAttribute="top" id="lFR-SQ-YT9"/>
                             <constraint firstItem="g0F-yg-yxE" firstAttribute="leading" secondItem="FZv-1d-YZe" secondAttribute="leading" id="uUc-ts-mdh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="FZv-1d-YZe"/>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAn-wn-VuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123" y="74"/>
+            <point key="canvasLocation" x="121.73913043478262" y="73.660714285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="barcode" width="24" height="24"/>
         <image name="icon-background" width="375" height="194"/>
+        <image name="navigationBarCircles" width="375" height="148"/>
+        <image name="welcomeSearch" width="24" height="24"/>
         <namedColor name="app_grey_light">
             <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
