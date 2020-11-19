@@ -51,7 +51,6 @@ class ProfileViewController: UIViewController {
 
 // MARK: - Model delegate extension
 extension ProfileViewController: ProfileViewControllerInput {
-
     func networkingDidComplete(errorText: String?) {
 
     }
@@ -67,6 +66,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellData: ProfileBaseCellData = model.cellDataAt(index: indexPath.row)
         if let cell: ProfileBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellData.nibName!, for: indexPath) as? ProfileBaseTableViewCell {
+            if let data = cellData as? ProfileViewControllerCellData,data.title == "Статистика" {
+                cell.disactivateCell()
+            }
             cell.setup(cellData: cellData)
             return cell
         }

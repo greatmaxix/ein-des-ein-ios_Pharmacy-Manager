@@ -25,6 +25,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        selectionStyle = .none
     }
     
     override func setup(cellData: ProfileBaseCellData) {
@@ -33,6 +34,11 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         
         cellTypeImageView.image = UIImage(named: data.imageName)
         titleLabel.text = data.title
+    }
+    
+    override func disactivateCell() {
+        contentBackgroundView.alpha = 0.5
+        isUserInteractionEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {

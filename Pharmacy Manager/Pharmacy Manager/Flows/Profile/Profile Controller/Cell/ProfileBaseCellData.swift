@@ -32,6 +32,10 @@ class ProfileBaseTableViewCell: UITableViewCell {
         
     }
     
+    func disactivateCell() {
+        
+    }
+    
     func setup(representObj: Any) {
         
     }
