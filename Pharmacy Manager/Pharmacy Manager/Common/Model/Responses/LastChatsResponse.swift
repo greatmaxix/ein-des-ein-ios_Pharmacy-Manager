@@ -11,15 +11,18 @@ import Foundation
 struct LastChatsResponse: Codable {
 
     var items: [LastChat]
+    var totalCount: Int
 
     enum Keys: String, CodingKey {
         case items
+        case totalCount
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
 
         items = try container.decode([LastChat].self, forKey: .items)
+        totalCount = try container.decode(Int.self, forKey: .totalCount)
     }
 
 }
@@ -41,6 +44,7 @@ struct LastChat: Codable {
         case url
         case text
         case lastMessage
+        case totalCount
     }
 
     init(from decoder: Decoder) throws {
