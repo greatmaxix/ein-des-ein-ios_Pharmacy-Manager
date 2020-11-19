@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ProfilePersonalInfoViewCell" customModule="Pharmacy_Manager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="89"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="89"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfilePhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-dj-WeL">
+                        <rect key="frame" x="16" y="12.5" width="64" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="64" id="Fs8-v5-hbX"/>
+                            <constraint firstAttribute="width" constant="64" id="Qoz-k4-wcC"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l1O-cT-AME">
+                        <rect key="frame" x="96" y="18.5" width="193.5" height="52"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="test user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvx-yk-DgQ">
+                                <rect key="frame" x="0.0" y="0.0" width="193.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="app_blue_dark"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="testUserName@mail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rb-YH-Idq">
+                                <rect key="frame" x="0.0" y="31.5" width="193.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="app_blue_dark"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="6TN-vv-OmL"/>
+                        </constraints>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0 ⭐️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JH4-Dc-hnF">
+                        <rect key="frame" x="314" y="30" width="67" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <color key="textColor" name="app_blue_dark"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Cg4-dj-WeL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2z9-h0-Lfc"/>
+                    <constraint firstItem="JH4-Dc-hnF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="90o-ve-5j8"/>
+                    <constraint firstItem="Cg4-dj-WeL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CDB-k3-3sk"/>
+                    <constraint firstItem="l1O-cT-AME" firstAttribute="leading" secondItem="Cg4-dj-WeL" secondAttribute="trailing" constant="16" id="gaf-vg-MaF"/>
+                    <constraint firstAttribute="trailing" secondItem="JH4-Dc-hnF" secondAttribute="trailing" constant="21" id="pII-EK-x58"/>
+                    <constraint firstItem="JH4-Dc-hnF" firstAttribute="leading" relation="lessThanOrEqual" secondItem="l1O-cT-AME" secondAttribute="trailing" constant="176.5" id="pjc-pn-5UP"/>
+                    <constraint firstItem="l1O-cT-AME" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tqj-oP-g8N"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="backgroundGray"/>
+            <connections>
+                <outlet property="customerImageView" destination="Cg4-dj-WeL" id="h2Y-zg-aRb"/>
+                <outlet property="emailLabel" destination="2Rb-YH-Idq" id="aEG-6i-koW"/>
+                <outlet property="nameLabel" destination="nvx-yk-DgQ" id="whL-xk-MPn"/>
+                <outlet property="scoreLabel" destination="JH4-Dc-hnF" id="HX0-Km-sQN"/>
+            </connections>
+            <point key="canvasLocation" x="-192.75362318840581" y="69.308035714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="defaultProfilePhoto" width="24" height="24"/>
+        <namedColor name="app_blue_dark">
+            <color red="0.0" green="0.039215686274509803" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="backgroundGray">
+            <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

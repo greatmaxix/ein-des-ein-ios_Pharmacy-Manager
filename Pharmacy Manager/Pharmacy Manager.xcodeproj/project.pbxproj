@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		247C4F6325657F4000A46061 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6225657F4000A46061 /* UITableViewCell.swift */; };
+		247C4F6825666C6300A46061 /* ProfilePersonalInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */; };
+		247C4F6925666C6300A46061 /* ProfilePersonalInfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */; };
+		247C4F6D2566755000A46061 /* ProfileViewControllerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6B2566755000A46061 /* ProfileViewControllerViewCell.swift */; };
+		247C4F6E2566755000A46061 /* ProfileViewControllerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4F6C2566755000A46061 /* ProfileViewControllerViewCell.xib */; };
+		247C4F7325668D8600A46061 /* ProfileBaseCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F7225668D8600A46061 /* ProfileBaseCellData.swift */; };
+		247C4F7725669A6000A46061 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F7525669A6000A46061 /* EmptyTableViewCell.swift */; };
+		247C4F7825669A6000A46061 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4F7625669A6000A46061 /* EmptyTableViewCell.xib */; };
 		6103AB0A2563FC0F00775EF3 /* SubcategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6103AAFB2563FC0F00775EF3 /* SubcategoryTableViewCell.xib */; };
 		6103AB0B2563FC0F00775EF3 /* SubcategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6103AAFC2563FC0F00775EF3 /* SubcategoryTableViewCell.swift */; };
 		6103AB0C2563FC0F00775EF3 /* SubcategoryCellSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6103AAFD2563FC0F00775EF3 /* SubcategoryCellSection.swift */; };
@@ -205,6 +212,13 @@
 		084D34A002BDA0D5747842B1 /* Pods_Pharmacy_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pharmacy_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10EA233D287B47068DCFD07D /* Pods-Pharmacy Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy Manager.debug.xcconfig"; path = "Target Support Files/Pods-Pharmacy Manager/Pods-Pharmacy Manager.debug.xcconfig"; sourceTree = "<group>"; };
 		247C4F6225657F4000A46061 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePersonalInfoViewCell.swift; sourceTree = "<group>"; };
+		247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePersonalInfoViewCell.xib; sourceTree = "<group>"; };
+		247C4F6B2566755000A46061 /* ProfileViewControllerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerViewCell.swift; sourceTree = "<group>"; };
+		247C4F6C2566755000A46061 /* ProfileViewControllerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewControllerViewCell.xib; sourceTree = "<group>"; };
+		247C4F7225668D8600A46061 /* ProfileBaseCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseCellData.swift; sourceTree = "<group>"; };
+		247C4F7525669A6000A46061 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		247C4F7625669A6000A46061 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		6103AAFB2563FC0F00775EF3 /* SubcategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubcategoryTableViewCell.xib; sourceTree = "<group>"; };
 		6103AAFC2563FC0F00775EF3 /* SubcategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryTableViewCell.swift; sourceTree = "<group>"; };
 		6103AAFD2563FC0F00775EF3 /* SubcategoryCellSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryCellSection.swift; sourceTree = "<group>"; };
@@ -427,6 +441,20 @@
 			children = (
 			);
 			path = SearchTableViewCell;
+			sourceTree = "<group>";
+		};
+		247C4F6525666B0E00A46061 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */,
+				247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */,
+				247C4F6B2566755000A46061 /* ProfileViewControllerViewCell.swift */,
+				247C4F6C2566755000A46061 /* ProfileViewControllerViewCell.xib */,
+				247C4F7225668D8600A46061 /* ProfileBaseCellData.swift */,
+				247C4F7525669A6000A46061 /* EmptyTableViewCell.swift */,
+				247C4F7625669A6000A46061 /* EmptyTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		6103AAF92563FC0F00775EF3 /* Catalogue */ = {
@@ -1093,6 +1121,7 @@
 		61637B61250B9BCA0029E08F /* Profile Controller */ = {
 			isa = PBXGroup;
 			children = (
+				247C4F6525666B0E00A46061 /* Cell */,
 				61637B55250B9B5F0029E08F /* ProfileViewController.swift */,
 				61637B5B250B9BA40029E08F /* ProfileModel.swift */,
 			);
@@ -1254,6 +1283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61637B40250A46700029E08F /* Localizable.strings in Resources */,
+				247C4F7825669A6000A46061 /* EmptyTableViewCell.xib in Resources */,
 				61637B29250A26F80029E08F /* OpenSans-Light.ttf in Resources */,
 				61637B28250A26F80029E08F /* OpenSans-SemiBold.ttf in Resources */,
 				6103AC5C25640C5B00775EF3 /* SearchBar.xib in Resources */,
@@ -1281,6 +1311,7 @@
 				61637B2D250A26F80029E08F /* OpenSans-Bold.ttf in Resources */,
 				61637AC0250A26EE0029E08F /* Tabbar.storyboard in Resources */,
 				61637B52250B9B0B0029E08F /* Chat.storyboard in Resources */,
+				247C4F6925666C6300A46061 /* ProfilePersonalInfoViewCell.xib in Resources */,
 				6103ABA52563FEFB00775EF3 /* ProductPageViewController.xib in Resources */,
 				61637B2C250A26F80029E08F /* OpenSans-LightItalic.ttf in Resources */,
 				61D3414A256560D000F1DE89 /* SearchTableViewCell.xib in Resources */,
@@ -1289,6 +1320,7 @@
 				6163795A250A26A70029E08F /* StateTextField.xib in Resources */,
 				6103AB972563FEFB00775EF3 /* ProductDescriptionTableViewCell.xib in Resources */,
 				61637B31250A26F80029E08F /* OpenSans-BoldItalic.ttf in Resources */,
+				247C4F6E2566755000A46061 /* ProfileViewControllerViewCell.xib in Resources */,
 				6103AC812564120F00775EF3 /* Scan.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1419,8 +1451,11 @@
 				6103AC5D25640C5B00775EF3 /* SearchBar.swift in Sources */,
 				6103AC5625640C3700775EF3 /* NavigationTransitionAnimator.swift in Sources */,
 				61637B4C250A4A8A0029E08F /* HomeFlowCoordinator.swift in Sources */,
+				247C4F7725669A6000A46061 /* EmptyTableViewCell.swift in Sources */,
 				6103ABC4256400C700775EF3 /* TableCellSection.swift in Sources */,
 				6103AC8E2564135800775EF3 /* UIViewController+Alert.swift in Sources */,
+				247C4F6D2566755000A46061 /* ProfileViewControllerViewCell.swift in Sources */,
+				247C4F7325668D8600A46061 /* ProfileBaseCellData.swift in Sources */,
 				6103ABE8256401EB00775EF3 /* RegionResponse.swift in Sources */,
 				6163799E250A26A80029E08F /* DataBasePredicatableRequest.swift in Sources */,
 				61637AC1250A26EE0029E08F /* TabBarController.swift in Sources */,
@@ -1457,6 +1492,7 @@
 				6163793B250A26A70029E08F /* UIScrollView+ScrollUpButton.swift in Sources */,
 				6103AB9F2563FEFB00775EF3 /* ProductViewController.swift in Sources */,
 				6103AB132563FC0F00775EF3 /* CategoryCollectionViewCell.swift in Sources */,
+				247C4F6825666C6300A46061 /* ProfilePersonalInfoViewCell.swift in Sources */,
 				616379A0250A26A80029E08F /* KyivPost.xcdatamodeld in Sources */,
 				6103AC7F2564120F00775EF3 /* ScanModel.swift in Sources */,
 				61637B5A250B9B830029E08F /* HomeViewController.swift in Sources */,
