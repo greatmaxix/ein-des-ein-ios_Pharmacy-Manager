@@ -36,6 +36,11 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="7xK-ZZ-iSi"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="alpha">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iM4-ej-JoS">
                         <rect key="frame" x="239" y="31.5" width="54" height="32"/>
