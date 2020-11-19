@@ -192,6 +192,7 @@ internal enum Asset {
       internal static let profileQuit = ImageAsset(name: "profileQuit")
       internal static let profileRecipe = ImageAsset(name: "profileRecipe")
       internal static let profileSelected = ImageAsset(name: "profileSelected")
+      internal static let profileStatistic = ImageAsset(name: "profileStatistic")
     }
     internal enum Scan {
       internal static let scan = ImageAsset(name: "SCAN")
