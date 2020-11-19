@@ -10,7 +10,7 @@ import Foundation
 import EventsTree
 
 enum ProfileEvent: Event {
-    case userSignedIn
+    case pushNotificationViewController
 }
 
 protocol ProfileModelInput: class {
@@ -55,13 +55,17 @@ class ProfileModel: Model {
         do {
             let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileStatistic",
                                                                                         title: "Статистика")
-                cellsData.append(cellData)
+            cellsData.append(cellData)
         }
         
         do {
             let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileBell on",
                                                                                         title: "Уведомления")
-                cellsData.append(cellData)
+            cellData.selectHandler = {[weak self] in
+                self?.raise(event: ProfileEvent.pushNotificationViewController)
+            }
+            
+            cellsData.append(cellData)
         }
         
         do {
@@ -91,7 +95,7 @@ class ProfileModel: Model {
                                                                                         title: "Выйти из аккаунта",
                                                                                         tintColor: .red)
                 cellsData.append(cellData)
-        }
+            }
         }
     }
 }

@@ -67,6 +67,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cellData: ProfileBaseCellData = model.cellDataAt(index: indexPath.row)
         if let cell: ProfileBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellData.nibName!, for: indexPath) as? ProfileBaseTableViewCell {
             
+            // FIXME: - Удалить после создания запроса и получения результата по статистике
             if let data = cellData as? ProfileViewControllerCellData,
                data.title == "Статистика" {
                 cell.disactivateCell()
