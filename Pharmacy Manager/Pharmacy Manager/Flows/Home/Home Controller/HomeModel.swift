@@ -10,11 +10,11 @@ import Foundation
 import EventsTree
 
 enum HomeEvent: Event {
-    case userSignedIn
+    case openSearch
 }
 
 protocol HomeModelInput: class {
-
+    func openSearch()
 }
 
 protocol HomeModelOutput: class {
@@ -28,5 +28,9 @@ class HomeModel: Model {
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+
+    func openSearch() {
+        raise(event: HomeEvent.openSearch)
+    }
 
 }

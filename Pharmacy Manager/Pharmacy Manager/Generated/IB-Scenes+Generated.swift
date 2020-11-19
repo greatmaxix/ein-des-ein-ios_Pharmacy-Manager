@@ -62,6 +62,8 @@ internal enum StoryboardScene {
   }
   internal enum Search: StoryboardType {
     internal static let storyboardName = "Search"
+
+    internal static let searchViewController = SceneType<Pharmacy_Manager.SearchViewController>(storyboard: Search.self, identifier: "SearchViewController")
   }
   internal enum Tabbar: StoryboardType {
     internal static let storyboardName = "Tabbar"
