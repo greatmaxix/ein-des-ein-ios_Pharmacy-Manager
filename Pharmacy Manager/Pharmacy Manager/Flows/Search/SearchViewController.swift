@@ -20,9 +20,6 @@ final class SearchViewController: UIViewController, NavigationBarStyled {
         static let textFont = UIFont.systemFont(ofSize: 14)
     }
     
-    @IBOutlet private weak var cleanButton: UIButton!
-    @IBOutlet private weak var storyLabel: UILabel!
-    @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var emptyView: EmptySearchView!
     
@@ -65,7 +62,9 @@ extension SearchViewController {
         guard let navigationBar = navigationController?.navigationBar else {
             return
         }
-        
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
         navigationBar.tintColor = .white
         navigationBar.backgroundColor = .clear
         navigationBar.setBackgroundImage(Asset.Images.Common.navigationBar.image.stretchableImage(withLeftCapWidth: 20,
@@ -80,7 +79,7 @@ extension SearchViewController {
         searchBar.delegate = self
         
         searchBar.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        
+
         navigationItem.titleView = searchBar
         searchBar.topAnchor.constraint(equalTo: searchBar.superview!.topAnchor).isActive = true
         searchBar.bottomAnchor.constraint(equalTo: searchBar.superview!.bottomAnchor, constant: -8.0).isActive = true

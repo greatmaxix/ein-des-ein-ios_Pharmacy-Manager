@@ -34,10 +34,40 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     override init(parent: EventNode?) {
         super.init(parent: parent)
 
+        addHandler(.onRaise) { [weak self] (event: HomeEvent) in
+            switch event {
+            case .openSearch:
+                self?.openSearch()            }
+        }
+
+        addHandler(.onRaise) { [weak self] (event: SearchModelEvent) in
+            switch event {
+            case .open(let medecine):
+                self?.openProductMedicineFor(medicine: medecine)
+            default:
+                return
+            }
+        }
+
     }
 
 }
 
 extension HomeFlowCoordinator {
+
+    fileprivate func openSearch() {
+        let controller = StoryboardScene.Search.searchViewController.instantiate()
+        let model = SearchModel(parent: self)
+
+        controller.model = model
+        model.output = controller
+
+        navigationController.pushViewController(controller, animated: true)
+    }
+
+    private func openProductMedicineFor(medicine: Medicine) {
+        let vc = ProductCoordinator(configuration: .init(parent: self, navigation: navigationController)).createFlowFor(product: medicine)
+        navigationController.pushViewController(vc, animated: true)
+    }
 
 }
