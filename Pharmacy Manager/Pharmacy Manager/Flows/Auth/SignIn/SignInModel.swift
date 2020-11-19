@@ -23,36 +23,30 @@ protocol SignInModelOutput: class {
 
 class SignInModel: Model {
 
-//    private var apiLayer = DataManager<AuthAPI, User>()
+    private var apiLayer = DataManager<AuthAPI, LoginResponse>()
 
     weak var output: SignInModelOutput!
-
 }
 
 extension SignInModel: SignInModelInput, SignInViewControllerOutput {
 
     func signIn(email: String, password: String) {
 
-        raise(event: SignInEvent.userSignedIn)
 
-//        apiLayer.load(target: .signIn(email: email, password: password)) { [weak self] (result) in
-//            guard let `self` = self else { return }
-//
-//            switch result {
-//            case .success(let user):
-//                do {
-//                    try UserSession.shared.save(user: user)
-//                } catch let error {
-//                     print("Save Error - \(error.localizedDescription)")
-//                }
-//                self.close()
-//                self.output.networkingDidComplete(errorText: nil)
-//            case .failure(.objectMapping(let error as KyivPostError, _)):
-//                self.output.networkingDidComplete(errorText: error.error)
-//            case .failure(let error):
-//                self.output.networkingDidComplete(errorText: error.localizedDescription)
-//            }
-//        }
+
+        apiLayer.load(target: .signIn(email: email, password: password)) { [weak self] (result) in
+            guard let `self` = self else { return }
+
+            switch result {
+            case .success(let response):
+                UserSession.shared.authorizationStatus = .authorized(userId: response.user.id)
+                UserSession.shared.save(user: response.user, token: response.token)
+                self.output.networkingDidComplete(errorText: nil)
+                self.raise(event: SignInEvent.userSignedIn)
+            case .failure(let error):
+                self.output.networkingDidComplete(errorText: error.localizedDescription)
+            }
+        }
     }
 
 }

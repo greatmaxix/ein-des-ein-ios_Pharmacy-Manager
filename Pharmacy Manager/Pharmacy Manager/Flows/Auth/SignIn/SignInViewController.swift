@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol SignInViewControllerInput: SignInModelOutput {}
 protocol SignInViewControllerOutput: SignInModelInput {}
@@ -17,6 +18,16 @@ class SignInViewController: UIViewController {
     @IBOutlet private weak var passwordTextView: StateTextField!
     @IBOutlet weak var enterLabel: UILabel!
     @IBOutlet weak var signInButton: UIButton!
+
+    private lazy var activityIndicator: MBProgressHUD = {
+        let hud = MBProgressHUD(view: view)
+        hud.backgroundView.style = .solidColor
+        hud.backgroundView.color = UIColor.black.withAlphaComponent(0.2)
+        hud.removeFromSuperViewOnHide = false
+        view.addSubview(hud)
+
+        return hud
+    }()
 
     var model: SignInViewControllerOutput!
 
@@ -38,19 +49,11 @@ class SignInViewController: UIViewController {
         passwordTextView.placeholder = "Пароль"
     }
 
-    private func performSignIn() {
-        guard let email = emailTextView.text, let password = passwordTextView.text, emailTextView.isValid(), passwordTextView.isValid() else {
-            return
-        }
-
-//        startLoadingIndicator()
-        model.signIn(email: email, password: password)
-    }
-
     @IBAction func signIn(_ sender: Any) {
         guard let email = emailTextView.text, let password = passwordTextView.text else {
             return
         }
+        activityIndicator.show(animated: true)
         model.signIn(email: email, password: password)
     }
 }
@@ -58,7 +61,7 @@ class SignInViewController: UIViewController {
 extension SignInViewController: SignInViewControllerInput {
 
     func networkingDidComplete(errorText: String?) {
-//        stopLoadingIndicator()
+        activityIndicator.hide(animated: true)
 
         guard let error = errorText else {
             return

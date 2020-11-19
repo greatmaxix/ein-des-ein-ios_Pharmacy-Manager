@@ -69,7 +69,7 @@ class PasswordRule: ValidationRule {
     }
 
     func validate(_ value: String) -> Bool {
-        return value.count >= 6
+        return value.count >= 5
     }
 
 }
