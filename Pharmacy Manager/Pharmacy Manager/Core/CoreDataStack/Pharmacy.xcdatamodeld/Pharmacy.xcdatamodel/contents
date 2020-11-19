@@ -18,8 +18,6 @@
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="phone" attributeType="String"/>
-        <attribute name="topicName" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
         <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AvatarEntity"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RegionEntity"/>
@@ -33,6 +31,6 @@
         <element name="AvatarEntity" positionX="-63" positionY="9" width="128" height="73"/>
         <element name="CategoryEntity" positionX="180.328125" positionY="-66.81640625" width="128" height="103"/>
         <element name="RegionEntity" positionX="72" positionY="-18" width="128" height="73"/>
-        <element name="UserEntity" positionX="-63.88671875" positionY="-168.83203125" width="128" height="163"/>
+        <element name="UserEntity" positionX="-63.88671875" positionY="-168.83203125" width="128" height="133"/>
     </elements>
 </model>
