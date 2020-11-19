@@ -42,7 +42,7 @@ class ProfileModel: Model {
         do {
             let cellData: ProfilePersonalInfoData = ProfilePersonalInfoData(imageUrl: user.avatarURL,
                                                                             name: user.name,
-                                                                            email: user.email,
+                                                                            email: user.email ?? "",
                                                                             score: "5.0")
                 cellsData.append(cellData)
         }
