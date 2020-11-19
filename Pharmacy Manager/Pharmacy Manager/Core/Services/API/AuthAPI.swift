@@ -12,13 +12,10 @@ import Moya
 enum AuthAPI {
     // swiftlint:disable all
 
-    case register(firstname: String, lastname: String, email: String, password: String)
-    case reset(email: String)
     case signIn(email: String, password: String)
-
 }
 
-extension AuthAPI: NetworkTarget, AccessTokenAuthorizable {
+extension AuthAPI: RequestConvertible {
 
     var authorizationType: AuthorizationType? {
         return .bearer
@@ -26,21 +23,13 @@ extension AuthAPI: NetworkTarget, AccessTokenAuthorizable {
 
     var path: String {
         switch self {
-        case .register:
-            return "/users/register"
-        case .reset:
-            return "/users/lostpassword"
         case .signIn:
-            return "/users/login"
+            return "user/pharmacist/login"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .register:
-            return .post
-        case .reset:
-            return .post
         case .signIn:
             return .post
         }
@@ -52,18 +41,9 @@ extension AuthAPI: NetworkTarget, AccessTokenAuthorizable {
 
     var task: Task {
         switch self {
-        case .register(let firstname, let lastname, let email, let password):
-            return .requestParameters(parameters: [
-                "user_email": email,
-                "user_firstname": firstname,
-                "user_lastname": lastname,
-                "user_password": password], encoding: JSONEncoding.default)
-        case .reset(let email):
-            return .requestParameters(parameters: [
-                "user_email" : email], encoding: JSONEncoding.default)
         case .signIn(let email, let password):
             return .requestParameters(parameters: [
-                "username" : email,
+                "email" : email,
                 "password" : password], encoding: JSONEncoding.default)
         }
     }

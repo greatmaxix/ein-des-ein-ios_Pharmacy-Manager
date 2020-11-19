@@ -30,7 +30,12 @@ final class AppNavigation: EventNode {
     }
 
     func startFlow() {
-        presentMainFlow()
+        switch UserSession.shared.authorizationStatus {
+        case .authorized:
+            presentMainFlow()
+        case .notAuthorized:
+            presentAuthFlow()
+        }
     }
 
 }
