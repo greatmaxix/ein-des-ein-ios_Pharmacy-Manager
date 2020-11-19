@@ -37,8 +37,13 @@ class ProfileModel: Model {
 
     private func setupCellData() {
         cellsData = []
+        if let user = UserSession.shared.user {
+            
         do {
-            let cellData: ProfilePersonalInfoData = ProfilePersonalInfoData(imageUrl: nil, name: "Тимофей лекарь", email: "ТимофейЛекарь@mail.com", score: "5.0")
+            let cellData: ProfilePersonalInfoData = ProfilePersonalInfoData(imageUrl: user.avatarURL,
+                                                                            name: user.name,
+                                                                            email: user.email,
+                                                                            score: "5.0")
                 cellsData.append(cellData)
         }
         
@@ -86,6 +91,7 @@ class ProfileModel: Model {
                                                                                         title: "Выйти из аккаунта",
                                                                                         tintColor: .red)
                 cellsData.append(cellData)
+        }
         }
     }
 }
