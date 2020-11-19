@@ -50,7 +50,7 @@ final class CoreDataService {
 
         }
         
-        try? viewContext.saveIfNeeded()
+        try? viewContext.save()
     }
     
     func save(avatar dto: AvatarDTO, isNeedToSave: Bool = true) {
