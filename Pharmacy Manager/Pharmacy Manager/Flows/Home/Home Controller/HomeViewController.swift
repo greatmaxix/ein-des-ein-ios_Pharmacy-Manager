@@ -21,6 +21,19 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    @IBAction func searchTapped(_ sender: Any) {
+        model.openSearch()
+    }
+
+    @IBAction func scannerTapped(_ sender: Any) {
+
+    }
 }
 
 extension HomeViewController: HomeViewControllerInput {

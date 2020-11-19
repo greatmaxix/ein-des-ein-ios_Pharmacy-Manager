@@ -13,7 +13,7 @@
         <!--Search View Controller-->
         <scene sceneID="V8b-pT-Pe3">
             <objects>
-                <viewController id="ATC-1m-OiW" customClass="SearchViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" hidesBottomBarWhenPushed="YES" id="ATC-1m-OiW" customClass="SearchViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9GN-TJ-QXt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
