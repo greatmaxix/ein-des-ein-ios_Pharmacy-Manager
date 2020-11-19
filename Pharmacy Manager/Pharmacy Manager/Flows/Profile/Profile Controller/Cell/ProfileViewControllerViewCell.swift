@@ -34,6 +34,12 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         
         cellTypeImageView.image = UIImage(named: data.imageName)
         titleLabel.text = data.title
+        
+        if let color = data.tintColor {
+
+            self.titleLabel.textColor = color
+            self.cellTypeImageView.backgroundColor = color.withAlphaComponent(0.2)
+        }
     }
     
     override func disactivateCell() {
@@ -48,8 +54,10 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
 
 // MARK: - Structure for cell data creating
 class ProfileViewControllerCellData: ProfileBaseCellData {
+    
     var imageName: String
     var title: String
+    var tintColor: UIColor?
     
     override var cellHeight: CGFloat {
          70
@@ -59,8 +67,16 @@ class ProfileViewControllerCellData: ProfileBaseCellData {
          String(describing: ProfileViewControllerViewCell.self)
     }
     
-    init(imageName: String, title: String) {
+    /**
+            Setup cells view
+            - Parameter imageName: enter image name from Assets
+            - Parameter title: enter String to set cell title
+            - Parameter tintColor: change color for Title label and Image background
+     */
+    init(imageName: String, title: String,
+         tintColor: UIColor? = nil) {
         self.title = title
         self.imageName = imageName
+        self.tintColor = tintColor
     }
 }

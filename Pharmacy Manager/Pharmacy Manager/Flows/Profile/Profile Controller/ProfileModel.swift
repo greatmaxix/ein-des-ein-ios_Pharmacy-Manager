@@ -83,7 +83,8 @@ class ProfileModel: Model {
         
         do {
             let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuit",
-                                                                                        title: "Выйти из аккаунта")
+                                                                                        title: "Выйти из аккаунта",
+                                                                                        tintColor: .red)
                 cellsData.append(cellData)
         }
     }
