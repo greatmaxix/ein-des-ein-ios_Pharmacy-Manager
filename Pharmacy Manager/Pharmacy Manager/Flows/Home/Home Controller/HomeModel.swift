@@ -14,6 +14,9 @@ enum HomeEvent: Event {
 }
 
 protocol HomeModelInput: class {
+    var chatCount: String { get }
+
+    func avatarImages() -> [URL?]
     func openSearch()
     func loadData()
 }
@@ -27,6 +30,7 @@ class HomeModel: Model {
     weak var output: HomeModelOutput!
 
     private var chats: [LastChat] = []
+    private var total: Int = 0
 
     private let lastChatAPI = DataManager<ChatAPI, LastChatsResponse>()
 //    private let wishListProvider = DataManager<WishListAPI, PostResponse>()
@@ -34,6 +38,23 @@ class HomeModel: Model {
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+
+    var chatCount: String {
+        return "\(total)"
+    }
+
+    func avatarImages() -> [URL?] {
+        var urls: [URL?] = []
+        for chat in chats {
+            if let url = URL(string: chat.customerAvatar ?? "") {
+                urls.append(url)
+            } else {
+                urls.append(nil)
+            }
+        }
+
+        return urls
+    }
 
     func openSearch() {
         raise(event: HomeEvent.openSearch)
@@ -46,6 +67,7 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
             }
             switch result {
             case .success(let response):
+                self.total = response.totalCount
                 self.chats = response.items
                 self.output.networkingDidComplete(errorText: nil)
             case .failure(let error):
