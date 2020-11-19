@@ -49,6 +49,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lowerMessageText: UILabel!
     @IBOutlet weak var upperMessageAvatar: UIImageView!
     @IBOutlet weak var lowerMessageAvatar: UIImageView!
+    @IBOutlet weak var newChatsView: UIView!
+    @IBOutlet weak var inDevView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,8 @@ class HomeViewController: UIViewController {
 
         upperMessageView.dropLightBlueShadow()
         lowerMessageView.dropLightBlueShadow()
+        newChatsView.dropLightBlueShadow()
+        inDevView.dropLightBlueShadow()
     }
 
     override func viewWillAppear(_ animated: Bool) {

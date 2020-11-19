@@ -440,10 +440,12 @@
                         <outlet property="firstImageView" destination="4CK-WW-ImM" id="Bu0-hj-GMw"/>
                         <outlet property="fourthAvatarView" destination="1BW-tp-rPX" id="Ne4-Yv-AhB"/>
                         <outlet property="fourthImageView" destination="lMC-Pu-Kp6" id="d4l-oK-d6g"/>
+                        <outlet property="inDevView" destination="Pmw-G5-CId" id="KPL-nT-qap"/>
                         <outlet property="lowerMessageAvatar" destination="HQY-v6-Uk7" id="lPr-Nf-qoU"/>
                         <outlet property="lowerMessageName" destination="YAY-Cq-1jT" id="Xrt-9U-koR"/>
                         <outlet property="lowerMessageText" destination="VL6-m4-8ch" id="u8H-XP-ihE"/>
                         <outlet property="lowerMessageView" destination="Le6-84-q8b" id="zF6-wg-Irr"/>
+                        <outlet property="newChatsView" destination="pJq-yZ-bGY" id="tka-cL-t55"/>
                         <outlet property="secondAvatarView" destination="fmP-VJ-Ro2" id="SeO-WN-gcK"/>
                         <outlet property="secondImageView" destination="3Z0-5g-egY" id="WrM-TK-Ijc"/>
                         <outlet property="thirdAvatarView" destination="zJR-lW-BKD" id="W0v-gn-4uv"/>
