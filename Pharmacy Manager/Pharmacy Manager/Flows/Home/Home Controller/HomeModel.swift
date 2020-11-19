@@ -15,8 +15,10 @@ enum HomeEvent: Event {
 
 protocol HomeModelInput: class {
     var chatCount: String { get }
+    var messageCount: Int { get }
 
     func avatarImages() -> [URL?]
+    func messages() -> [LastChat]
     func openSearch()
     func loadData()
 }
@@ -41,6 +43,24 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
 
     var chatCount: String {
         return "\(total)"
+    }
+
+    var messageCount: Int {
+        return chats.count
+    }
+
+    func messages() -> [LastChat] {
+        var messages: [LastChat] = []
+
+        if chats.count >= 1 {
+            messages.append(chats[0])
+        }
+
+        if chats.count >= 2 {
+            messages.append(chats[1])
+        }
+
+        return messages
     }
 
     func avatarImages() -> [URL?] {

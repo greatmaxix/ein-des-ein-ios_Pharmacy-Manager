@@ -13,6 +13,9 @@
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Home View Controller-->
@@ -115,7 +118,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CGv-3S-EM2">
-                                <rect key="frame" x="0.0" y="194" width="414" height="500"/>
+                                <rect key="frame" x="0.0" y="194" width="414" height="312"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-Ze-PFN">
                                         <rect key="frame" x="16" y="16" width="382" height="104"/>
@@ -292,13 +295,130 @@
                                             <constraint firstAttribute="height" constant="104" id="SHe-EP-xWN"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b1d-dK-DOV">
+                                        <rect key="frame" x="16" y="140" width="382" height="152"/>
+                                        <subviews>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ION-Ip-QMX">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="72"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZN-Lt-MLZ">
+                                                        <rect key="frame" x="19" y="9" width="50" height="50"/>
+                                                        <color key="backgroundColor" name="app_green"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0S8-Cl-ID1">
+                                                        <rect key="frame" x="20" y="10" width="48" height="48"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="48" id="dFT-hb-8Oo"/>
+                                                            <constraint firstAttribute="height" constant="48" id="dLk-Df-OEY"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0n-Hc-Ie5">
+                                                        <rect key="frame" x="80" y="8" width="101.5" height="19"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                                                        <color key="textColor" name="app_blue_dark"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-aC-0ls">
+                                                        <rect key="frame" x="80" y="33" width="290" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                                        <color key="textColor" name="app_blue_dark"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="72" id="0dr-eT-WFd"/>
+                                                    <constraint firstItem="jZN-Lt-MLZ" firstAttribute="top" secondItem="0S8-Cl-ID1" secondAttribute="top" constant="-1" id="7fe-2p-PML"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0S8-Cl-ID1" secondAttribute="bottom" constant="14" id="AdO-00-YHO"/>
+                                                    <constraint firstItem="0S8-Cl-ID1" firstAttribute="leading" secondItem="ION-Ip-QMX" secondAttribute="leading" constant="20" id="Aog-Df-3V3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lna-aC-0ls" secondAttribute="trailing" constant="12" id="CVv-aU-kKO"/>
+                                                    <constraint firstItem="jZN-Lt-MLZ" firstAttribute="trailing" secondItem="0S8-Cl-ID1" secondAttribute="trailing" constant="1" id="HqE-am-GpR"/>
+                                                    <constraint firstItem="0S8-Cl-ID1" firstAttribute="top" secondItem="ION-Ip-QMX" secondAttribute="top" constant="10" id="cMk-bl-Oha"/>
+                                                    <constraint firstItem="jZN-Lt-MLZ" firstAttribute="leading" secondItem="0S8-Cl-ID1" secondAttribute="leading" constant="-1" id="e3V-jR-pVN"/>
+                                                    <constraint firstItem="E0n-Hc-Ie5" firstAttribute="top" secondItem="ION-Ip-QMX" secondAttribute="top" constant="8" id="fkD-Ek-Wjt"/>
+                                                    <constraint firstItem="jZN-Lt-MLZ" firstAttribute="bottom" secondItem="0S8-Cl-ID1" secondAttribute="bottom" constant="1" id="gTV-Bs-Jmw"/>
+                                                    <constraint firstItem="lna-aC-0ls" firstAttribute="top" secondItem="E0n-Hc-Ie5" secondAttribute="bottom" constant="6" id="nya-dl-ua2"/>
+                                                    <constraint firstItem="lna-aC-0ls" firstAttribute="leading" secondItem="E0n-Hc-Ie5" secondAttribute="leading" id="uoE-82-HE0"/>
+                                                    <constraint firstItem="E0n-Hc-Ie5" firstAttribute="leading" secondItem="0S8-Cl-ID1" secondAttribute="trailing" constant="12" id="urS-uQ-5YW"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Le6-84-q8b">
+                                                <rect key="frame" x="0.0" y="80" width="382" height="72"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUZ-uz-zwm">
+                                                        <rect key="frame" x="19" y="9" width="50" height="50"/>
+                                                        <color key="backgroundColor" name="app_green"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="HQY-v6-Uk7">
+                                                        <rect key="frame" x="20" y="10" width="48" height="48"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="48" id="93Q-yG-RTs"/>
+                                                            <constraint firstAttribute="height" constant="48" id="Rar-HD-Wd4"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAY-Cq-1jT">
+                                                        <rect key="frame" x="80" y="8" width="101.5" height="19"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                                                        <color key="textColor" name="app_blue_dark"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VL6-m4-8ch">
+                                                        <rect key="frame" x="80" y="33" width="290" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
+                                                        <color key="textColor" name="app_blue_dark"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="OUZ-uz-zwm" firstAttribute="leading" secondItem="HQY-v6-Uk7" secondAttribute="leading" constant="-1" id="2Wk-TX-wCj"/>
+                                                    <constraint firstItem="VL6-m4-8ch" firstAttribute="leading" secondItem="YAY-Cq-1jT" secondAttribute="leading" id="3jE-am-ElY"/>
+                                                    <constraint firstItem="HQY-v6-Uk7" firstAttribute="leading" secondItem="Le6-84-q8b" secondAttribute="leading" constant="20" id="5DV-F9-F7D"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VL6-m4-8ch" secondAttribute="trailing" constant="12" id="Gry-hY-9hE"/>
+                                                    <constraint firstItem="OUZ-uz-zwm" firstAttribute="top" secondItem="HQY-v6-Uk7" secondAttribute="top" constant="-1" id="H1h-Yh-SU2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HQY-v6-Uk7" secondAttribute="bottom" constant="14" id="Ham-Vz-004"/>
+                                                    <constraint firstItem="VL6-m4-8ch" firstAttribute="top" secondItem="YAY-Cq-1jT" secondAttribute="bottom" constant="6" id="Jmh-CD-6NE"/>
+                                                    <constraint firstItem="OUZ-uz-zwm" firstAttribute="bottom" secondItem="HQY-v6-Uk7" secondAttribute="bottom" constant="1" id="XjT-Yl-cCm"/>
+                                                    <constraint firstItem="YAY-Cq-1jT" firstAttribute="top" secondItem="Le6-84-q8b" secondAttribute="top" constant="8" id="b4U-j7-ZZS"/>
+                                                    <constraint firstItem="HQY-v6-Uk7" firstAttribute="top" secondItem="Le6-84-q8b" secondAttribute="top" constant="10" id="deG-DQ-aMV"/>
+                                                    <constraint firstItem="YAY-Cq-1jT" firstAttribute="leading" secondItem="HQY-v6-Uk7" secondAttribute="trailing" constant="12" id="ktE-u1-ZU0"/>
+                                                    <constraint firstAttribute="height" constant="72" id="lvC-jC-Yxc"/>
+                                                    <constraint firstItem="OUZ-uz-zwm" firstAttribute="trailing" secondItem="HQY-v6-Uk7" secondAttribute="trailing" constant="1" id="rN3-Tg-DhH"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="app_grey_light"/>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" name="app_grey_light"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="UHI-p8-KfJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="b1d-dK-DOV" secondAttribute="trailing" constant="16" id="0dt-80-8ez"/>
+                                    <constraint firstItem="b1d-dK-DOV" firstAttribute="leading" secondItem="CGv-3S-EM2" secondAttribute="leading" constant="16" id="Nw7-rb-dWF"/>
+                                    <constraint firstItem="b1d-dK-DOV" firstAttribute="top" secondItem="RCp-Ze-PFN" secondAttribute="bottom" constant="20" id="XhO-4M-Tgz"/>
                                     <constraint firstItem="RCp-Ze-PFN" firstAttribute="top" secondItem="CGv-3S-EM2" secondAttribute="top" constant="16" id="ie7-D2-ZmY"/>
                                     <constraint firstItem="RCp-Ze-PFN" firstAttribute="leading" secondItem="CGv-3S-EM2" secondAttribute="leading" constant="16" id="n6q-ld-rV0"/>
                                     <constraint firstAttribute="trailing" secondItem="RCp-Ze-PFN" secondAttribute="trailing" constant="16" id="ryy-2q-Wwh"/>
+                                    <constraint firstAttribute="bottom" secondItem="b1d-dK-DOV" secondAttribute="bottom" constant="20" id="wZv-vU-JhH"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -320,11 +440,19 @@
                         <outlet property="firstImageView" destination="4CK-WW-ImM" id="Bu0-hj-GMw"/>
                         <outlet property="fourthAvatarView" destination="1BW-tp-rPX" id="Ne4-Yv-AhB"/>
                         <outlet property="fourthImageView" destination="lMC-Pu-Kp6" id="d4l-oK-d6g"/>
+                        <outlet property="lowerMessageAvatar" destination="HQY-v6-Uk7" id="lPr-Nf-qoU"/>
+                        <outlet property="lowerMessageName" destination="YAY-Cq-1jT" id="Xrt-9U-koR"/>
+                        <outlet property="lowerMessageText" destination="VL6-m4-8ch" id="u8H-XP-ihE"/>
+                        <outlet property="lowerMessageView" destination="Le6-84-q8b" id="zF6-wg-Irr"/>
                         <outlet property="secondAvatarView" destination="fmP-VJ-Ro2" id="SeO-WN-gcK"/>
                         <outlet property="secondImageView" destination="3Z0-5g-egY" id="WrM-TK-Ijc"/>
                         <outlet property="thirdAvatarView" destination="zJR-lW-BKD" id="W0v-gn-4uv"/>
                         <outlet property="thirdImageView" destination="nQH-PA-G1T" id="4gW-Ul-bYd"/>
                         <outlet property="totalChatsLabel" destination="GoO-cb-75A" id="1J5-QP-UhB"/>
+                        <outlet property="upperMessageAvatar" destination="0S8-Cl-ID1" id="yub-qX-xWs"/>
+                        <outlet property="upperMessageName" destination="E0n-Hc-Ie5" id="dKa-YQ-afO"/>
+                        <outlet property="upperMessageText" destination="lna-aC-0ls" id="Ncj-4X-cel"/>
+                        <outlet property="upperMessageView" destination="ION-Ip-QMX" id="DQD-Ia-X0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAn-wn-VuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -338,6 +466,12 @@
         <image name="icon-background" width="375" height="194"/>
         <image name="navigationBarCircles" width="375" height="148"/>
         <image name="welcomeSearch" width="24" height="24"/>
+        <namedColor name="app_blue_dark">
+            <color red="0.0" green="0.039215686274509803" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="app_green">
+            <color red="0.16078431372549021" green="0.85098039215686272" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="app_grey_light">
             <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

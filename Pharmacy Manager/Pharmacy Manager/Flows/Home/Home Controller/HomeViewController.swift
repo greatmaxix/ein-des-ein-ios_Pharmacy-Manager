@@ -41,10 +41,22 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var secondImageView: UIImageView!
     @IBOutlet weak var firstImageView: UIImageView!
 
+    @IBOutlet weak var upperMessageView: UIView!
+    @IBOutlet weak var lowerMessageView: UIView!
+    @IBOutlet weak var upperMessageName: UILabel!
+    @IBOutlet weak var upperMessageText: UILabel!
+    @IBOutlet weak var lowerMessageName: UILabel!
+    @IBOutlet weak var lowerMessageText: UILabel!
+    @IBOutlet weak var upperMessageAvatar: UIImageView!
+    @IBOutlet weak var lowerMessageAvatar: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         containerView.isHidden = true
+
+        upperMessageView.dropLightBlueShadow()
+        lowerMessageView.dropLightBlueShadow()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +134,41 @@ class HomeViewController: UIViewController {
             return
         }
     }
+
+    private func fillMessagesInfo() {
+        if model.messageCount == 1 {
+            lowerMessageView.isHidden = true
+        }
+
+        if model.messageCount == 0 {
+            upperMessageView.isHidden = true
+            return
+        }
+
+        let messages = model.messages()
+
+        if messages.count == 0 {
+            return
+        } else if let message = messages.first {
+
+            upperMessageName.text = message.customerName
+            upperMessageText.text = message.message
+            if let url = URL(string: message.customerAvatar ?? "") {
+                upperMessageAvatar.af.setImage(withURL: url)
+            }
+        }
+
+        if messages.count == 1 {
+            return
+        } else if let message = messages.last {
+
+            lowerMessageName.text = message.customerName
+            lowerMessageText.text = message.message
+            if let url = URL(string: message.customerAvatar ?? "") {
+                lowerMessageAvatar.af.setImage(withURL: url)
+            }
+        }
+    }
 }
 
 extension HomeViewController: HomeViewControllerInput {
@@ -131,6 +178,7 @@ extension HomeViewController: HomeViewControllerInput {
 
         if errorText?.isEmpty ?? true {
             fillChatInfo()
+            fillMessagesInfo()
 
             containerView.isHidden = false
         }
