@@ -74,7 +74,6 @@ extension NeedHelpViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? ProfileBaseTableViewCell else {return}
         cell.isApplyState.toggle()
-        print("zxcv \(cell.isApplyState)")
         model.selectActionAt(index: indexPath.row, cellState: cell.isApplyState)?()
     }
 }

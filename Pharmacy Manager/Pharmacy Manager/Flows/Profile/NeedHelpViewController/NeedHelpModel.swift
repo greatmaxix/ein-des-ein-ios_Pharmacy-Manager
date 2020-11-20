@@ -70,7 +70,7 @@ extension NeedHelpModel: NeedHelpModelInput, NeedHelpViewControllerOutput {
     func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure? {
         switch cellState {
         case true:
-            let cellData = EmptyTableViewCellData.init(height: 40, color: .clear)
+            let cellData = EmptyTableViewCellData.init(height: 120, color: .clear)
             self.cellsData.insert(cellData, at: index + 1)
         case false:
             self.cellsData.remove(at: index + 1)
