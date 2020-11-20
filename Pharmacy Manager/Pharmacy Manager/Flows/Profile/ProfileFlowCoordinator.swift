@@ -33,10 +33,23 @@ class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     override init(parent: EventNode?) {
         super.init(parent: parent)
 
+        addHandler(.onRaise) { [weak self] (event: ProfileEvent) in
+            switch event {
+            case .presentNeedHelpViewController:
+                self?.presentNeedHelpViewController()
+            }
+        }
     }
-
 }
 
-extension ProfileFlowCoordinator {
+private extension ProfileFlowCoordinator {
 
+    func presentNeedHelpViewController() {
+        let viewController = StoryboardScene.NeedHelpViewController.needHelpViewController.instantiate()
+        let model = NeedHelpModel(parent: self)
+        viewController.model = model
+        model.output = viewController
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

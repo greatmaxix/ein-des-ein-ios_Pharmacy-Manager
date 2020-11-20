@@ -12,11 +12,11 @@ import EventsTree
 protocol NeedHelpModelInput: class {
     var cellCount: Int { get }
     func cellDataAt(index: Int) -> ProfileBaseCellData
-    func selectActionAt(index: Int) -> EmptyClosure?
+    func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure?
 }
 
 protocol NeedHelpModelOutput: class {
-
+    func reloadTableView()
 }
 
 class NeedHelpModel: Model {
@@ -42,7 +42,7 @@ class NeedHelpModel: Model {
         do {
             let cellData = ProfileViewControllerCellData(imageName: "helpUsReturn",
                                                          title: "Возврат")
-                cellsData.append(cellData)
+            cellsData.append(cellData)
         }
         
         do {
@@ -67,8 +67,16 @@ class NeedHelpModel: Model {
 
 extension NeedHelpModel: NeedHelpModelInput, NeedHelpViewControllerOutput {
     
-    func selectActionAt(index: Int) -> EmptyClosure? {
-            cellsData[index].selectHandler
+    func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure? {
+        switch cellState {
+        case true:
+            let cellData = EmptyTableViewCellData.init(height: 40, color: .clear)
+            self.cellsData.insert(cellData, at: index + 1)
+        case false:
+            self.cellsData.remove(at: index + 1)
+        }
+        output.reloadTableView()
+        return cellsData[index].selectHandler
     }
     
     func cellDataAt(index: Int) -> ProfileBaseCellData {

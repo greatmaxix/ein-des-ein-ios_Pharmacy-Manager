@@ -25,6 +25,7 @@ class NeedHelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         
     }
     
@@ -34,12 +35,20 @@ class NeedHelpViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.register(UINib(nibName: String(describing: ProfileViewControllerViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfileViewControllerViewCell.self))
+        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: String(describing: EmptyTableViewCell.self))
     }
 }
 
 // MARK: - Model delegate extension
 extension NeedHelpViewController: NeedHelpViewControllerInput {
-
+    func reloadTableView() {
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: {[weak self] in
+                            self?.tableView.reloadData() })
+    }
 }
 
 // MARK: - Talbeview DataSource & Delegate extension
@@ -63,7 +72,10 @@ extension NeedHelpViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        model.selectActionAt(index: indexPath.row)?()
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProfileBaseTableViewCell else {return}
+        cell.isApplyState.toggle()
+        print("zxcv \(cell.isApplyState)")
+        model.selectActionAt(index: indexPath.row, cellState: cell.isApplyState)?()
     }
 }
 

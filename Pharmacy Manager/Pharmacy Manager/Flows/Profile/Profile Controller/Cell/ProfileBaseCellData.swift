@@ -28,6 +28,8 @@ class ProfileBaseCellData {
 
 class ProfileBaseTableViewCell: UITableViewCell {
     
+    var isApplyState: Bool = false
+    
     func setup(cellData: ProfileBaseCellData) {
         
     }
