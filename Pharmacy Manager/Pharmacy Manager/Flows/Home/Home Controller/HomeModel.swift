@@ -81,7 +81,7 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     }
 
     func loadData() {
-        lastChatAPI.load(target: .lastChats) { [weak self] result in
+        lastChatAPI.load(target: .lastOpened) { [weak self] result in
             guard let `self` = self else {
                 return
             }

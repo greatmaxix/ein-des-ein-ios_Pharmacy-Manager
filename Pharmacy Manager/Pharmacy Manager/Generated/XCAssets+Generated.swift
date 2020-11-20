@@ -127,6 +127,7 @@ internal enum Asset {
       internal static let attachment = ImageAsset(name: "attachment")
       internal static let attachmentHighlighted = ImageAsset(name: "attachmentHighlighted")
       internal static let doctorChatIcon = ImageAsset(name: "doctor_chat_icon")
+      internal static let info = ImageAsset(name: "info")
       internal static let pharmacistChatIcon = ImageAsset(name: "pharmacist_chat_icon")
       internal static let radiobuttonChecked = ImageAsset(name: "radiobutton_checked")
       internal static let send = ImageAsset(name: "send")

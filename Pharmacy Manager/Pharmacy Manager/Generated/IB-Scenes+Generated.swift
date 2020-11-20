@@ -31,6 +31,8 @@ internal enum StoryboardScene {
   internal enum Chat: StoryboardType {
     internal static let storyboardName = "Chat"
 
+    internal static let chatEvaluationViewController = SceneType<Pharmacy_Manager.ChatEvaluationViewController>(storyboard: Chat.self, identifier: "ChatEvaluationViewController")
+
     internal static let chatsViewController = SceneType<Pharmacy_Manager.ChatsViewController>(storyboard: Chat.self, identifier: "ChatsViewController")
   }
   internal enum Home: StoryboardType {

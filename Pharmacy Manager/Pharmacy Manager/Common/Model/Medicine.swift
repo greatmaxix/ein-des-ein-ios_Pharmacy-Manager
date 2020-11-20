@@ -72,15 +72,15 @@ struct Medicine: Codable {
         liked = false
     }
     
-    init(title: String, minPrice: Double, maxPrice: Double, imageURL: String?, releaseForm: String, liked: Bool, productId: Int) {
+    init(title: String, minPrice: Decimal, maxPrice: Decimal, imageURL: String?, releaseForm: String, liked: Bool, productId: Int) {
         id = productId
         name = title
         self.releaseForm = releaseForm
         pictureUrls = [imageURL ?? ""]
         manufacturerName = ""
         manufacturerCountryCode = ""
-        self.minPrice = Decimal.init(minPrice)
-        self.maxPrice = Decimal.init(maxPrice)
+        self.minPrice = minPrice
+        self.maxPrice = maxPrice
         self.liked = liked
     }
     

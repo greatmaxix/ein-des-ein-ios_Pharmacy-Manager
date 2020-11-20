@@ -12,15 +12,12 @@ protocol ChatsViewControllerInput: ChatsListModelOutput {}
 protocol ChatsViewControllerOutput: ChatsListModelInput {}
 
 class ChatsViewController: UIViewController {
-
     var model: ChatsViewControllerOutput!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
-
 }
 
 extension ChatsViewController: ChatsViewControllerInput {
