@@ -12,6 +12,11 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum AboutAppViewController: StoryboardType {
+    internal static let storyboardName = "AboutAppViewController"
+
+    internal static let aboutAppViewController = SceneType<Pharmacy_Manager.AboutAppViewController>(storyboard: AboutAppViewController.self, identifier: "AboutAppViewController")
+  }
   internal enum Auth: StoryboardType {
     internal static let storyboardName = "Auth"
 

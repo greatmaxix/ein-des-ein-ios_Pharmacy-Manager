@@ -177,8 +177,11 @@ internal enum Asset {
       internal static let chooseLocation = ImageAsset(name: "chooseLocation")
       internal static let emptyAnalysis = ImageAsset(name: "emptyAnalysis")
       internal static let noResults = ImageAsset(name: "noResults")
+      internal static let profileAboutCashBack = ImageAsset(name: "profileAboutCashBack")
+      internal static let profileAboutPersonalData = ImageAsset(name: "profileAboutPersonalData")
       internal static let profileAddress = ImageAsset(name: "profileAddress")
       internal static let profileAnalize = ImageAsset(name: "profileAnalize")
+      internal static let profileArrangement = ImageAsset(name: "profileArrangement")
       internal static let profileArrow = ImageAsset(name: "profileArrow")
       internal static let profileAttension = ImageAsset(name: "profileAttension")
       internal static let profileBellOn = ImageAsset(name: "profileBell on")
@@ -193,6 +196,7 @@ internal enum Asset {
       internal static let profileRecipe = ImageAsset(name: "profileRecipe")
       internal static let profileSelected = ImageAsset(name: "profileSelected")
       internal static let profileStatistic = ImageAsset(name: "profileStatistic")
+      internal static let profileTermsDataUse = ImageAsset(name: "profileTermsDataUse")
     }
     internal enum Scan {
       internal static let scan = ImageAsset(name: "SCAN")
