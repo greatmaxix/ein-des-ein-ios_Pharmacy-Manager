@@ -24,11 +24,11 @@ class AboutAppViewController: UIViewController {
     var model: AboutAppViewControllerOutput!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         setupTableView()
     }
-    
+
     private func setupTableView() {
         
         tableView.delegate = self
@@ -53,10 +53,19 @@ extension AboutAppViewController: UITableViewDelegate, UITableViewDataSource {
         let cellData: ProfileBaseCellData = model.cellDataAt(index: indexPath.row)
         
         if let cell: ProfileBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellData.nibName!, for: indexPath) as? ProfileBaseTableViewCell {
-            
             cell.setup(cellData: cellData)
+            
+            if let cellWithURL = cell as? AboutAppHeaderViewCell {
+                // FIXME: - Nead get URL for action and realize in this block
+                cellWithURL.urlTappedActionHandler = {
+                    guard let url = URL(string: "kzpharamcy.com") else { return }
+                    UIApplication.shared.canOpenURL(url)
+                }
+            }
+            
             return cell
         }
+        
         return UITableViewCell()
     }
     

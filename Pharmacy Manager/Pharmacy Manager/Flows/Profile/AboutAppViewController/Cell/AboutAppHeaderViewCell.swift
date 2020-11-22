@@ -8,11 +8,29 @@
 
 import UIKit
 
-class AboutAppHeaderViewCell: UITableViewCell {
+class AboutAppHeaderViewCell: ProfileBaseTableViewCell {
+    
+    @IBOutlet private weak var urlLabel: UILabel!
+    
+    var urlTappedActionHandler: EmptyClosure?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+    }
+    
+    override func setup(cellData: ProfileBaseCellData) {
+        setupGestures()
+    }
+    
+    private func setupGestures() {
+        urlLabel.isUserInteractionEnabled = true
+        let tapAction = UITapGestureRecognizer(target: self, action: #selector(actionTapped))
+        urlLabel.addGestureRecognizer(tapAction)
+    }
+    
+    @objc func actionTapped() {
+        self.urlTappedActionHandler?()
     }
 }
 
