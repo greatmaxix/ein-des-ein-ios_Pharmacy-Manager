@@ -36,7 +36,8 @@ class NeedHelpViewController: UIViewController {
         tableView.delegate = self
         
         tableView.register(UINib(nibName: String(describing: ProfileViewControllerViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfileViewControllerViewCell.self))
-        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: String(describing: EmptyTableViewCell.self))
+        
+        tableView.register(UINib(nibName: String(describing: NeedHelpViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: NeedHelpViewCell.self))
     }
 }
 
