@@ -76,7 +76,6 @@ extension NeedHelpModel: NeedHelpModelInput, NeedHelpViewControllerOutput {
         switch cellState {
         case true:
             let cellData = NeedHelpViewCellData.init(bodyText: stringsArray[index])
-
             self.cellsData.insert(cellData, at: index + 1)
         case false:
             self.cellsData.remove(at: index + 1)

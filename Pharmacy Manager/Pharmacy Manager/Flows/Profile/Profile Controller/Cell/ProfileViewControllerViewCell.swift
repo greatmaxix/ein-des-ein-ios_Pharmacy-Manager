@@ -54,7 +54,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
      */
     override func defaultCellState() {
         cellTypeImageView.tintColor = Asset.Colors.appBlueDark.color
-        titleLabel.tintColor = Asset.Colors.appBlueDark.color
+        titleLabel.textColor = Asset.Colors.appBlueDark.color
         arrowImageView.tintColor = Asset.Colors.appBlueDark.color
         arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
     }
@@ -64,7 +64,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
      */
     override func applyCellState() {
         cellTypeImageView.tintColor = .blue
-        titleLabel.tintColor = .blue
+        titleLabel.textColor = .blue
         arrowImageView.tintColor = .blue
         arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
     }

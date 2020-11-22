@@ -78,6 +78,13 @@ extension NeedHelpViewController: UITableViewDataSource, UITableViewDelegate {
                   else {return}
         
         cell.isApplyState.toggle()
+        
+        if cell.isApplyState {
+            cell.applyCellState()
+        } else {
+            cell.defaultCellState()
+        }
+        
         model.selectActionAt(index: indexPath.row, cellState: cell.isApplyState)?()
     }
 }
