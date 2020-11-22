@@ -23,6 +23,11 @@ class NeedHelpModel: Model {
     
     private var cellsData: [ProfileBaseCellData] = []
     weak var output: NeedHelpModelOutput!
+    private let stringsArray = ["1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor",
+                                "2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor",
+                                "3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor",
+                                "4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor",
+                                "5 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor"]
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
@@ -70,7 +75,7 @@ extension NeedHelpModel: NeedHelpModelInput, NeedHelpViewControllerOutput {
     func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure? {
         switch cellState {
         case true:
-            let cellData = NeedHelpViewCellData.init(bodyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor")
+            let cellData = NeedHelpViewCellData.init(bodyText: stringsArray[index])
 
             self.cellsData.insert(cellData, at: index + 1)
         case false:
