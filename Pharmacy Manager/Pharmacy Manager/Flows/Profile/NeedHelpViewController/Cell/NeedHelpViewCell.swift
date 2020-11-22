@@ -14,7 +14,8 @@ class NeedHelpViewCell: ProfileBaseTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        isUserInteractionEnabled = true
+        selectionStyle = .none
     }
 
     override func setup(cellData: ProfileBaseCellData) {

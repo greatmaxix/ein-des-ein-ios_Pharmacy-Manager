@@ -69,7 +69,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             
             if let data = cellData as? ProfileViewControllerCellData,
                data.title == "Статистика" {
-                cell.disactivateCell()
+                cell.deactivateCell()
                 }
             
             cell.setup(cellData: cellData)

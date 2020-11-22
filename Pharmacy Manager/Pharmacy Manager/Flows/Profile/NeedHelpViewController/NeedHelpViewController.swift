@@ -73,7 +73,10 @@ extension NeedHelpViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ProfileBaseTableViewCell else {return}
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProfileBaseTableViewCell,
+                  cell != tableView.cellForRow(at: indexPath) as? NeedHelpViewCell
+                  else {return}
+        
         cell.isApplyState.toggle()
         model.selectActionAt(index: indexPath.row, cellState: cell.isApplyState)?()
     }

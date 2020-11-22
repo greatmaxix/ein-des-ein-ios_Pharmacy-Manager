@@ -75,6 +75,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" name="backgroundGray"/>
             <connections>
+                <outlet property="arrowImageView" destination="Jlb-PP-bBm" id="jbg-aY-uMq"/>
                 <outlet property="cellTypeImageView" destination="uBh-cw-GlM" id="hjw-gg-Jb8"/>
                 <outlet property="contentBackgroundView" destination="srS-yY-Xgu" id="rr7-Up-rS2"/>
                 <outlet property="titleLabel" destination="8AD-NL-tOg" id="0bU-WL-5pi"/>

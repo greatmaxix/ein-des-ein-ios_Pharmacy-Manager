@@ -12,6 +12,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var cellTypeImageView: UIImageView!
+    @IBOutlet private weak var arrowImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentBackgroundView: UIView!
     
@@ -43,9 +44,29 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         }
     }
     
-    override func disactivateCell() {
+    override func deactivateCell() {
         contentBackgroundView.alpha = 0.5
         isUserInteractionEnabled = false
+    }
+    
+    /**
+            Default settups tints for views in cell. Setup default arrow image to cell. Used for apply / disapply react on tap
+     */
+    override func defaultCellState() {
+        cellTypeImageView.tintColor = Asset.Colors.appBlueDark.color
+        titleLabel.tintColor = Asset.Colors.appBlueDark.color
+        arrowImageView.tintColor = Asset.Colors.appBlueDark.color
+        arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
+    }
+    
+    /**
+            Default settups tints for views in cell. Setup default arrow image to cell. Used for apply / disapply react on tap
+     */
+    override func applyCellState() {
+        cellTypeImageView.tintColor = .blue
+        titleLabel.tintColor = .blue
+        arrowImageView.tintColor = .blue
+        arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
     }
     
     required init?(coder aDecoder: NSCoder) {

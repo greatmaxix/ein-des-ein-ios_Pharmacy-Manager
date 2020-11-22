@@ -29,17 +29,9 @@ class ProfileBaseCellData {
 class ProfileBaseTableViewCell: UITableViewCell {
     
     var isApplyState: Bool = false
-    
-    func setup(cellData: ProfileBaseCellData) {
-        
-    }
-    
-    func disactivateCell() {
-        
-    }
-    
-    func setup(representObj: Any) {
-        
-    }
-
+    func setup(cellData: ProfileBaseCellData) {}
+    func deactivateCell() {}
+    func defaultCellState() {}
+    func applyCellState() {}
+    func setup(representObj: Any) {}
 }
