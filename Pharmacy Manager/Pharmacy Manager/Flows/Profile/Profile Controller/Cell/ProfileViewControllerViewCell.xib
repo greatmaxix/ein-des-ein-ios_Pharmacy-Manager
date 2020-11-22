@@ -33,6 +33,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uBh-cw-GlM">
                                         <rect key="frame" x="0.0" y="19" width="40" height="40"/>
                                         <color key="backgroundColor" name="backgroundGray"/>
+                                        <color key="tintColor" name="app_blue_dark"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="jN1-Ix-Nkk"/>
                                             <constraint firstAttribute="height" constant="40" id="rXb-Zs-xcw"/>

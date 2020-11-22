@@ -32,13 +32,14 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         
         guard let data = cellData as? ProfileViewControllerCellData else {return}
         
-        cellTypeImageView.image = UIImage(named: data.imageName)
+        cellTypeImageView.image = UIImage(named: data.imageName)?.withRenderingMode(.alwaysTemplate)
         titleLabel.text = data.title
         
         if let color = data.tintColor {
 
             self.titleLabel.textColor = color
             self.cellTypeImageView.backgroundColor = color.withAlphaComponent(0.2)
+            
         }
     }
     
