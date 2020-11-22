@@ -183,6 +183,7 @@ internal enum Asset {
       internal static let noResults = ImageAsset(name: "noResults")
       internal static let profileAddress = ImageAsset(name: "profileAddress")
       internal static let profileAnalize = ImageAsset(name: "profileAnalize")
+      internal static let profileApplyArrow = ImageAsset(name: "profileApplyArrow")
       internal static let profileArrow = ImageAsset(name: "profileArrow")
       internal static let profileAttension = ImageAsset(name: "profileAttension")
       internal static let profileBellOn = ImageAsset(name: "profileBell on")

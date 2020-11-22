@@ -56,6 +56,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         cellTypeImageView.tintColor = Asset.Colors.appBlueDark.color
         titleLabel.textColor = Asset.Colors.appBlueDark.color
         arrowImageView.tintColor = Asset.Colors.appBlueDark.color
+        
         arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
     }
     
@@ -66,7 +67,8 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         cellTypeImageView.tintColor = .blue
         titleLabel.textColor = .blue
         arrowImageView.tintColor = .blue
-        arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
+        
+        arrowImageView.image = UIImage(named: "profileApplyArrow")?.withRenderingMode(.alwaysTemplate)
     }
     
     required init?(coder aDecoder: NSCoder) {
