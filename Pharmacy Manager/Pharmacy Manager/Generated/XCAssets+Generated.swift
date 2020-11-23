@@ -131,6 +131,8 @@ internal enum Asset {
       internal static let pharmacistChatIcon = ImageAsset(name: "pharmacist_chat_icon")
       internal static let radiobuttonChecked = ImageAsset(name: "radiobutton_checked")
       internal static let send = ImageAsset(name: "send")
+      internal static let star = ImageAsset(name: "star")
+      internal static let starSelected = ImageAsset(name: "starSelected")
     }
     internal enum Common {
       internal static let crosshair = ImageAsset(name: "crosshair")

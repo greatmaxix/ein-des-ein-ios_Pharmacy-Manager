@@ -10,9 +10,7 @@ import Foundation
 import EventsTree
 
 open class Model: EventNode {
-
-  public fileprivate(set) var isActive = false
-
+    public fileprivate(set) var isActive = false
 }
 
 public protocol ControllerVisibilityOutput {

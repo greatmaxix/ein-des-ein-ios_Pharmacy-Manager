@@ -12,18 +12,20 @@ import EventsTree
 final class ChatCoordinator: EventNode, Coordinator {
     
     weak var navigation: UINavigationController?
+    let chat: Chat
     
     func createFlow() -> UIViewController {
         let vc = ChatViewController()
         vc.resignFirstResponder()
-        let model = ChatModel(parent: self)
+        let model = ChatModel(parent: self, chat: chat)
         vc.model = model
         model.output = vc
         vc.hidesBottomBarWhenPushed = true
         return vc
     }
     
-    init(parent: EventNode?, navigation: UINavigationController) {
+    init(parent: EventNode?, navigation: UINavigationController, chat: Chat) {
+        self.chat = chat
         super.init(parent: parent)
         self.navigation = navigation
         

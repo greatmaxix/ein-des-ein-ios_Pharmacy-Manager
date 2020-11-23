@@ -26,7 +26,7 @@ struct ChatUser: Decodable, Equatable {
     var id: Int
     var name: String
     var uuid: String
-    var avatar: [String]?
+    var avatar: [String : URL]?
     var type: String
 }
 

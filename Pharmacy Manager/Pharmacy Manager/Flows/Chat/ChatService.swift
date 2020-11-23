@@ -24,7 +24,7 @@ final class ChatService {
     }
     
     weak var delegate: ChatServiceDelegate?
-    let chat: Chat
+    
     private let decoder = JSONDecoder.init()
     private var eventSource: EventSource!
     private var lastEvent: String?
@@ -34,19 +34,14 @@ final class ChatService {
         print("Chat service deinit")
     }
     
-    init(_ chat: Chat, topicName: String?, delegate: ChatServiceDelegate?) {
-        self.chat = chat
+    init(topicName: String, delegate: ChatServiceDelegate?) {
         self.delegate = delegate
         decoder.dataDecodingStrategy = .deferredToData
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        if let t = topicName {
-            subscribeFor(topicName: t)
-        } else {
-            subscribeFor(topicName: chat.topicName)
-        }
+        subscribeFor(topicName)
     }
     
-    private func subscribeFor(topicName: String) {
+    private func subscribeFor(_ topicName: String) {
         let url = URL(string: "https://mercure.pharmacies.fmc-dev.com/.well-known/mercure?topic=\(topicName)")!
         config = EventSource.Config(handler: self, url: url)
         eventSource = EventSource(config: config)

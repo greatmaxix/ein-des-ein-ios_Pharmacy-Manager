@@ -53,7 +53,7 @@ final class ChatModel: Model, ChatInput {
     private var sizeCalculator: CustomMessageSizeCalculator!
     
     private var messages: [Message] = []
-    private var currentChat: Chat! {
+    var currentChat: Chat {
         didSet {
             switch currentChat.status {
             case .closed, .closeRequest:
@@ -84,7 +84,8 @@ final class ChatModel: Model, ChatInput {
         print("Chat model deinit")
     }
     
-    override init(parent: EventNode?) {
+    init(parent: EventNode?, chat: Chat) {
+        currentChat = chat
         super.init(parent: parent)
         
         addHandler(.onRaise) {[weak self] (event: ChatEvaluateEvent) in
@@ -102,16 +103,9 @@ final class ChatModel: Model, ChatInput {
     func load() {
         switch UserSession.shared.authorizationStatus {
         case .authorized:
-            output?.showActivityIndicator()
-            chatProvider.load(target: .chatList) { [weak self] result in
-                self?.output?.hideActivityIndicator()
-                switch result {
-                case .success(let response):
-                    self?.didReciveChat(list: response.items)
-                case .failure(let error):
-                    print(error)
-                }
-            }
+            
+            load(chat: currentChat)
+
         case .notAuthorized:
             self.messages = Message.unauthorizedMessages()
             self.output?.messagesCollectionView.reloadData()
@@ -119,9 +113,13 @@ final class ChatModel: Model, ChatInput {
         }
     }
     
+    func load(chat: Chat) {
+        sender = ChatSender.currentUser()
+        loadMessages()
+    }
+    
     func sendMessage(text: String) {
-        guard let chatId = chatService?.chat.id, text.isEmpty == false else { return }
-        createMessageProvider.load(target: .createMessage(chatId, text)) { response in
+        createMessageProvider.load(target: .createMessage(currentChat.id, text)) { response in
             print(response)
         }
     }
@@ -167,13 +165,12 @@ final class ChatModel: Model, ChatInput {
     }
     
     private func didReciveChat(list: [Chat]) {
-        if let chat = list.first(where: {$0.status == .opened || $0.status == .answered || $0.status == .closeRequest}) {
+        if let chat = list.first(where: { $0.status != .closed }) {
             currentChat = chat
             output?.title = chat.type
             output?.showActivityIndicator()
             sender = ChatSender.currentUser()
-//           MARK: TO-DO
-//            chatService = ChatService(chat, topicName: UserSession.shared.user?.topicName, delegate: self)
+            chatService = ChatService(topicName: UserSession.shared.user?.topicName ?? "", delegate: self)
             loadMessages()
         } else {
             self.messages = [Message(.routeSwitch, sender: sender, messageId: "0", date: Date())]
@@ -288,9 +285,8 @@ final class ChatModel: Model, ChatInput {
     }
     
     private func continueChat() {
-        guard let id = chatService?.chat.id else { return }
         output?.showActivityIndicator()
-        manageChatProvider.load(target: .continueChat(id: id)) {[weak self] result in
+        manageChatProvider.load(target: .continueChat(id: currentChat.id)) {[weak self] result in
             self?.output?.hideActivityIndicator()
             switch result {
             case .success:
@@ -352,8 +348,7 @@ final class ChatModel: Model, ChatInput {
     }
     
     private func sendUploadedImageWith(response: CustomerImageUploadResponse) {
-        guard let chatId = chatService?.chat.id else { return }
-        sendImageProvider.load(target: .sendImage(chatId: chatId, uuid: response.item.uuid)) { result in
+        sendImageProvider.load(target: .sendImage(chatId: currentChat.id, uuid: response.item.uuid)) { result in
             switch result {
             case .success(let r):
                 print("Image uploaded with -\(r)")
@@ -370,9 +365,6 @@ final class ChatModel: Model, ChatInput {
             self?.output?.hideActivityIndicator()
             switch result {
             case .success(let pdfURL):
-                if let data = try? Data.init(contentsOf: pdfURL) {
-//                    self?.raise(event: ReceiptsModelEvent.saveData(data: data))
-                }
                 self?.raise(event: ChatEvent.openPDF(pdfURL))
             case .failure: break
             }

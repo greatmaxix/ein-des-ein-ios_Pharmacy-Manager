@@ -56,6 +56,8 @@
 		601612FD2567E45A005151BC /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601612FC2567E45A005151BC /* EmptyResponse.swift */; };
 		601613002567E83D005151BC /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601612FF2567E83D005151BC /* Date+String.swift */; };
 		601613032568126E005151BC /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601613022568126D005151BC /* RoundedButton.swift */; };
+		60A3C9FA256861D400690F9B /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A3C9F8256861D400690F9B /* ChatTableViewCell.swift */; };
+		60A3C9FB256861D400690F9B /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60A3C9F9256861D400690F9B /* ChatTableViewCell.xib */; };
 		6103AB0A2563FC0F00775EF3 /* SubcategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6103AAFB2563FC0F00775EF3 /* SubcategoryTableViewCell.xib */; };
 		6103AB0B2563FC0F00775EF3 /* SubcategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6103AAFC2563FC0F00775EF3 /* SubcategoryTableViewCell.swift */; };
 		6103AB0C2563FC0F00775EF3 /* SubcategoryCellSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6103AAFD2563FC0F00775EF3 /* SubcategoryCellSection.swift */; };
@@ -318,6 +320,8 @@
 		601612FC2567E45A005151BC /* EmptyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResponse.swift; sourceTree = "<group>"; };
 		601612FF2567E83D005151BC /* Date+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		601613022568126D005151BC /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		60A3C9F8256861D400690F9B /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		60A3C9F9256861D400690F9B /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		6103AAFB2563FC0F00775EF3 /* SubcategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubcategoryTableViewCell.xib; sourceTree = "<group>"; };
 		6103AAFC2563FC0F00775EF3 /* SubcategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryTableViewCell.swift; sourceTree = "<group>"; };
 		6103AAFD2563FC0F00775EF3 /* SubcategoryCellSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryCellSection.swift; sourceTree = "<group>"; };
@@ -647,6 +651,7 @@
 		601612C32567DCFD005151BC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				60A3C9F72568609800690F9B /* ChatCell */,
 				601612C42567DCFD005151BC /* ChatRecipe */,
 				601612C72567DCFD005151BC /* ActionButton */,
 				601612CA2567DCFD005151BC /* SelectRoute */,
@@ -729,6 +734,15 @@
 				601612DB2567DCFD005151BC /* ChatTagCollectionViewCell.swift */,
 			);
 			path = Tag;
+			sourceTree = "<group>";
+		};
+		60A3C9F72568609800690F9B /* ChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				60A3C9F8256861D400690F9B /* ChatTableViewCell.swift */,
+				60A3C9F9256861D400690F9B /* ChatTableViewCell.xib */,
+			);
+			path = ChatCell;
 			sourceTree = "<group>";
 		};
 		6103AAF92563FC0F00775EF3 /* Catalogue */ = {
@@ -1087,12 +1101,12 @@
 				6103AC89256412CA00775EF3 /* CustomIntensityVisualEffectView */,
 				6103AC5925640C5B00775EF3 /* SearchBar */,
 				6103AC4F25640C3600775EF3 /* NavigationBar */,
-				6103AB5A2563FE7E00775EF3 /* NavigationController.swift */,
 				6103AB1D2563FC5500775EF3 /* ContainerView */,
 				6103AB172563FC4600775EF3 /* HighlightedView */,
-				601613022568126D005151BC /* RoundedButton.swift */,
 				616378BD250A26A70029E08F /* TextField Control */,
 				616378C1250A26A70029E08F /* ErrorPresenter.swift */,
+				601613022568126D005151BC /* RoundedButton.swift */,
+				6103AB5A2563FE7E00775EF3 /* NavigationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1668,6 +1682,7 @@
 				61637B27250A26F80029E08F /* introAnimation.gif in Resources */,
 				6103AB0F2563FC0F00775EF3 /* Catalogue.storyboard in Resources */,
 				6103AB8A2563FEFB00775EF3 /* Product.storyboard in Resources */,
+				60A3C9FB256861D400690F9B /* ChatTableViewCell.xib in Resources */,
 				61D341592565616600F1DE89 /* EmptySearchView.xib in Resources */,
 				61637B2E250A26F80029E08F /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				6103AB2E2563FD0A00775EF3 /* MedicineCell.xib in Resources */,
@@ -1779,6 +1794,7 @@
 				6103AB942563FEFB00775EF3 /* ProductCategoryTableViewCell.swift in Sources */,
 				618962EF250BA7B200071C30 /* TabBarController+Styles.swift in Sources */,
 				601612AA2567DB22005151BC /* Sender.swift in Sources */,
+				60A3C9FA256861D400690F9B /* ChatTableViewCell.swift in Sources */,
 				61D3419B2566A2DD00F1DE89 /* UserDisplayable.swift in Sources */,
 				6103ABD22564011700775EF3 /* UIImageView+URL.swift in Sources */,
 				247C4F6325657F4000A46061 /* UITableViewCell.swift in Sources */,
