@@ -16,7 +16,7 @@ class NotificationViewCell: ProfileBaseTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
     }
     
     func setup(title: String, switchState: Bool) {
