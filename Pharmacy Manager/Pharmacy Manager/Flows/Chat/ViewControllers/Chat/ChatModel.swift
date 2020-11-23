@@ -72,14 +72,13 @@ final class ChatModel: Model, ChatInput {
     private var sizeCalculator: CustomMessageSizeCalculator!
     
     private var messages: [Message] = []
+    
     var currentChat: Chat {
         didSet {
             chatDidUpdated()
         }
     }
-    
-    private var lastShowedDate: String = ""
-    
+
     deinit {
         chatService?.stop()
         print("Chat model deinit")
@@ -95,6 +94,16 @@ final class ChatModel: Model, ChatInput {
                 self?.send(evaluation: evaluation)
             case .later:
                 self?.showEndChatMessage()
+            }
+        }
+        
+        addHandler(.onPropagate) {[weak self] (event: ChatServiceEvent) in
+            guard let chatId = self?.currentChat.id else { return }
+            switch event {
+            case .didRecive(let message):
+                if message.chatId == chatId {
+                    self?.didRecive(data: message)
+                }
             }
         }
     }
@@ -151,7 +160,6 @@ final class ChatModel: Model, ChatInput {
         collection.messagesDataSource = self
         collection.messagesDisplayDelegate = self
         collection.messagesLayoutDelegate = self
-        
         
         collection.register(ChatButtonCollectionViewCell.nib, forCellWithReuseIdentifier: ChatButtonCollectionViewCell.className)
         collection.register(ChatRouteCollectionViewCell.nib, forCellWithReuseIdentifier: ChatRouteCollectionViewCell.className)
@@ -475,7 +483,7 @@ extension ChatModel: MessagesLayoutDelegate {
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         guard indexPath.section != 0 else { return 40.0 }
         let previousMessage = messages[indexPath.section]
-        return previousMessage.sentDate.dateCompactString == message.sentDate.dateCompactString ? 0.0 : 40.0
+        return previousMessage.sentDate.dateCompactString == message.sentDate.dateCompactString ? 10.0 : 40.0
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {

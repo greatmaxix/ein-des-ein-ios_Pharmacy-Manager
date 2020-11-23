@@ -42,7 +42,9 @@ class ChatProductCollectionViewCell: MessageCollectionViewCell {
         }
         nameLabel.text = product.name
         detailsLabel.text = product.releaseForm
-        priceLabel.text = "\(product.priceRange.minPrice)"
+        if let p = product.priceRange?.minPrice {
+            priceLabel.text = "\(p)"
+        }
         likeButton.isSelected = product.liked
         
         self.actionHandler = actionHandler

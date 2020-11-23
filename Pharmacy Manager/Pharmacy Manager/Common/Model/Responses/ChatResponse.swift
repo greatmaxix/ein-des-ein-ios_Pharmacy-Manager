@@ -65,6 +65,10 @@ struct ChatMessagesResponse: Decodable, Equatable {
     var body: ResponseBody?
     var chatBody: ChatResponseBody?
     
+    var chatId: Int {
+        return body?.item.chatId ?? chatBody?.item.id ?? 0
+    }
+    
     enum Keys: CodingKey {
         case type, body
     }

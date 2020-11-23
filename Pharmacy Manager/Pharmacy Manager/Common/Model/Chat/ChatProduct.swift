@@ -18,7 +18,7 @@ struct ChatProduct: Decodable, Equatable {
     let name: String
     let releaseForm: String
     let pictures: [ChatImage]
-    let priceRange: PriceRange
+    let priceRange: PriceRange?
     var liked: Bool = false
     
     var title: String {
@@ -29,7 +29,7 @@ struct ChatProduct: Decodable, Equatable {
     }
     
     var asMedicine: Medicine {
-        return Medicine(title: name, minPrice: priceRange.minPrice, maxPrice: priceRange.maxPrice, imageURL: pictures.first?.url.absoluteString, releaseForm: releaseForm, liked: liked, productId: id)
+        return Medicine(title: name, minPrice: priceRange?.minPrice ?? 0.0, maxPrice: priceRange?.maxPrice ?? 0.0, imageURL: pictures.first?.url.absoluteString, releaseForm: releaseForm, liked: liked, productId: id)
     }
     
     static func == (lhs: ChatProduct, rhs: ChatProduct) -> Bool {
@@ -51,7 +51,7 @@ struct ChatProduct: Decodable, Equatable {
         name = try c.decode(String.self, forKey: .rusName)
         releaseForm = try c.decode(String.self, forKey: .releaseForm)
         pictures = try c.decode([ChatImage].self, forKey: .pictures)
-        priceRange = try c.decode(PriceRange.self, forKey: .pharmacyProductsAggregationData)
+        priceRange = try? c.decode(PriceRange.self, forKey: .pharmacyProductsAggregationData)
         if let isLiked = try? c.decode(Bool.self, forKey: .liked) {
             liked = isLiked
         }

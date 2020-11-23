@@ -32,7 +32,7 @@ class ChatsListModel: Model {
 
 extension ChatsListModel: ChatsListModelInput, ChatsViewControllerOutput {
     func load() {
-        chatListProvider.load(target: .lastOpened) {[weak self] result in
+        chatListProvider.load(target: .chatList) {[weak self] result in
             switch result {
             case .success(let response):
                 self?.items = response.items

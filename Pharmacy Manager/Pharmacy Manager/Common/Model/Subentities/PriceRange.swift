@@ -14,9 +14,13 @@ struct PriceRange: Decodable {
     let minPrice: Decimal
     let maxPrice: Decimal
     
+    enum Key: CodingKey {
+        case minPrice, maxPrice
+    }
+    
     // MARK: - Init / Deinit methods
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: Key.self)
         
         minPrice = try container.decode(Decimal.self, forKey: .minPrice)
         maxPrice = try container.decode(Decimal.self, forKey: .maxPrice)
