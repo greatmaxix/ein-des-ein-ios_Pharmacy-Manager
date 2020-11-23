@@ -12,6 +12,7 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var cellTypeImageView: UIImageView!
+    @IBOutlet private weak var arrowImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentBackgroundView: UIView!
     
@@ -32,19 +33,42 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
         
         guard let data = cellData as? ProfileViewControllerCellData else {return}
         
-        cellTypeImageView.image = UIImage(named: data.imageName)
+        cellTypeImageView.image = UIImage(named: data.imageName)?.withRenderingMode(.alwaysTemplate)
         titleLabel.text = data.title
         
         if let color = data.tintColor {
 
             self.titleLabel.textColor = color
             self.cellTypeImageView.backgroundColor = color.withAlphaComponent(0.2)
+            
         }
     }
     
-    override func disactivateCell() {
+    override func deactivateCell() {
         contentBackgroundView.alpha = 0.5
         isUserInteractionEnabled = false
+    }
+    
+    /**
+            Default settups tints for views in cell. Setup default arrow image to cell. Used for apply / disapply react on tap
+     */
+    override func defaultCellState() {
+        cellTypeImageView.tintColor = Asset.Colors.appBlueDark.color
+        titleLabel.textColor = Asset.Colors.appBlueDark.color
+        arrowImageView.tintColor = Asset.Colors.appBlueDark.color
+        
+        arrowImageView.image = UIImage(named: "profileArrow")?.withRenderingMode(.alwaysTemplate)
+    }
+    
+    /**
+            Default settups tints for views in cell. Setup default arrow image to cell. Used for apply / disapply react on tap
+     */
+    override func applyCellState() {
+        cellTypeImageView.tintColor = .blue
+        titleLabel.textColor = .blue
+        arrowImageView.tintColor = .blue
+        
+        arrowImageView.image = UIImage(named: "profileApplyArrow")?.withRenderingMode(.alwaysTemplate)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-SemiBold.ttf">
+            <string>OpenSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="NotificationViewCell" customModule="Pharmacy_Manager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijX-l4-AvB">
+                        <rect key="frame" x="16" y="10" width="223" height="75"/>
+                        <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="16"/>
+                        <color key="textColor" name="app_blue_dark"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9CZ-Yp-2lW">
+                        <rect key="frame" x="24" y="98" width="288" height="1"/>
+                        <color key="backgroundColor" name="app_grey"/>
+                        <color key="tintColor" name="app_grey"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="7xK-ZZ-iSi"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="alpha">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iM4-ej-JoS">
+                        <rect key="frame" x="239" y="31.5" width="54" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="vUO-8e-42E"/>
+                            <constraint firstAttribute="width" constant="52" id="yNS-xh-bvs"/>
+                        </constraints>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="9CZ-Yp-2lW" secondAttribute="bottom" id="12D-T7-gbI"/>
+                    <constraint firstAttribute="trailing" secondItem="9CZ-Yp-2lW" secondAttribute="trailing" constant="8" id="AmF-t6-vER"/>
+                    <constraint firstItem="ijX-l4-AvB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Cxi-Mf-T8x"/>
+                    <constraint firstItem="9CZ-Yp-2lW" firstAttribute="top" secondItem="ijX-l4-AvB" secondAttribute="bottom" constant="13" id="Mfh-Y6-Dbw"/>
+                    <constraint firstItem="9CZ-Yp-2lW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Oza-ft-Sqv"/>
+                    <constraint firstAttribute="trailing" secondItem="iM4-ej-JoS" secondAttribute="trailing" constant="29" id="QJa-O4-mRK"/>
+                    <constraint firstItem="iM4-ej-JoS" firstAttribute="leading" secondItem="ijX-l4-AvB" secondAttribute="trailing" id="fEy-SE-bxh"/>
+                    <constraint firstItem="ijX-l4-AvB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uEF-9H-toa"/>
+                    <constraint firstItem="iM4-ej-JoS" firstAttribute="centerY" secondItem="ijX-l4-AvB" secondAttribute="centerY" id="xM4-3e-0BS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="switchView" destination="iM4-ej-JoS" id="Ufr-yU-LYc"/>
+                <outlet property="titleLabel" destination="ijX-l4-AvB" id="GJU-Sr-kTO"/>
+            </connections>
+            <point key="canvasLocation" x="-46.376811594202906" y="53.236607142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="app_blue_dark">
+            <color red="0.0" green="0.039215686274509803" blue="0.38823529411764707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="app_grey">
+            <color red="0.6470588235294118" green="0.70588235294117652" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

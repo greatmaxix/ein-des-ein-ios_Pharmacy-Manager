@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Need Help View Controller-->
+        <scene sceneID="DZI-Cv-JAb">
+            <objects>
+                <viewController storyboardIdentifier="NeedHelpViewController" id="0xY-ZV-fEI" customClass="NeedHelpViewController" customModule="Pharmacy_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tdf-bg-XaA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EVO-Zm-30y">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" name="backgroundGray"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="45V-Jh-REF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EVO-Zm-30y" firstAttribute="top" secondItem="45V-Jh-REF" secondAttribute="top" id="GHp-M5-FMV"/>
+                            <constraint firstItem="45V-Jh-REF" firstAttribute="trailing" secondItem="EVO-Zm-30y" secondAttribute="trailing" id="WfI-e2-l41"/>
+                            <constraint firstItem="45V-Jh-REF" firstAttribute="bottom" secondItem="EVO-Zm-30y" secondAttribute="bottom" id="r4W-J6-naO"/>
+                            <constraint firstItem="EVO-Zm-30y" firstAttribute="leading" secondItem="45V-Jh-REF" secondAttribute="leading" id="vbc-80-nqb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="EVO-Zm-30y" id="vkA-3h-UyG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kiQ-la-uqr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="-73"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="backgroundGray">
+            <color red="0.96470588235294119" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

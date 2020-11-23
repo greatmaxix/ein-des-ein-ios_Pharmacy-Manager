@@ -11,6 +11,8 @@ import EventsTree
 
 enum ProfileEvent: Event {
     case presentAboutAppViewController
+    case pushNotificationViewController
+    case presentNeedHelpViewController
 }
 
 protocol ProfileModelInput: class {
@@ -53,15 +55,19 @@ class ProfileModel: Model {
         }
 
         do {
-            let cellData = ProfileViewControllerCellData(imageName: "profileStatistic",
-                                                         title: "Статистика")
-                cellsData.append(cellData)
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileStatistic",
+                                                                                        title: "Статистика")
+            cellsData.append(cellData)
         }
         
         do {
-            let cellData = ProfileViewControllerCellData(imageName: "profileBell on",
-                                                         title: "Уведомления")
-                cellsData.append(cellData)
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileBell on",
+                                                                                        title: "Уведомления")
+            cellData.selectHandler = {[weak self] in
+                self?.raise(event: ProfileEvent.pushNotificationViewController)
+            }
+            
+            cellsData.append(cellData)
         }
         
         do {
@@ -81,9 +87,13 @@ class ProfileModel: Model {
         }
         
         do {
-            let cellData = ProfileViewControllerCellData(imageName: "profileQuestion",
-                                                         title: "Нужна помощь?")
-                cellsData.append(cellData)
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuestion",
+                                                                                        title: "Нужна помощь?")
+            cellData.selectHandler = {[weak self] in
+                self?.raise(event: ProfileEvent.presentNeedHelpViewController)
+            }
+            
+            cellsData.append(cellData)
         }
         
         do {
