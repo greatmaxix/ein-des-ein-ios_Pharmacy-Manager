@@ -14,7 +14,8 @@ protocol ChatsViewControllerOutput: ChatsListModelInput {}
 class ChatsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchController = SearchController(searchResultsController: nil)
     
     var model: ChatsViewControllerOutput!
     
@@ -32,8 +33,19 @@ class ChatsViewController: UIViewController {
         tableView.estimatedRowHeight = 90.0
         tableView.backgroundColor = Asset.LegacyColors.lightGray.color
         tableView.tableFooterView = UIView()
+        
         navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
         title = L10n.Tabbar.chat
+    }
+    
+    @objc func showSearch() {
+        
+    }
+    
+    func hideSearch() {
+        
     }
 }
     

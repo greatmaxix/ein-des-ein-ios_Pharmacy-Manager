@@ -18,7 +18,7 @@ final class AppNavigation: EventNode {
         self.window = window
 
         super.init(parent: nil)
-
+        setupDefaultAppearance()
         addHandler { [weak self] (event: SignInEvent) in
             guard let `self` = self else { return }
 
@@ -27,6 +27,10 @@ final class AppNavigation: EventNode {
                 self.presentMainFlow()
             }
         }
+    }
+    
+    func setupDefaultAppearance() {
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self] ).tintColor = .white
     }
 
     func startFlow() {

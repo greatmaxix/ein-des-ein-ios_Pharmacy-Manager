@@ -1107,6 +1107,7 @@
 				616378C1250A26A70029E08F /* ErrorPresenter.swift */,
 				601613022568126D005151BC /* RoundedButton.swift */,
 				6103AB5A2563FE7E00775EF3 /* NavigationController.swift */,
+				61D34141256560D000F1DE89 /* SearchController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1480,7 +1481,6 @@
 				61D3413E256560D000F1DE89 /* SearchTableViewCell.xib */,
 				61D3413F256560D000F1DE89 /* SearchCoordinator.swift */,
 				61D34140256560D000F1DE89 /* SearchCellSection.swift */,
-				61D34141256560D000F1DE89 /* SearchController.swift */,
 				61D34142256560D000F1DE89 /* SearchModel.swift */,
 				61D34143256560D000F1DE89 /* SearchTableViewCell.swift */,
 			);
