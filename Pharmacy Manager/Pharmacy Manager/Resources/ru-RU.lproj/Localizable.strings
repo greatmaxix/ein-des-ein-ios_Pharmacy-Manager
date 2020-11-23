@@ -9,5 +9,5 @@
 // General
 
 "tabbar.profile" = "Профиль";
-"tabbar.chat" = "";
+"tabbar.chat" = "Чаты";
 "tabbar.home" = "Главная";

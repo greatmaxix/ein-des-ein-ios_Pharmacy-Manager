@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access camera is needed to make user photo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access camera is needed to make user photo.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-SemiBold.ttf</string>

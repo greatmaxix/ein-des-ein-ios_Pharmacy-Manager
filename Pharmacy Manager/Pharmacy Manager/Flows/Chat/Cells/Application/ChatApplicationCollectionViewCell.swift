@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ChatApplicationCollectionViewCell: UICollectionViewCell {
     
@@ -25,8 +26,6 @@ class ChatApplicationCollectionViewCell: UICollectionViewCell {
     }
     
     func apply(attachment: FileAttachment, isFromCurrentSender: Bool) {
-        guard let url = URL(string: attachment.url) else { return }
-        applicationImage.loadImageBy(url: url)
         if isFromCurrentSender {
             applicationImage.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
             leadingImageConstraint.constant = 40.0
@@ -35,6 +34,9 @@ class ChatApplicationCollectionViewCell: UICollectionViewCell {
             applicationImage.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner]
             leadingImageConstraint.constant = 8.0
             trailingImageConstraint.constant = 40.0
+        }
+        if let url = URL(string: attachment.url) {
+            applicationImage.loadImageBy(url: url)
         }
     }
 }

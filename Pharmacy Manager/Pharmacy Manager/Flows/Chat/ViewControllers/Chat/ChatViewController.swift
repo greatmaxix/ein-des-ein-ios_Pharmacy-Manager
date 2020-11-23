@@ -58,6 +58,7 @@ class ChatViewController: MessagesViewController, NavigationBarStyled {
         super.viewDidLoad()
         setup()
         model.load()
+        title = model.title
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,8 +75,6 @@ class ChatViewController: MessagesViewController, NavigationBarStyled {
         messagesCollectionView.backgroundColor = .clear
         showMessageTimestampOnSwipeLeft = false
         view.backgroundColor = .white
-
-        navigationItem.setRightBarButtonItems([UIBarButtonItem.init(image: Asset.Images.Chat.info.image, style: .plain, target: self, action: #selector(showChatInfo))], animated: true)
         
         imagePicker.delegate = self
         attachDialogue.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { [weak self] _ in
@@ -125,12 +124,21 @@ class ChatViewController: MessagesViewController, NavigationBarStyled {
         }
     }
     
-    @objc func showChatInfo() {
-        
+    @objc func closeChat() {
+        model.closeChat()
     }
 }
     
 extension ChatViewController: ChatOutput {
+    func chatDidChange(_ status: ChatService.ChatStatus) {
+        switch status {
+        case .closed, .opened:
+            navigationItem.setRightBarButtonItems([], animated: true)
+        default:
+            navigationItem.setRightBarButtonItems([UIBarButtonItem.init(image: Asset.Images.Chat.close.image, style: .plain, target: self, action: #selector(closeChat))], animated: true)
+        }
+    }
+    
     func openGallery() {
         DispatchQueue.main.async {
             if self.isKeyboardVisible {

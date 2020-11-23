@@ -17,9 +17,11 @@ enum ChatEvent: Event {
 }
 
 protocol ChatInput: MessagesDataSource, MessagesDisplayDelegate, MessagesLayoutDelegate {
+    var title: String { get }
     func load()
     func sendMessage(text: String)
     func upload(images: [LibraryImage])
+    func closeChat()
 }
 
 protocol ChatOutput: MessagesViewController {
@@ -28,9 +30,26 @@ protocol ChatOutput: MessagesViewController {
     func openLibrary()
     func openCamera()
     func uploadFinished(image: LibraryImage, with result: UploadImageResult)
+    func chatDidChange(_ status: ChatService.ChatStatus)
 }
 
 final class ChatModel: Model, ChatInput {
+    
+    struct GUI {
+        static let dateAttribues: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: Asset.LegacyColors.gray.color,
+                                    NSAttributedString.Key.font: FontFamily.OpenSans.semiBold.font(size: 12) ?? .systemFont(ofSize: 12.0)]
+        static let timeAttribues: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: Asset.LegacyColors.gray.color,
+                                                                    NSAttributedString.Key.font: FontFamily.OpenSans.regular.font(size: 12) ?? .systemFont(ofSize: 12.0)]
+        static let outgoingMessagesBackgroundColor: UIColor = Asset.LegacyColors.welcomeBlue.color
+        static let incomingMessagesBackgroundColor: UIColor = Asset.LegacyColors.mediumGrey.color
+        static let outgoingMessagesTextColor: UIColor = UIColor.white
+        static let incomingMessagesTextColor: UIColor = Asset.LegacyColors.textDarkBlue.color
+    }
+    
+    var title: String {
+        return currentChat.customer.name
+    }
+    
     weak var output: ChatOutput? {
         didSet {
             setupCollection()
@@ -55,26 +74,8 @@ final class ChatModel: Model, ChatInput {
     private var messages: [Message] = []
     var currentChat: Chat {
         didSet {
-            switch currentChat.status {
-            case .closed, .closeRequest:
-                hideKeyboard()
-                output?.messageInputBar.isHidden = true
-            default:
-                output?.messageInputBar.becomeFirstResponder()
-                output?.messageInputBar.isHidden = false
-            }
+            chatDidUpdated()
         }
-    }
-    struct GUI {
-        static let dateAttribues: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: Asset.LegacyColors.gray.color,
-                                    NSAttributedString.Key.font: FontFamily.OpenSans.semiBold.font(size: 12) ?? .systemFont(ofSize: 12.0)]
-        static let timeAttribues: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: Asset.LegacyColors.gray.color,
-                                                                    NSAttributedString.Key.font: FontFamily.OpenSans.regular.font(size: 12) ?? .systemFont(ofSize: 12.0)]
-        static let outgoingMessagesBackgroundColor: UIColor = Asset.LegacyColors.welcomeBlue.color
-        static let incomingMessagesBackgroundColor: UIColor = Asset.LegacyColors.mediumGrey.color
-        static let outgoingMessagesTextColor: UIColor = UIColor.white
-        static let incomingMessagesTextColor: UIColor = Asset.LegacyColors.textDarkBlue.color
-        
     }
     
     private var lastShowedDate: String = ""
@@ -87,7 +88,7 @@ final class ChatModel: Model, ChatInput {
     init(parent: EventNode?, chat: Chat) {
         currentChat = chat
         super.init(parent: parent)
-        
+        chatDidUpdated()
         addHandler(.onRaise) {[weak self] (event: ChatEvaluateEvent) in
             switch event {
             case .send(let evaluation):
@@ -103,9 +104,7 @@ final class ChatModel: Model, ChatInput {
     func load() {
         switch UserSession.shared.authorizationStatus {
         case .authorized:
-            
             load(chat: currentChat)
-
         case .notAuthorized:
             self.messages = Message.unauthorizedMessages()
             self.output?.messagesCollectionView.reloadData()
@@ -114,6 +113,7 @@ final class ChatModel: Model, ChatInput {
     }
     
     func load(chat: Chat) {
+        output?.chatDidChange(chat.status)
         sender = ChatSender.currentUser()
         loadMessages()
     }
@@ -121,6 +121,17 @@ final class ChatModel: Model, ChatInput {
     func sendMessage(text: String) {
         createMessageProvider.load(target: .createMessage(currentChat.id, text)) { response in
             print(response)
+        }
+    }
+    
+    private func chatDidUpdated() {
+        switch currentChat.status {
+        case .closed, .closeRequest:
+            hideKeyboard()
+            output?.messageInputBar.isHidden = true
+        default:
+            output?.messageInputBar.becomeFirstResponder()
+            output?.messageInputBar.isHidden = false
         }
     }
     
@@ -142,12 +153,12 @@ final class ChatModel: Model, ChatInput {
         collection.messagesLayoutDelegate = self
         
         
-        collection.register(ChatButtonCollectionViewCell.self)
-        collection.register(ChatRouteCollectionViewCell.self)
-        collection.register(ChatCloseCollectionViewCell.self)
-        collection.register(ChatProductCollectionViewCell.self)
-        collection.register(ChatApplicationCollectionViewCell.self)
-        collection.register(ChatRecipeCollectionViewCell.self)
+        collection.register(ChatButtonCollectionViewCell.nib, forCellWithReuseIdentifier: ChatButtonCollectionViewCell.className)
+        collection.register(ChatRouteCollectionViewCell.nib, forCellWithReuseIdentifier: ChatRouteCollectionViewCell.className)
+        collection.register(ChatCloseCollectionViewCell.nib, forCellWithReuseIdentifier: ChatCloseCollectionViewCell.className)
+        collection.register(ChatProductCollectionViewCell.nib, forCellWithReuseIdentifier: ChatProductCollectionViewCell.className)
+        collection.register(ChatApplicationCollectionViewCell.nib, forCellWithReuseIdentifier: ChatApplicationCollectionViewCell.className)
+        collection.register(ChatRecipeCollectionViewCell.nib, forCellWithReuseIdentifier: ChatRecipeCollectionViewCell.className)
     }
     
     func proccessChat(items: [ChatMessage]) {
@@ -261,6 +272,7 @@ final class ChatModel: Model, ChatInput {
     // MARK: - APICals
     
     private func loadMessages() {
+        self.output?.showActivityIndicator()
         messagesListProvider.load(target: .messageList((currentChat.id))) {[weak self] result in
             self?.output?.hideActivityIndicator()
             switch result {
@@ -298,15 +310,13 @@ final class ChatModel: Model, ChatInput {
         }
     }
     
-    private func closeChat() {
+    func closeChat() {
         output?.showActivityIndicator()
         manageChatProvider.load(target: .closeChat(id: currentChat.id)) {[weak self] result in
             self?.output?.hideActivityIndicator()
             switch result {
             case .success:
-                self?.messages.removeLast()
-                self?.output?.messagesCollectionView.reloadData()
-                self?.evalueateChat()
+                self?.showEndChatMessage()
             case .failure(let error):
                 self?.output?.showError(text: error.localizedDescription)
             }
@@ -392,14 +402,13 @@ extension ChatModel: MessagesDataSource {
         case .custom(let kind as Message.CustomMessageKind):
             switch kind {
             case .button:
-                
-                cell = messagesCollectionView.dequeueReusableCell(ChatButtonCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatButtonCollectionViewCell.className, for: indexPath)
                 (cell as? ChatButtonCollectionViewCell)?.buttonAction = {[weak self] in self?.authorize()}
             case .routeSwitch:
-                cell = messagesCollectionView.dequeueReusableCell(ChatRouteCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatRouteCollectionViewCell.className, for: indexPath)
                 (cell as? ChatRouteCollectionViewCell)?.routeAction = {[weak self] route in self?.didSelect(route: route)}
             case .chatClosing:
-                cell = messagesCollectionView.dequeueReusableCell(ChatCloseCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatCloseCollectionViewCell.className, for: indexPath)
                 (cell as? ChatCloseCollectionViewCell)?.actionHandler = {[weak self] action in
                     switch action {
                     case .continueChat:
@@ -409,7 +418,7 @@ extension ChatModel: MessagesDataSource {
                     }
                 }
             case .product(let product):
-                cell = messagesCollectionView.dequeueReusableCell(ChatProductCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatProductCollectionViewCell.className, for: indexPath)
                 (cell as? ChatProductCollectionViewCell)?.apply(product: product, actionHandler: {[weak self] action in
                     switch action {
                     case .likeToggle:
@@ -419,10 +428,10 @@ extension ChatModel: MessagesDataSource {
                     }
                 }, isFromCurrentSender: isFromCurrent)
             case .application(let application):
-                cell = messagesCollectionView.dequeueReusableCell(ChatApplicationCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatApplicationCollectionViewCell.className, for: indexPath)
                 (cell as? ChatApplicationCollectionViewCell)?.apply(attachment: application, isFromCurrentSender: isFromCurrent)
             case .recipe(let recipe):
-                cell = messagesCollectionView.dequeueReusableCell(ChatRecipeCollectionViewCell.self, for: indexPath)
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatRecipeCollectionViewCell.className, for: indexPath)
                 (cell as? ChatRecipeCollectionViewCell)?.apply(receipt: recipe, isFromCurrentSender: isFromCurrent, actionHandler: {[weak self] in
                     self?.downloadPDF(recipe: recipe)
                 })
@@ -487,6 +496,7 @@ extension ChatModel: ChatServiceDelegate {
             if chat.status == .closeRequest {
                 showCloseRequestMessages()
             }
+            output?.chatDidChange(currentChat.status)
         default:
             if let m = data.body?.item.asMessage { insertMessage(m) }
         }

@@ -43,7 +43,7 @@ final class ChatGallery: UICollectionView, InputItem {
     }
     
     func setup() {
-        register(ChatGalleryCollectionViewCell.self, forCellWithReuseIdentifier: ChatGalleryCollectionViewCell.className)
+        register(ChatGalleryCollectionViewCell.nib, forCellWithReuseIdentifier: ChatGalleryCollectionViewCell.className)
         dataSource = self
         delegate = self
         decelerationRate = UIScrollView.DecelerationRate.fast

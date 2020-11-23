@@ -33,7 +33,7 @@ class ChatsViewController: UIViewController {
         tableView.backgroundColor = Asset.LegacyColors.lightGray.color
         tableView.tableFooterView = UIView()
         navigationItem.searchController = searchController
-        title = "Чаты"
+        title = L10n.Tabbar.chat
     }
 }
     
