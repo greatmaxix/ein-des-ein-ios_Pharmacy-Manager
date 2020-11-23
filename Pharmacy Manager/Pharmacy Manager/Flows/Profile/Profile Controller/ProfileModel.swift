@@ -36,6 +36,7 @@ class ProfileModel: Model {
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
+        
         setupCellData()
     }
 
