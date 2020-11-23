@@ -1560,7 +1560,6 @@
 				61D3414C256560D000F1DE89 /* SearchCellSection.swift in Sources */,
 				6103ABF62564025D00775EF3 /* UITableView+Reusable.swift in Sources */,
 				6103AC0E256404D500775EF3 /* UserDefaultsAccessor.swift in Sources */,
-				6103ABF42564025D00775EF3 /* UITableViewCell.swift in Sources */,
 				61D3419E2566A2DD00F1DE89 /* RegionEntity.swift in Sources */,
 				6103AC002564041600775EF3 /* CellReusable.swift in Sources */,
 				6103AB312563FD0A00775EF3 /* MedicineListModel.swift in Sources */,
@@ -1630,7 +1629,6 @@
 				6103AB9F2563FEFB00775EF3 /* ProductViewController.swift in Sources */,
 				6103AB132563FC0F00775EF3 /* CategoryCollectionViewCell.swift in Sources */,
 				247C4F6825666C6300A46061 /* ProfilePersonalInfoViewCell.swift in Sources */,
-				616379A0250A26A80029E08F /* KyivPost.xcdatamodeld in Sources */,
 				6103AC7F2564120F00775EF3 /* ScanModel.swift in Sources */,
 				61637B5A250B9B830029E08F /* HomeViewController.swift in Sources */,
 				616379AE250A26A80029E08F /* ValidationRule.swift in Sources */,
@@ -1839,7 +1837,7 @@
 				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B9H63QRDPT;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1861,7 +1859,7 @@
 				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B9H63QRDPT;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
