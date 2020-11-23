@@ -43,6 +43,8 @@ class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self.presentNotificationViewController()
             case .presentNeedHelpViewController:
                 self.presentNeedHelpViewController()
+            default:
+                break
             }
         }
     }

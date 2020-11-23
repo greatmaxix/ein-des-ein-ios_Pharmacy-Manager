@@ -27,6 +27,17 @@ final class AppNavigation: EventNode {
                 self.presentMainFlow()
             }
         }
+        
+        addHandler { [weak self] (event: ProfileEvent) in
+            guard let `self` = self else { return }
+
+            switch event {
+            case .logout:
+                self.presentAuthFlow()
+            default:
+                break
+            }
+        }
     }
 
     func startFlow() {

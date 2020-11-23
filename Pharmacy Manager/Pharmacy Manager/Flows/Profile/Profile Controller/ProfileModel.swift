@@ -13,16 +13,19 @@ enum ProfileEvent: Event {
     case presentAboutAppViewController
     case pushNotificationViewController
     case presentNeedHelpViewController
+    case logout
 }
 
 protocol ProfileModelInput: class {
     var cellCount: Int { get }
     func cellDataAt(index: Int) -> ProfileBaseCellData
     func selectActionAt(index: Int) -> EmptyClosure?
+    func logoutActionCofirmed()
 }
 
 protocol ProfileModelOutput: class {
     func networkingDidComplete(errorText: String?)
+    func logoutAction()
 }
 
 class ProfileModel: Model {
@@ -33,7 +36,7 @@ class ProfileModel: Model {
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
-
+        
         setupCellData()
     }
 
@@ -105,6 +108,9 @@ class ProfileModel: Model {
             let cellData = ProfileViewControllerCellData(imageName: "profileQuit",
                                                          title: "Выйти из аккаунта",
                                                          tintColor: .red)
+            cellData.selectHandler = {[weak self] in
+                self?.output.logoutAction()
+            }
                 cellsData.append(cellData)
             }
         }
@@ -112,6 +118,13 @@ class ProfileModel: Model {
 }
 
 extension ProfileModel: ProfileModelInput, ProfileViewControllerOutput {
+    func logoutActionCofirmed() {
+        guard let token = KeychainManager.shared.getToken() else { return }
+        // FIXME: - Nead realized network request to server
+        UserSession.shared.logout()
+        self.raise(event: ProfileEvent.logout)
+    }
+    
     func selectActionAt(index: Int) -> EmptyClosure? {
             cellsData[index].selectHandler
     }
