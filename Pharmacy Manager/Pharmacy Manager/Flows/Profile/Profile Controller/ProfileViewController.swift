@@ -65,7 +65,7 @@ extension ProfileViewController: ProfileViewControllerInput {
             self.model.logoutActionCofirmed()
         })
 
-        actionCancel.setValue(UIColor.red, forKey: "titleTextColor")
+        actionCancel.titleTextColor = .red
         alertController.addAction(actionOK)
         alertController.addAction(actionCancel)
         alertController.preferredAction = actionCancel
