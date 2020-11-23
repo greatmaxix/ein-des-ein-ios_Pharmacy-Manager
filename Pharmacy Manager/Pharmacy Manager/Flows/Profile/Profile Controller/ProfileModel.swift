@@ -11,6 +11,7 @@ import EventsTree
 
 enum ProfileEvent: Event {
     case pushNotificationViewController
+    case presentNeedHelpViewController
 }
 
 protocol ProfileModelInput: class {
@@ -82,7 +83,11 @@ class ProfileModel: Model {
         do {
             let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuestion",
                                                                                         title: "Нужна помощь?")
-                cellsData.append(cellData)
+            cellData.selectHandler = {[weak self] in
+                self?.raise(event: ProfileEvent.presentNeedHelpViewController)
+            }
+            
+            cellsData.append(cellData)
         }
         
         do {

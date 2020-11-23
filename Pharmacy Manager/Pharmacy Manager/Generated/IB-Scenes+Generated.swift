@@ -43,6 +43,11 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
   }
+  internal enum NeedHelpViewController: StoryboardType {
+    internal static let storyboardName = "NeedHelpViewController"
+
+    internal static let needHelpViewController = SceneType<Pharmacy_Manager.NeedHelpViewController>(storyboard: NeedHelpViewController.self, identifier: "NeedHelpViewController")
+  }
   internal enum NotificationViewController: StoryboardType {
     internal static let storyboardName = "NotificationViewController"
 

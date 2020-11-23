@@ -39,10 +39,11 @@ class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
             switch event {
             case .pushNotificationViewController:
                 self.presentNotificationViewController()
-            }
+            case .presentNeedHelpViewController:
+                self.presentNeedHelpViewController()
         }
     }
-
+    }
 }
 
 private extension ProfileFlowCoordinator {
@@ -51,6 +52,15 @@ private extension ProfileFlowCoordinator {
         let viewController = StoryboardScene.NotificationViewController.notificationViewController.instantiate()
         
         let model = NotificationModel(parent: self)
+        viewController.model = model
+        model.output = viewController
+        
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func presentNeedHelpViewController() {
+        let viewController = StoryboardScene.NeedHelpViewController.needHelpViewController.instantiate()
+        let model = NeedHelpModel(parent: self)
         viewController.model = model
         model.output = viewController
         

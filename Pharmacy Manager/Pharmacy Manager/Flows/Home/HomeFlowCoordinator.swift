@@ -37,7 +37,11 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         addHandler(.onRaise) { [weak self] (event: HomeEvent) in
             switch event {
             case .openSearch:
-                self?.openSearch()            }
+                self?.openSearch()
+            case .openScan:
+                self?.openScan()
+                
+            }
         }
 
         addHandler(.onRaise) { [weak self] (event: SearchModelEvent) in
@@ -53,9 +57,19 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
 }
 
-extension HomeFlowCoordinator {
+private extension HomeFlowCoordinator {
 
-    fileprivate func openSearch() {
+     func openScan() {
+        let viewController = StoryboardScene.Scan.initialScene.instantiate()
+        let model = ScanModel(parent: self)
+
+        viewController.model = model
+        model.output = viewController
+
+        navigationController.pushViewController(viewController, animated: true)
+    }
+
+    func openSearch() {
         let controller = StoryboardScene.Search.searchViewController.instantiate()
         let model = SearchModel(parent: self)
 
@@ -65,9 +79,8 @@ extension HomeFlowCoordinator {
         navigationController.pushViewController(controller, animated: true)
     }
 
-    private func openProductMedicineFor(medicine: Medicine) {
+    func openProductMedicineFor(medicine: Medicine) {
         let vc = ProductCoordinator(configuration: .init(parent: self, navigation: navigationController)).createFlowFor(product: medicine)
         navigationController.pushViewController(vc, animated: true)
     }
-
 }
