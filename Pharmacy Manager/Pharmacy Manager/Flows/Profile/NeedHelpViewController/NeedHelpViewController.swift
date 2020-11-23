@@ -1,18 +1,18 @@
 //
-//  ProfileViewController.swift
+//  NeedHelpViewController.swift
 //  Pharmacy Manager
 //
-//  Created by Mikhail Timoscenko on 11.09.2020.
+//  Created by Sergey berdnik on 20.11.2020.
 //  Copyright © 2020 PharmacyManager. All rights reserved.
 //
 
 import UIKit
 import MBProgressHUD
 
-protocol ProfileViewControllerInput: ProfileModelOutput {}
-protocol ProfileViewControllerOutput: ProfileModelInput {}
+protocol NeedHelpViewControllerInput: NeedHelpModelOutput {}
+protocol NeedHelpViewControllerOutput: NeedHelpModelInput {}
 
-class ProfileViewController: UIViewController {
+class NeedHelpViewController: UIViewController {
     
     // MARK: - @IBOutlets & Properties
     @IBOutlet private weak var tableView: UITableView!
@@ -20,45 +20,40 @@ class ProfileViewController: UIViewController {
     private lazy var activityIndicator: MBProgressHUD = {
         setupActivityIndicator()
     }()
-
-    var model: ProfileViewControllerOutput!
-
-    // MARK: - viewDidLoad
+    
+    var model: NeedHelpViewControllerOutput!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        //activityIndicator.show(animated: true)
+        
     }
-
+    
     // MARK: - Setup TableView
     private func setupTableView() {
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UINib(nibName: String(describing: ProfilePersonalInfoViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfilePersonalInfoViewCell.self))
         tableView.register(UINib(nibName: String(describing: ProfileViewControllerViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfileViewControllerViewCell.self))
         
-        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: String(describing: EmptyTableViewCell.self))
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        tableView.register(UINib(nibName: String(describing: NeedHelpViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: NeedHelpViewCell.self))
     }
 }
 
 // MARK: - Model delegate extension
-extension ProfileViewController: ProfileViewControllerInput {
-    func networkingDidComplete(errorText: String?) {
-
+extension NeedHelpViewController: NeedHelpViewControllerInput {
+    func reloadTableView() {
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: {[weak self] in
+                            self?.tableView.reloadData() })
     }
-
 }
 
 // MARK: - Talbeview DataSource & Delegate extension
-extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+extension NeedHelpViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.cellCount
     }
@@ -67,15 +62,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cellData: ProfileBaseCellData = model.cellDataAt(index: indexPath.row)
         if let cell: ProfileBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellData.nibName!, for: indexPath) as? ProfileBaseTableViewCell {
             
-            if let data = cellData as? ProfileViewControllerCellData,
-               data.title == "Статистика" {
-                cell.deactivateCell()
-                }
-            
             cell.setup(cellData: cellData)
             return cell
         }
-        
         return UITableViewCell()
     }
     
@@ -84,6 +73,19 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        model.selectActionAt(index: indexPath.row)?()
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProfileBaseTableViewCell,
+                  cell != tableView.cellForRow(at: indexPath) as? NeedHelpViewCell
+                  else {return}
+        
+        cell.isApplyState.toggle()
+        
+        if cell.isApplyState {
+            cell.applyCellState()
+        } else {
+            cell.defaultCellState()
+        }
+        
+        model.selectActionAt(index: indexPath.row, cellState: cell.isApplyState)?()
     }
 }
+
