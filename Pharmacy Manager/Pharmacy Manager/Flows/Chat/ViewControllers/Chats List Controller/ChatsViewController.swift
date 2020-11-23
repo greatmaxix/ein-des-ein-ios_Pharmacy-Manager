@@ -18,6 +18,10 @@ class ChatsViewController: UIViewController {
     var searchController = SearchController(searchResultsController: nil)
     
     var model: ChatsViewControllerOutput!
+
+    internal var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +38,19 @@ class ChatsViewController: UIViewController {
         tableView.backgroundColor = Asset.LegacyColors.lightGray.color
         tableView.tableFooterView = UIView()
         
+        searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
         title = L10n.Tabbar.chat
     }
-    
-    @objc func showSearch() {
-        
-    }
-    
-    func hideSearch() {
-        
-    }
 }
     
 extension ChatsViewController: ChatsViewControllerInput {
-
+    func didFilterItems() {
+        tableView.reloadData()
+    }
+    
     func networkingDidComplete(errorText: String?) {
         hideActivityIndicator()
         tableView.reloadData()
@@ -59,12 +59,13 @@ extension ChatsViewController: ChatsViewControllerInput {
 
 extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.items.count
+        return isSearchBarEmpty ? model.items.count : model.filteredItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.reuseIdentifier)
-        (cell as? ChatTableViewCell)?.apply(chat: model.items[indexPath.row])
+        let item = (isSearchBarEmpty ? model.items : model.filteredItems)[indexPath.row]
+        (cell as? ChatTableViewCell)?.apply(chat: item)
         return cell!
     }
     
@@ -78,4 +79,14 @@ extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
+}
+
+extension ChatsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        self.model.searchChat(searchController.searchBar.text ?? "")
+    }
+}
+
+extension ChatsViewController: UISearchControllerDelegate {
+    
 }

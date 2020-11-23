@@ -16,21 +16,35 @@ enum ChatListEvent: Event {
 
 protocol ChatsListModelInput: class {
     var items: [Chat] { get }
+    var filteredItems: [Chat] { get }
     func load()
     func didSelect(_ indexPath: IndexPath)
+    func searchChat(_ text: String)
 }
 
 protocol ChatsListModelOutput: class {
+    var isSearchBarEmpty: Bool { get }
     func networkingDidComplete(errorText: String?)
+    func didFilterItems()
 }
 
 class ChatsListModel: Model {
     var items: [Chat] = []
+    var filteredItems: [Chat] = []
     weak var output: ChatsListModelOutput!
     private let chatListProvider = DataManager<ChatAPI, ChatListResponse>()
+    func cleanSearch() {
+        filteredItems = []
+        output.didFilterItems()
+    }
 }
 
 extension ChatsListModel: ChatsListModelInput, ChatsViewControllerOutput {
+    func searchChat(_ text: String) {
+        filteredItems = items.filter({$0.customer.name.range(of: text, options: .caseInsensitive) != nil})
+        output.didFilterItems()
+    }
+    
     func load() {
         chatListProvider.load(target: .chatList) {[weak self] result in
             switch result {
@@ -44,6 +58,7 @@ extension ChatsListModel: ChatsListModelInput, ChatsViewControllerOutput {
     }
     
     func didSelect(_ indexPath: IndexPath) {
-        raise(event: ChatListEvent.open(items[indexPath.row]))
+        let item = ((output?.isSearchBarEmpty ?? true) ? items[indexPath.row] : filteredItems[indexPath.row])
+        raise(event: ChatListEvent.open(item))
     }
 }
