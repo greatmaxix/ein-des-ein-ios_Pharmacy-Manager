@@ -87,7 +87,6 @@ final class ChatModel: Model, ChatInput {
     init(parent: EventNode?, chat: Chat) {
         currentChat = chat
         super.init(parent: parent)
-        chatDidUpdated()
         addHandler(.onRaise) {[weak self] (event: ChatEvaluateEvent) in
             switch event {
             case .send(let evaluation):
@@ -117,12 +116,12 @@ final class ChatModel: Model, ChatInput {
         case .notAuthorized:
             self.messages = Message.unauthorizedMessages()
             self.output?.messagesCollectionView.reloadData()
-            self.output?.messageInputBar.isHidden = true
         }
     }
     
     func load(chat: Chat) {
         output?.chatDidChange(chat.status)
+        chatDidUpdated()
         sender = ChatSender.currentUser()
         loadMessages()
     }
@@ -175,7 +174,6 @@ final class ChatModel: Model, ChatInput {
         }
         
         output?.messagesCollectionView.scrollToBottom(animated: true)
-        output?.messageInputBar.isHidden = false
     }
     
     func upload(images: [LibraryImage]) {
@@ -203,7 +201,6 @@ final class ChatModel: Model, ChatInput {
             self?.output?.hideActivityIndicator()
             self?.messages = []
             self?.output?.messagesCollectionView.reloadData()
-            self?.output?.messageInputBar.isHidden = false
             self?.output?.becomeFirstResponder()
             switch result {
             case .success(let result): self?.didReciveChat(list: [result.item])
