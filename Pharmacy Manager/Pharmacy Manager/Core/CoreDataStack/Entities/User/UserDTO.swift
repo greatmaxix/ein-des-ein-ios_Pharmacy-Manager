@@ -14,7 +14,7 @@ struct UserDTO: Equatable, Codable, Identifiable {
     let email: String?
     let uuid: String
     var avatar: AvatarDTO?
-    var topicName: String?
+    var topicName: String
     
     enum Keys: String, CodingKey {
         case uuid
@@ -33,7 +33,7 @@ struct UserDTO: Equatable, Codable, Identifiable {
         name = try container.decode(String.self, forKey: .lastName)
         avatar = try? container.decode(AvatarDTO.self, forKey: .avatar)
         email = try? container.decode(String.self, forKey: .email)
-        topicName = try? container.decode(String.self, forKey: .topicName)
+        topicName = try container.decode(String.self, forKey: .topicName)
     }
 }
 

@@ -8,9 +8,14 @@
 
 import Foundation
 import LDSwiftEventSource
+import EventsTree
 
 protocol ChatServiceDelegate: class {
     func didRecive(data: ChatMessagesResponse)
+}
+
+enum ChatServiceEvent: Event {
+    case didRecive(message: ChatMessagesResponse)
 }
 
 final class ChatService {
@@ -78,7 +83,7 @@ extension ChatService: EventHandler {
     }
     
     func onComment(comment: String) {
-        print("Comment - \(comment)")
+        
     }
     
     func onError(error: Error) {

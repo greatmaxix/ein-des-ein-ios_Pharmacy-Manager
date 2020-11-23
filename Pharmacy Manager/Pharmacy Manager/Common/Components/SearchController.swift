@@ -32,10 +32,5 @@ class SearchController: UISearchController {
         searchBar.tintColor = Asset.LegacyColors.textDarkBlue.color
         obscuresBackgroundDuringPresentation = false
         searchBar.setSearchFieldBackgroundImage(Asset.Images.Search.searchFieldActive.image, for: .normal)
-        
     }
 }
-
-//class SearchBar: UISearchBar {
-//
-//}

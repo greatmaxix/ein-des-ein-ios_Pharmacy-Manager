@@ -13,12 +13,16 @@ import EventsTree
 final class AppNavigation: EventNode {
 
     fileprivate unowned let window: UIWindow
-
+    
+    private var chatService: ChatService!
+    
     init(window: UIWindow) {
         self.window = window
 
         super.init(parent: nil)
+        
         setupDefaultAppearance()
+        
         addHandler { [weak self] (event: SignInEvent) in
             guard let `self` = self else { return }
 
@@ -50,9 +54,11 @@ extension AppNavigation {
 
     fileprivate func presentMainFlow() {
         let coordinator = TabBarCoordinator(parent: self)
-
         presentCoordinatorFlow(coordinator)
         coordinator.addTabCoordinators(coordinators: tabBarRootCoordinators(for: coordinator))
+        if let t = UserSession.shared.user?.topicName {
+            chatService = ChatService(topicName: t, delegate: self)
+        }
     }
 
     fileprivate func presentAuthFlow() {
@@ -76,4 +82,9 @@ extension AppNavigation {
         window.makeKeyAndVisible()
     }
 
+}
+extension AppNavigation: ChatServiceDelegate {
+    func didRecive(data: ChatMessagesResponse) {
+        raise(event: ChatServiceEvent.didRecive(message: data))
+    }
 }

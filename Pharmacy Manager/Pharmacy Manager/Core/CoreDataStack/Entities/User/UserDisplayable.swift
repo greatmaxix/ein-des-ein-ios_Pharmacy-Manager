@@ -13,5 +13,5 @@ struct UserDisplayable {
     let uuid: String
     let email: String?
     var avatarURL: URL?
-    var topicName: String?
+    var topicName: String
 }
