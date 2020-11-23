@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileBaseCellData {
     
-    var selectHandler: (() -> Void)?
+    var selectHandler: EmptyClosure?
     
     var nibName: String? {
          nil

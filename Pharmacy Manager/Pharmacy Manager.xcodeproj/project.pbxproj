@@ -12,6 +12,11 @@
 		24408F5E2568507000D82445 /* NeedHelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408F5D2568507000D82445 /* NeedHelpModel.swift */; };
 		24408F64256AA3FA00D82445 /* NeedHelpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408F62256AA3FA00D82445 /* NeedHelpViewCell.swift */; };
 		24408F65256AA3FA00D82445 /* NeedHelpViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24408F63256AA3FA00D82445 /* NeedHelpViewCell.xib */; };
+		24408FC8256BDFA300D82445 /* AboutAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FC2256BDFA300D82445 /* AboutAppModel.swift */; };
+		24408FC9256BDFA300D82445 /* AboutAppHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FC4256BDFA300D82445 /* AboutAppHeaderViewCell.swift */; };
+		24408FCA256BDFA300D82445 /* AboutAppHeaderViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24408FC5256BDFA300D82445 /* AboutAppHeaderViewCell.xib */; };
+		24408FCB256BDFA300D82445 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FC6256BDFA300D82445 /* AboutAppViewController.swift */; };
+		24408FCC256BDFA300D82445 /* AboutAppViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24408FC7256BDFA300D82445 /* AboutAppViewController.storyboard */; };
 		247C4F6325657F4000A46061 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6225657F4000A46061 /* UITableViewCell.swift */; };
 		247C4F6825666C6300A46061 /* ProfilePersonalInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */; };
 		247C4F6925666C6300A46061 /* ProfilePersonalInfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */; };
@@ -243,6 +248,11 @@
 		24408F5D2568507000D82445 /* NeedHelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedHelpModel.swift; sourceTree = "<group>"; };
 		24408F62256AA3FA00D82445 /* NeedHelpViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedHelpViewCell.swift; sourceTree = "<group>"; };
 		24408F63256AA3FA00D82445 /* NeedHelpViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NeedHelpViewCell.xib; sourceTree = "<group>"; };
+		24408FC2256BDFA300D82445 /* AboutAppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppModel.swift; sourceTree = "<group>"; };
+		24408FC4256BDFA300D82445 /* AboutAppHeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppHeaderViewCell.swift; sourceTree = "<group>"; };
+		24408FC5256BDFA300D82445 /* AboutAppHeaderViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppHeaderViewCell.xib; sourceTree = "<group>"; };
+		24408FC6256BDFA300D82445 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		24408FC7256BDFA300D82445 /* AboutAppViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutAppViewController.storyboard; sourceTree = "<group>"; };
 		247C4F6225657F4000A46061 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePersonalInfoViewCell.swift; sourceTree = "<group>"; };
 		247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePersonalInfoViewCell.xib; sourceTree = "<group>"; };
@@ -506,6 +516,26 @@
 			children = (
 				24408F62256AA3FA00D82445 /* NeedHelpViewCell.swift */,
 				24408F63256AA3FA00D82445 /* NeedHelpViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		24408FC1256BDFA300D82445 /* AboutAppViewController */ = {
+			isa = PBXGroup;
+			children = (
+				24408FC2256BDFA300D82445 /* AboutAppModel.swift */,
+				24408FC3256BDFA300D82445 /* Cell */,
+				24408FC6256BDFA300D82445 /* AboutAppViewController.swift */,
+				24408FC7256BDFA300D82445 /* AboutAppViewController.storyboard */,
+			);
+			path = AboutAppViewController;
+			sourceTree = "<group>";
+		};
+		24408FC3256BDFA300D82445 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				24408FC4256BDFA300D82445 /* AboutAppHeaderViewCell.swift */,
+				24408FC5256BDFA300D82445 /* AboutAppHeaderViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1197,6 +1227,7 @@
 		61637B46250A4A5D0029E08F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				24408FC1256BDFA300D82445 /* AboutAppViewController */,
 				24408F552568452500D82445 /* NeedHelpViewController */,
 				61637B61250B9BCA0029E08F /* Profile Controller */,
 				61637B47250A4A6E0029E08F /* ProfileFlowCoordinator.swift */,
@@ -1476,6 +1507,7 @@
 				6103AC5C25640C5B00775EF3 /* SearchBar.xib in Resources */,
 				61D34149256560D000F1DE89 /* Search.storyboard in Resources */,
 				6103AB152563FC0F00775EF3 /* CategoryCollectionViewCell.xib in Resources */,
+				24408FCC256BDFA300D82445 /* AboutAppViewController.storyboard in Resources */,
 				61637B27250A26F80029E08F /* introAnimation.gif in Resources */,
 				6103AB0F2563FC0F00775EF3 /* Catalogue.storyboard in Resources */,
 				6103AB8A2563FEFB00775EF3 /* Product.storyboard in Resources */,
@@ -1505,6 +1537,7 @@
 				61637B2C250A26F80029E08F /* OpenSans-LightItalic.ttf in Resources */,
 				61D3414A256560D000F1DE89 /* SearchTableViewCell.xib in Resources */,
 				61637B26250A26F80029E08F /* LaunchScreen.storyboard in Resources */,
+				24408FCA256BDFA300D82445 /* AboutAppHeaderViewCell.xib in Resources */,
 				61637B30250A26F80029E08F /* OpenSans-Regular.ttf in Resources */,
 				6163795A250A26A70029E08F /* StateTextField.xib in Resources */,
 				6103AB972563FEFB00775EF3 /* ProductDescriptionTableViewCell.xib in Resources */,
@@ -1599,6 +1632,7 @@
 				6163798F250A26A80029E08F /* TabBarEmbedCoordinable.swift in Sources */,
 				61D341922566A2DD00F1DE89 /* NSManagedObject+Name.swift in Sources */,
 				6103AC6825640F2000775EF3 /* KeychainManager.swift in Sources */,
+				24408FCB256BDFA300D82445 /* AboutAppViewController.swift in Sources */,
 				61637B58250B9B740029E08F /* ChatsViewController.swift in Sources */,
 				61637ABE250A26EE0029E08F /* TabBarModel.swift in Sources */,
 				6103ACA2256414D600775EF3 /* UIViewController+ActionSheetView.swift in Sources */,
@@ -1612,6 +1646,7 @@
 				6103AB1A2563FC4600775EF3 /* HighlightedTableViewCell.swift in Sources */,
 				61637948250A26A70029E08F /* UIView+Nib.swift in Sources */,
 				6103AB0C2563FC0F00775EF3 /* SubcategoryCellSection.swift in Sources */,
+				24408FC8256BDFA300D82445 /* AboutAppModel.swift in Sources */,
 				61D34148256560D000F1DE89 /* SearchViewController.swift in Sources */,
 				61D3419F2566A2DD00F1DE89 /* RegionDTO.swift in Sources */,
 				6103AB252563FC7D00775EF3 /* PharmacyModel.swift in Sources */,
@@ -1677,6 +1712,7 @@
 				61637B48250A4A6E0029E08F /* ProfileFlowCoordinator.swift in Sources */,
 				61D3416C2566A24300F1DE89 /* UserDefaultsAccessor+SessionData.swift in Sources */,
 				6103ABA02563FEFB00775EF3 /* ProductModel.swift in Sources */,
+				24408FC9256BDFA300D82445 /* AboutAppHeaderViewCell.swift in Sources */,
 				616379A4250A26A80029E08F /* AuthAPI.swift in Sources */,
 				61637990250A26A80029E08F /* Model.swift in Sources */,
 				6103ABBB2564001800775EF3 /* Manufacturer.swift in Sources */,

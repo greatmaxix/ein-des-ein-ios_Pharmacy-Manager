@@ -10,6 +10,7 @@ import Foundation
 import EventsTree
 
 enum ProfileEvent: Event {
+    case presentAboutAppViewController
     case pushNotificationViewController
     case presentNeedHelpViewController
 }
@@ -41,15 +42,15 @@ class ProfileModel: Model {
         if let user = UserSession.shared.user {
             
         do {
-            let cellData: ProfilePersonalInfoData = ProfilePersonalInfoData(imageUrl: user.avatarURL,
-                                                                            name: user.name,
-                                                                            email: user.email ?? "",
-                                                                            score: "5.0")
+            let cellData = ProfilePersonalInfoData(imageUrl: user.avatarURL,
+                                                   name: user.name,
+                                                   email: user.email ?? "",
+                                                   score: "5.0")
                 cellsData.append(cellData)
         }
         
         do {
-            let cellData: EmptyTableViewCellData = EmptyTableViewCellData(height: 24.5, color: .clear)
+            let cellData = EmptyTableViewCellData(height: 24.5, color: .clear)
             cellsData.append(cellData)
         }
 
@@ -70,14 +71,19 @@ class ProfileModel: Model {
         }
         
         do {
-            let cellData: EmptyTableViewCellData = EmptyTableViewCellData(height: 32, color: .clear)
+            let cellData = EmptyTableViewCellData(height: 32, color: .clear)
             cellsData.append(cellData)
         }
         
         do {
-            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileAttension",
-                                                                                        title: "О приложении")
-                cellsData.append(cellData)
+            let cellData = ProfileViewControllerCellData(imageName: "profileAttension",
+                                                         title: "О приложении")
+            
+            cellData.selectHandler = {[weak self] in
+                self?.raise(event: ProfileEvent.presentAboutAppViewController)
+            }
+            
+            cellsData.append(cellData)
         }
         
         do {
@@ -91,14 +97,14 @@ class ProfileModel: Model {
         }
         
         do {
-            let cellData: EmptyTableViewCellData = EmptyTableViewCellData(height: 40, color: .clear)
+            let cellData = EmptyTableViewCellData(height: 40, color: .clear)
             cellsData.append(cellData)
         }
         
         do {
-            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuit",
-                                                                                        title: "Выйти из аккаунта",
-                                                                                        tintColor: .red)
+            let cellData = ProfileViewControllerCellData(imageName: "profileQuit",
+                                                         title: "Выйти из аккаунта",
+                                                         tintColor: .red)
                 cellsData.append(cellData)
             }
         }
