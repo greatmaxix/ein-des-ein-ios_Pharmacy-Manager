@@ -11,3 +11,37 @@
 "tabbar.profile" = "Профиль";
 "tabbar.chat" = "";
 "tabbar.home" = "Главная";
+"tabbar.search.placeholder" = "Что необходимо найти?";
+
+
+// MARK: - Welcome screen
+"homeScreen.newRequestTitle" = "Новых запросов";
+"homeScreen.inDevelopment" = "Ожидается в разработке";
+"homeScreen.recentRecommendation" = "Вы недавно рекомендовали";
+
+// MARK: - Profile screen
+"profileScreen.title" = "Профиль";
+"profileScreen.statistic" = "Статистика";
+"profileScreen.needHelp" = "Нужна помощь?";
+"profileScreen.exit" = "Выйти из аккаунта";
+
+"profileScreen.notifications.title" = "Уведомления";
+"profileScreen.notifications.pushNotification" = "Push уведомления";
+"profileScreen.notifications.mailing" = "Email рассылка";
+"profileScreen.notifications.newChatRequest" = "Новый запрос в чате";
+"profileScreen.notifications.ratingUpdate" = "Обновление рейтинга";
+
+"profileScreen.aboutApp.title" = "О приложении";
+"profileScreen.aboutApp.profileArrangement" = "Пользовательское соглашение";
+"profileScreen.aboutApp.personalData" = "О Персональных данных";
+"profileScreen.aboutApp.termsDataUse" = "Условия использования данных";
+"profileScreen.aboutApp.cashBack" = "Про кешбек";
+
+"profileScreen.haveQuestions.title" = "Есть вопросы?";
+"profileScreen.haveQuestions.cashDiscipline" = "Кассовая дисциплина";
+"profileScreen.haveQuestions.back" = "Возврат";
+"profileScreen.haveQuestions.receiptGoods" = "Рецептурные товары";
+"profileScreen.haveQuestions.techicalProblems" = "Проблемы с оборудованием";
+"profileScreen.haveQuestions.delivery" = "Доставка";
+
+"profileScreen.haveQuestions.cashDisciplineBodyText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor";

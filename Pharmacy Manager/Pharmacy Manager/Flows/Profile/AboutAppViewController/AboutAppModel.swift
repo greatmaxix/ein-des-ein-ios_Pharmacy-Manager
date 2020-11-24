@@ -25,6 +25,7 @@ class AboutAppModel: Model {
     private var cellsData: [ProfileBaseCellData] = []
     
     weak var output: AboutAppModelOutput!
+    private let localizedStrings = L10n.ProfileScreen.AboutApp.self
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
@@ -42,25 +43,25 @@ class AboutAppModel: Model {
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileArrangement",
-                                                         title: "Пользовательское соглашение")
+                                                         title: localizedStrings.profileArrangement)
                 cellsData.append(cellData)
         }
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileAboutPersonalData",
-                                                         title: "О Персональных данных")
+                                                         title: localizedStrings.personalData)
                 cellsData.append(cellData)
         }
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileTermsDataUse",
-                                                         title: "Условия использования данных")
+                                                         title: localizedStrings.termsDataUse)
                 cellsData.append(cellData)
         }
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileAboutCashBack",
-                                                         title: "Про кешбек")
+                                                         title: localizedStrings.cashBack)
                 cellsData.append(cellData)
         }
     }
