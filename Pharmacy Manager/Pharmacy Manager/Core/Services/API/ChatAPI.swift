@@ -20,6 +20,7 @@ enum ChatAPI {
     case create(ChatRoute)
     case lastOpened
     case upload(data: Data, mime: String, name: String)
+    case uploadUser(data: Data, mime: String, name: String)
     case sendImage(chatId: Int, uuid: String)
     case createProductMessage(chatId: Int, productId: Int)
     case closeChat(id: Int)
@@ -39,6 +40,7 @@ extension ChatAPI: RequestConvertible {
         case .create: return "customer/chat"
         case .lastOpened: return "user/chat/last-opened-chats"
         case .upload: return "customer/image"
+        case .uploadUser: return "customer/image"
         case .sendImage(let chatId, let uuid): return "chat/chat/\(chatId)/application/\(uuid)"
         case .createProductMessage(let chatId, let productId): return "chat/chat/\(chatId)/global-product/\(productId)"
         case .closeChat(let id): return "customer/chat/\(id)/close"
@@ -53,7 +55,7 @@ extension ChatAPI: RequestConvertible {
         switch self {
         case .messageList, .chatList, .chatDetails, .lastOpened, .lastProducts:
             return .get
-        case .createMessage, .create, .upload, .sendImage, .createProductMessage:
+        case .createMessage, .create, .upload, .uploadUser, .sendImage, .createProductMessage:
             return .post
         case .closeChat, .continueChat, .evaluating, .initiateChatClosing:
             return .patch
@@ -71,6 +73,9 @@ extension ChatAPI: RequestConvertible {
         case .createMessage(_, let message):
             return .requestParameters(parameters: ["text": message], encoding: JSONEncoding.default)
         case .upload(let data, let mime, let name):
+            let formData = [Moya.MultipartFormData(provider: .data(data), name: "file", fileName: name, mimeType: mime)]
+            return .uploadMultipart(formData)
+        case .uploadUser(let data, let mime, let name):
             let formData = [Moya.MultipartFormData(provider: .data(data), name: "file", fileName: name, mimeType: mime)]
             return .uploadMultipart(formData)
         case .evaluating(_, let evaluating):

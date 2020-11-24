@@ -474,7 +474,7 @@ extension ChatModel: MessagesLayoutDelegate {
         let previousMessage = messages[indexPath.section]
         return previousMessage.sentDate.dateCompactString == message.sentDate.dateCompactString ? 10.0 : 40.0
     }
-    
+        
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? GUI.outgoingMessagesBackgroundColor  : GUI.incomingMessagesBackgroundColor
     }

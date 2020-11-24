@@ -18,12 +18,26 @@ protocol ChatInputBarDelegate: InputBarAccessoryViewDelegate {
 final class ChatInputBar: InputBarAccessoryView {
     
     var attachInputItem: AttachInputItem!
+    var productsInputItem: ProductInputItem!
+    
     lazy var chatGallery: ChatGallery = {
         let width = bottomStackView.frame.width
         let itemWidth = width / 3.0
         let rect = CGRect(origin: .zero, size: CGSize(width: width, height: itemWidth * 2))
         let g = ChatGallery(frame: rect)
+        setStackViewItems(bottomStackViewItems + [g], forStack: .bottom, animated: false)
         g.actionsDelegate = self
+        g.isHidden = true
+        return g
+    }()
+    
+    lazy var productsGallery: ProductsGallery = {
+        let width = bottomStackView.frame.width
+        let itemWidth = width / 3.0
+        let rect = CGRect(origin: .zero, size: CGSize(width: width, height: 300.0))
+        let g = ProductsGallery(frame: rect)
+        setStackViewItems(bottomStackViewItems + [g], forStack: .bottom, animated: false)
+        g.isHidden = true
         return g
     }()
     
@@ -72,11 +86,16 @@ final class ChatInputBar: InputBarAccessoryView {
             (self?.delegate as? ChatInputBarDelegate)?.attach()
         }
         
-        setStackViewItems([attachInputItem], forStack: .left, animated: false)
+        productsInputItem = ProductInputItem(view: self, action: {[weak self] _ in
+            self?.showProductGallery()
+        })
+        
+        setStackViewItems([productsInputItem, attachInputItem], forStack: .left, animated: false)
+        
         attachInputItem.setSize(CGSize(width: 26.0, height: 38.0), animated: false)
         
         middleContentViewPadding.right = -62.0
-        
+        bottomStackView.axis = .vertical
         dropBlackShadow()
     }
     
@@ -90,7 +109,6 @@ final class ChatInputBar: InputBarAccessoryView {
             $0.alpha = 0.0
         }.onTouchUpInside {
             $0.inputBarAccessoryView?.didSelectSendButton()
-            
         }
         setRightStackViewWidthConstant(to: 75.0, animated: false)
         setStackViewItems([sendButton, InputBarButtonItem.fixedSpace(2.0)], forStack: .right, animated: false)
@@ -108,10 +126,31 @@ final class ChatInputBar: InputBarAccessoryView {
     }
     
     func showGallery() {
+        
         DispatchQueue.main.async { [weak self] in
-            guard let g = self?.chatGallery else { return }
             self?.attachInputItem.isHighlighted = true
-            self?.setStackViewItems([g], forStack: .bottom, animated: true)
+            UIView.animate(withDuration: 0.3) {
+                self?.chatGallery.isHidden = false
+                self?.layoutStackViews([.bottom])
+            }
+        }
+    }
+    
+    func showProductGallery() {
+        let g = productsGallery
+        switch g.appearanceState {
+        case .closed:
+            g.appearanceState = g.appearanceState == .closed ? .opened : .closed
+        case .opened:
+            g.appearanceState = g.appearanceState == .closed ? .opened : .closed
+        default: break
+        }
+        DispatchQueue.main.async {
+            self.productsInputItem.isHighlighted = g.appearanceState == .opened
+            UIView.animate(withDuration: 0.3) {
+                self.productsGallery.isHidden = !self.productsInputItem.isHighlighted
+                self.layoutStackViews([.bottom])
+            }
         }
     }
     
@@ -119,7 +158,11 @@ final class ChatInputBar: InputBarAccessoryView {
         if bottomStackViewItems.count > 0 {
             DispatchQueue.main.async { [weak self] in
                 self?.attachInputItem.isHighlighted = false
-                self?.setStackViewItems([], forStack: .bottom, animated: true)
+                UIView.animate(withDuration: 0.3) {
+                    self?.chatGallery.isHidden = true
+                    self?.productsGallery.isHidden = true
+                    self?.layoutStackViews([.bottom])
+                }
             }
         }
     }

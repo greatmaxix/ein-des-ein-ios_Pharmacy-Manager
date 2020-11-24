@@ -9,19 +9,7 @@
 import UIKit
 
 final class RoundedNavigationBar: UINavigationBar {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func draw(_ rect: CGRect, for formatter: UIViewPrintFormatter) {
-        super.draw(rect, for: formatter)
-    }
-    
+ 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
