@@ -13,17 +13,23 @@
 "tabbar.home" = "Главная";
 "tabbar.search.placeholder" = "Что необходимо найти?";
 
-
 // MARK: - Welcome screen
 "homeScreen.newRequestTitle" = "Новых запросов";
 "homeScreen.inDevelopment" = "Ожидается в разработке";
 "homeScreen.recentRecommendation" = "Вы недавно рекомендовали";
+
+// MARK: - SearchBar
+"searchBar.placeholder" = "Поиск";
 
 // MARK: - Profile screen
 "profileScreen.title" = "Профиль";
 "profileScreen.statistic" = "Статистика";
 "profileScreen.needHelp" = "Нужна помощь?";
 "profileScreen.exit" = "Выйти из аккаунта";
+"profileScreen.exitAlertTitle" = "Вы уверены, что хотите выйти из приложения?";
+"profileScreen.exitAlertBody" = "до тех пор пока не авторизирутесь снова";
+"profileScreen.exitAlertbuttonCancel" = "Отмена";
+"profileScreen.exitAlertbuttonExit" = "Выйти";
 
 "profileScreen.notifications.title" = "Уведомления";
 "profileScreen.notifications.pushNotification" = "Push уведомления";
@@ -65,3 +71,9 @@
 "validator.passwordRule" = "Ой! Неверный пароль!";
 "validator.passwordRuleMessage" = "Ой! Неверная длинна пароля!";
 "validator.requiredRule" = "Ой! Неверные данные!";
+
+// MARK: - Scan screen
+"Scan.title" = "Штрих код";
+
+// MARK: - Catalogue screen
+"Catalogue.title" = "Категории";

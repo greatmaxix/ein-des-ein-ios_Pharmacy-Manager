@@ -11,6 +11,16 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
 
+  internal enum Catalogue {
+    /// Категории
+    internal static let title = L10n.tr("Localizable", "Catalogue.title")
+  }
+
+  internal enum Scan {
+    /// Штрих код
+    internal static let title = L10n.tr("Localizable", "Scan.title")
+  }
+
   internal enum HomeScreen {
     /// Ожидается в разработке
     internal static let inDevelopment = L10n.tr("Localizable", "homeScreen.inDevelopment")
@@ -41,6 +51,14 @@ internal enum L10n {
   internal enum ProfileScreen {
     /// Выйти из аккаунта
     internal static let exit = L10n.tr("Localizable", "profileScreen.exit")
+    /// до тех пор пока не авторизирутесь снова
+    internal static let exitAlertBody = L10n.tr("Localizable", "profileScreen.exitAlertBody")
+    /// Отмена
+    internal static let exitAlertButtonCancel = L10n.tr("Localizable", "profileScreen.exitAlertButtonCancel")
+    /// Выйти
+    internal static let exitAlertButtonExit = L10n.tr("Localizable", "profileScreen.exitAlertButtonExit")
+    /// Вы уверены, что хотите выйти из приложения?
+    internal static let exitAlertTitle = L10n.tr("Localizable", "profileScreen.exitAlertTitle")
     /// Нужна помощь?
     internal static let needHelp = L10n.tr("Localizable", "profileScreen.needHelp")
     /// Статистика
@@ -96,6 +114,11 @@ internal enum L10n {
       /// Ой, кажется такого товара нет в нашей базе
       internal static let titleLabel = L10n.tr("Localizable", "search.emptySearch.titleLabel")
     }
+  }
+
+  internal enum SearchBar {
+    /// Поиск
+    internal static let placeholder = L10n.tr("Localizable", "searchBar.placeholder")
   }
 
   internal enum Tabbar {
