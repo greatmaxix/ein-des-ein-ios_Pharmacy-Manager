@@ -709,8 +709,8 @@
 		601612CD2567DCFD005151BC /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				601612CE2567DCFD005151BC /* ChatProductCollectionViewCell.xib */,
 				601612CF2567DCFD005151BC /* ChatProductCollectionViewCell.swift */,
+				601612CE2567DCFD005151BC /* ChatProductCollectionViewCell.xib */,
 			);
 			path = Product;
 			sourceTree = "<group>";

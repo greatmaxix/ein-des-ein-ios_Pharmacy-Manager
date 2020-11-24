@@ -35,6 +35,10 @@ struct CreateProductMessageResponse: Decodable, Equatable {
     let item: Product
 }
 
+struct ProductListResponse: Decodable, Equatable {
+    let items: [ChatProduct]
+}
+
 typealias UploadImageResult = Result<CustomerImageUploadResponse, MoyaError>
 
 struct CustomerImageUploadResponse: Decodable, Equatable {

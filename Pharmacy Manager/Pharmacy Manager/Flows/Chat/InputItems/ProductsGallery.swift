@@ -11,6 +11,8 @@ import InputBarAccessoryView
 
 final class ProductsGallery: UIView, InputItem {
     
+    private let productsProvider = DataManager<ChatAPI, ProductListResponse>()
+    
     enum GaleryState {
         case closed, opened, large
         
@@ -31,6 +33,10 @@ final class ProductsGallery: UIView, InputItem {
     var appearanceState = GaleryState.closed {
         didSet {
             invalidateIntrinsicContentSize()
+            
+            if appearanceState == .opened {
+                willShowGallery()
+            }
         }
     }
     
@@ -55,6 +61,7 @@ final class ProductsGallery: UIView, InputItem {
     let searchTextField = UITextField()
     
     let searchTextFieldDecoration = UIView()
+    var products: [ChatProduct] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +80,14 @@ final class ProductsGallery: UIView, InputItem {
         searchTextFieldDecoration.layer.cornerRadius = 18.0
         searchTextField.textColor = Asset.LegacyColors.textDarkBlue.color
         searchTextField.placeholder = "Поиск"
+        searchTextField.delegate = self
+        let b = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
+        b.setImage(Asset.Images.Chat.clear.image, for: .normal)
+        b.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
+        
+        searchTextField.rightView = b
+        searchTextField.rightViewMode = .whileEditing
+        searchTextField.delegate = self
         
         collectionView.backgroundColor = .white
         
@@ -113,23 +128,55 @@ final class ProductsGallery: UIView, InputItem {
             bottomConstraint
         ])
         
+        collectionView.register(ProductGalleryCollectionViewCell.nib, forCellWithReuseIdentifier: ProductGalleryCollectionViewCell.className)
         collectionView.dataSource = self
         collectionView.delegate = self
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: (frame.width / 2) - 1.0, height: 220.0)
+            layout.minimumLineSpacing = 1.0
+            layout.minimumInteritemSpacing = 1.0
+        }
     }
     
     func textViewDidChangeAction(with textView: InputTextView) {}
     func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
     func keyboardEditingEndsAction() {}
-    func keyboardEditingBeginsAction() {}
+    func keyboardEditingBeginsAction() {
+        appearanceState = .closed
+        
+        UIView.animate(withDuration: 0.3) {
+            self.isHidden = true
+            self.superview?.layoutIfNeeded()
+        }
+    }
+    
+    func willShowGallery() {
+        productsProvider.load(target: .lastProducts) {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.products = response.items
+                self?.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    @objc func clearSearch() {
+        searchTextField.text = ""
+        searchTextField.resignFirstResponder()
+    }
 }
 
 extension ProductsGallery: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductGalleryCollectionViewCell.className, for: indexPath)
+        (cell as? ProductGalleryCollectionViewCell)?.apply(product: products[indexPath.row])
+        return cell
     }
 }
 
@@ -137,8 +184,18 @@ extension ProductsGallery: UICollectionViewDelegate {
     
 }
 
-
+extension ProductsGallery: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
+}
 
 final class ProductGalleryFlowLayout: UICollectionViewFlowLayout {
     
 }
+
+
