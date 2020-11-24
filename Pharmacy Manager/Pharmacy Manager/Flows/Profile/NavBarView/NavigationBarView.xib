@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBarView" customModule="Pharmacy_Manager" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="rkZ-dT-NOA" id="8yL-zR-47M"/>
+                <outlet property="contentView" destination="Q0e-Ae-6nu" id="Mus-gA-UP5"/>
+                <outlet property="titleLabel" destination="MtM-Pb-3Ld" id="pv9-S2-B15"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Q0e-Ae-6nu">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigationBar" translatesAutoresizingMaskIntoConstraints="NO" id="jR4-ab-ehi">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtM-Pb-3Ld">
+                    <rect key="frame" x="189.5" y="53" width="35.5" height="22"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkZ-dT-NOA">
+                    <rect key="frame" x="12" y="50" width="79" height="28"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                    <state key="normal" title="Button" image="leftArrow"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="2yR-ib-hDK"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="MtM-Pb-3Ld" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rkZ-dT-NOA" secondAttribute="trailing" id="5ya-zq-UDJ"/>
+                <constraint firstItem="jR4-ab-ehi" firstAttribute="top" secondItem="Q0e-Ae-6nu" secondAttribute="top" id="ABE-PL-Rcb"/>
+                <constraint firstAttribute="bottom" secondItem="jR4-ab-ehi" secondAttribute="bottom" id="Gcn-AF-eco"/>
+                <constraint firstItem="MtM-Pb-3Ld" firstAttribute="centerX" secondItem="Q0e-Ae-6nu" secondAttribute="centerX" id="N2u-h0-PMc"/>
+                <constraint firstItem="2yR-ib-hDK" firstAttribute="trailing" secondItem="jR4-ab-ehi" secondAttribute="trailing" id="ZEb-Q0-ZVn"/>
+                <constraint firstItem="jR4-ab-ehi" firstAttribute="leading" secondItem="2yR-ib-hDK" secondAttribute="leading" id="acC-LH-WCp"/>
+                <constraint firstItem="2yR-ib-hDK" firstAttribute="bottom" secondItem="rkZ-dT-NOA" secondAttribute="bottom" constant="10" id="dWd-aJ-dAQ"/>
+                <constraint firstItem="rkZ-dT-NOA" firstAttribute="leading" secondItem="2yR-ib-hDK" secondAttribute="leading" constant="12" id="mFn-WJ-OzB"/>
+                <constraint firstItem="MtM-Pb-3Ld" firstAttribute="centerY" secondItem="rkZ-dT-NOA" secondAttribute="centerY" id="rs2-r2-gY3"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-201.44927536231884" y="-147.32142857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="leftArrow" width="28" height="28"/>
+        <image name="navigationBar" width="375" height="88"/>
+    </resources>
+</document>

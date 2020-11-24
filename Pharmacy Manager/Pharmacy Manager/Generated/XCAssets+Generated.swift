@@ -151,6 +151,7 @@ internal enum Asset {
       internal static let uber = ImageAsset(name: "uber")
     }
     internal enum NavigationBar {
+      internal static let navigationBarBackgroundImg = ImageAsset(name: "navigationBarBackgroundImg")
       internal static let navigationBarCircles = ImageAsset(name: "navigationBarCircles")
     }
     internal enum Onboarding {
