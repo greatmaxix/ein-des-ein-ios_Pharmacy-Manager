@@ -14,7 +14,7 @@ final class ProductDescriptionTableViewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
-        titleLabel.text = "Описание :"
+        titleLabel.text = L10n.Product.titleLabel
     }
     
     func apply(product: Product) {

@@ -46,7 +46,24 @@
 
 "profileScreen.haveQuestions.cashDisciplineBodyText" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortorLorem ipsum dolor sit amet, consectetur adipiscing elit. Amet rutrum vel non volutpat. Sagittis aliquam mattis tortor";
 
+// MARK: - Search screen
+"search.emptySearch.titleLabel" = "Ой, кажется такого товара нет в нашей базе";
+"search.emptySearch.descriptionLabel" = "Повторите поиск или попробуйте найти другой препарат";
 
+// MARK: - Product screen
+"product.titleLabel" = "Описание :";
+"product.analogsLabel" = "Аналоги";
 
+// MARK: - MedicineList screen
+"medicineList.temporarilyUnavailable" = "Временно недоступен";
+"medicineList.foundedTitle" = "Найдено";
+"medicineList.foundedTitleBodySingle" = "продукт";
+"medicineList.foundedTitleBodyMany" = "продукт(ов)";
+
+// MARK: - Validator text fields screen
+"validator.emailRegexRule" = "Ой! Неверный формат почты!";
+"validator.passwordRule" = "Ой! Неверный пароль!";
+"validator.passwordRuleMessage" = "Ой! Неверная длинна пароля!";
+"validator.requiredRule" = "Ой! Неверные данные!";
 
 

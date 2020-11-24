@@ -63,7 +63,7 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
             placeholder = Asset.Images.Catalogs.medicineImagePlaceholder.image
         } else {
             setUnavaliableStyle()
-            costLabel.text = "Временно недоступен"
+            costLabel.text = L10n.MedicineList.temporarilyUnavailable
             placeholder = Asset.Images.Catalogs.medicineImageGrayscalePlaceholder.image
         }
         

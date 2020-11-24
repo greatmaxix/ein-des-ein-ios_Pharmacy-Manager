@@ -20,6 +20,24 @@ internal enum L10n {
     internal static let recentRecommendation = L10n.tr("Localizable", "homeScreen.recentRecommendation")
   }
 
+  internal enum MedicineList {
+    /// Найдено
+    internal static let foundedTitle = L10n.tr("Localizable", "medicineList.foundedTitle")
+    /// продукт(ов)
+    internal static let foundedTitleBodyMany = L10n.tr("Localizable", "medicineList.foundedTitleBodyMany")
+    /// продукт
+    internal static let foundedTitleBodySingle = L10n.tr("Localizable", "medicineList.foundedTitleBodySingle")
+    /// Временно недоступен
+    internal static let temporarilyUnavailable = L10n.tr("Localizable", "medicineList.temporarilyUnavailable")
+  }
+
+  internal enum Product {
+    /// Аналоги
+    internal static let analogsLabel = L10n.tr("Localizable", "product.analogsLabel")
+    /// Описание :
+    internal static let titleLabel = L10n.tr("Localizable", "product.titleLabel")
+  }
+
   internal enum ProfileScreen {
     /// Выйти из аккаунта
     internal static let exit = L10n.tr("Localizable", "profileScreen.exit")
@@ -71,6 +89,15 @@ internal enum L10n {
     }
   }
 
+  internal enum Search {
+    internal enum EmptySearch {
+      /// Повторите поиск или попробуйте найти другой препарат
+      internal static let descriptionLabel = L10n.tr("Localizable", "search.emptySearch.descriptionLabel")
+      /// Ой, кажется такого товара нет в нашей базе
+      internal static let titleLabel = L10n.tr("Localizable", "search.emptySearch.titleLabel")
+    }
+  }
+
   internal enum Tabbar {
     /// 
     internal static let chat = L10n.tr("Localizable", "tabbar.chat")
@@ -80,6 +107,17 @@ internal enum L10n {
     internal static let profile = L10n.tr("Localizable", "tabbar.profile")
     /// Что необходимо найти?
     internal static let searchPlaceholder = L10n.tr("Localizable", "tabbar.searchPlaceholder")
+  }
+
+  internal enum Validator {
+    /// Ой! Неверный формат почты!
+    internal static let emailRegexRule = L10n.tr("Localizable", "validator.emailRegexRule")
+    /// Ой! Неверный пароль!
+    internal static let passwordRule = L10n.tr("Localizable", "validator.passwordRule")
+    /// Ой! Неверная длинна пароля!
+    internal static let passwordRuleMessage = L10n.tr("Localizable", "validator.passwordRuleMessage")
+    /// Ой! Неверные данные!
+    internal static let requiredRule = L10n.tr("Localizable", "validator.requiredRule")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
