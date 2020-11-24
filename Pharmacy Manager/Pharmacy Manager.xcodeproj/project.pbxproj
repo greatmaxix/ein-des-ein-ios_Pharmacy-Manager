@@ -1949,7 +1949,7 @@
 				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B9H63QRDPT;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1971,7 +1971,7 @@
 				API_HOST = "https://api.pharmacies.fmc-dev.com/api/v1/";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = B9H63QRDPT;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
