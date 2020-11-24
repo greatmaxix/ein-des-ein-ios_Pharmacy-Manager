@@ -49,7 +49,6 @@ class ProfileViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         navBarView.setupBar(backButtonText: "Профиль", titleText: "text")
         navBarView.backButtonIsHidden(state: true)
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {

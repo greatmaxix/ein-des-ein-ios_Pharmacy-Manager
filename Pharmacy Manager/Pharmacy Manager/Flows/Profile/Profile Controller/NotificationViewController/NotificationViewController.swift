@@ -17,6 +17,7 @@ class NotificationViewController: UIViewController {
     
     // MARK: - @IBOutlets & Properties
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var navBarView: NavigationBarView!
     
     private lazy var activityIndicator: MBProgressHUD = {
         setupActivityIndicator()
@@ -32,6 +33,7 @@ class NotificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupNavBar()
     }
     
     private func setupTableView() {
@@ -41,7 +43,11 @@ class NotificationViewController: UIViewController {
         
         self.tableView.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "NotificationViewCell")
         self.tableView.register(UINib(nibName: "EmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyTableViewCell")
-        
+    }
+    
+    private func setupNavBar(){
+        navigationController?.isNavigationBarHidden = true
+        navBarView.setupBar(backButtonText: "Профиль", titleText: "text")
     }
 }
 
