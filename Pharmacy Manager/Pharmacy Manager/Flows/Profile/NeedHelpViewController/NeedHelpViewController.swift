@@ -16,6 +16,7 @@ class NeedHelpViewController: UIViewController {
     
     // MARK: - @IBOutlets & Properties
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var navBarView: NavigationBarView!
     
     private lazy var activityIndicator: MBProgressHUD = {
         setupActivityIndicator()
@@ -25,8 +26,9 @@ class NeedHelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
         
+        setupTableView()
+        setupNavBar()
     }
     
     // MARK: - Setup TableView
@@ -38,6 +40,11 @@ class NeedHelpViewController: UIViewController {
         tableView.register(UINib(nibName: String(describing: ProfileViewControllerViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfileViewControllerViewCell.self))
         
         tableView.register(UINib(nibName: String(describing: NeedHelpViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: NeedHelpViewCell.self))
+    }
+    
+    private func setupNavBar(){
+        navigationController?.isNavigationBarHidden = true
+        navBarView.setupBar(backButtonText: "Профиль", titleText: "text")
     }
 }
 

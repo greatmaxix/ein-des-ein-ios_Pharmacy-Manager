@@ -64,9 +64,9 @@ class ProfileViewControllerViewCell: ProfileBaseTableViewCell {
             Default settups tints for views in cell. Setup default arrow image to cell. Used for apply / disapply react on tap
      */
     override func applyCellState() {
-        cellTypeImageView.tintColor = .blue
-        titleLabel.textColor = .blue
-        arrowImageView.tintColor = .blue
+        cellTypeImageView.tintColor = Asset.Colors.appBluePrimary.color
+        titleLabel.textColor = Asset.Colors.appBluePrimary.color
+        arrowImageView.tintColor = Asset.Colors.appBluePrimary.color
         
         arrowImageView.image = UIImage(named: "profileApplyArrow")?.withRenderingMode(.alwaysTemplate)
     }
