@@ -19,7 +19,8 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
             avatarImageView.layer.borderWidth = 1.0
-            avatarImageView.layer.cornerRadius = 30.0
+            avatarImageView.layer.cornerRadius = 24.0
+            avatarImageView.dropBlackShadow()
         }
     }
     

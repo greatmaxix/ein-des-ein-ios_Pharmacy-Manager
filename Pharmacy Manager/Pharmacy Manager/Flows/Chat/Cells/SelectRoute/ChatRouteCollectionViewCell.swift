@@ -13,13 +13,13 @@ class ChatRouteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var doctorBackground: UIView! {
         didSet {
             self.doctorBackground.layer.cornerRadius = self.doctorBackground.frame.height / 2
-            self.doctorBackground.decorationBlackShadow()
+            self.doctorBackground.dropBlackShadow()
         }
     }
     @IBOutlet weak var pharmacistBackground: UIView! {
         didSet {
             self.pharmacistBackground.layer.cornerRadius = self.pharmacistBackground.frame.height / 2
-            self.pharmacistBackground.decorationBlackShadow()
+            self.pharmacistBackground.dropBlackShadow()
         }
     }
     

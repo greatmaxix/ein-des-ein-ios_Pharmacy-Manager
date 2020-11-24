@@ -12,9 +12,8 @@ import Photos
 import InputBarAccessoryView
 import PDFKit
 
-class ChatViewController: MessagesViewController, NavigationBarStyled {
-    
-    var style: NavigationBarStyle = .normalWithoutSearch
+class ChatViewController: MessagesViewController {
+   
     var model: ChatInput!
     var chatBar: ChatInputBar? {
         return messageInputBar as? ChatInputBar

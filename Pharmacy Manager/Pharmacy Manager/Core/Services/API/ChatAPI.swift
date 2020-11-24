@@ -26,6 +26,7 @@ enum ChatAPI {
     case continueChat(id: Int)
     case evaluating(chatId: Int, evaluating: ChatEvaluation)
     case lastProducts
+    case initiateChatClosing(Int)
 }
 
 extension ChatAPI: RequestConvertible {
@@ -44,6 +45,7 @@ extension ChatAPI: RequestConvertible {
         case .continueChat(let id): return "customer/chat/\(id)/continue"
         case .evaluating(let chatId, _): return "customer/chat/\(chatId)/evaluate"
         case .lastProducts: return "user/chat/last-global-products"
+        case .initiateChatClosing(let id): return "user/chat/\(id)/close"
         }
     }
     
@@ -53,14 +55,14 @@ extension ChatAPI: RequestConvertible {
             return .get
         case .createMessage, .create, .upload, .sendImage, .createProductMessage:
             return .post
-        case .closeChat, .continueChat, .evaluating:
+        case .closeChat, .continueChat, .evaluating, .initiateChatClosing:
             return .patch
         }
     }
     
     var task: Task {
         switch self {
-        case .chatDetails, .messageList, .chatList, .sendImage, .createProductMessage, .closeChat, .continueChat, .lastProducts:
+        case .chatDetails, .messageList, .chatList, .sendImage, .createProductMessage, .closeChat, .continueChat, .lastProducts, .initiateChatClosing:
             return .requestPlain
         case .lastOpened:
             return .requestParameters(parameters: ["page": 1, "per_page": 4], encoding: URLEncoding.default)

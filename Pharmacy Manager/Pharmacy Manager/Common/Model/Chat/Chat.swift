@@ -20,6 +20,10 @@ struct Chat: Decodable, Equatable {
     var closedAt: String?
     var topicName: String
     var lastMessage: ChatMessage
+    
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 struct ChatUser: Decodable, Equatable {

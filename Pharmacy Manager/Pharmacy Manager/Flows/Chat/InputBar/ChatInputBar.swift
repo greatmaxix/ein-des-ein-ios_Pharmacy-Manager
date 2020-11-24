@@ -28,7 +28,7 @@ final class ChatInputBar: InputBarAccessoryView {
     }()
     
     struct GUI {
-        static let cornerRadius: CGFloat = 10.0
+        static let cornerRadius: CGFloat = 24.0
         static let maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         static let backgroundColor = UIColor.white
     }
@@ -77,7 +77,7 @@ final class ChatInputBar: InputBarAccessoryView {
         
         middleContentViewPadding.right = -62.0
         
-        decorationBlackShadow()
+        dropBlackShadow()
     }
     
     private func setupSendButton() {

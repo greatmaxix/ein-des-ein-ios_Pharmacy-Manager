@@ -162,7 +162,7 @@ final class ChatModel: Model, ChatInput {
         
         collection.register(ChatButtonCollectionViewCell.nib, forCellWithReuseIdentifier: ChatButtonCollectionViewCell.className)
         collection.register(ChatRouteCollectionViewCell.nib, forCellWithReuseIdentifier: ChatRouteCollectionViewCell.className)
-        collection.register(ChatCloseCollectionViewCell.nib, forCellWithReuseIdentifier: ChatCloseCollectionViewCell.className)
+        collection.register(PharmacyCloseChatCollectionViewCell.nib, forCellWithReuseIdentifier: PharmacyCloseChatCollectionViewCell.className)
         collection.register(ChatProductCollectionViewCell.nib, forCellWithReuseIdentifier: ChatProductCollectionViewCell.className)
         collection.register(ChatApplicationCollectionViewCell.nib, forCellWithReuseIdentifier: ChatApplicationCollectionViewCell.className)
         collection.register(ChatRecipeCollectionViewCell.nib, forCellWithReuseIdentifier: ChatRecipeCollectionViewCell.className)
@@ -219,9 +219,7 @@ final class ChatModel: Model, ChatInput {
     
     private func showCloseRequestMessages() {
         let sender = ChatSender(senderId: currentChat.user.uuid, displayName: currentChat.user.name)
-        let m = Message("У Вас есть еще какие либо вопросы?", sender: sender, messageId: "\(currentChat.lastMessage.id + 1)", date: Date())
-        let a = Message(.chatClosing, sender: sender, messageId: "\(currentChat.lastMessage.id + 2)", date: Date())
-        insertMessage(m)
+        let a = Message(.chatClosing, sender: sender, messageId: "\(currentChat.lastMessage.id + 1)", date: Date())
         insertMessage(a)
     }
     
@@ -317,11 +315,10 @@ final class ChatModel: Model, ChatInput {
     
     func closeChat() {
         output?.showActivityIndicator()
-        manageChatProvider.load(target: .closeChat(id: currentChat.id)) {[weak self] result in
+        manageChatProvider.load(target: .initiateChatClosing(currentChat.id)) {[weak self] result in
             self?.output?.hideActivityIndicator()
             switch result {
-            case .success:
-                self?.showEndChatMessage()
+            case .success: break
             case .failure(let error):
                 self?.output?.showError(text: error.localizedDescription)
             }
@@ -413,15 +410,7 @@ extension ChatModel: MessagesDataSource {
                 cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatRouteCollectionViewCell.className, for: indexPath)
                 (cell as? ChatRouteCollectionViewCell)?.routeAction = {[weak self] route in self?.didSelect(route: route)}
             case .chatClosing:
-                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatCloseCollectionViewCell.className, for: indexPath)
-                (cell as? ChatCloseCollectionViewCell)?.actionHandler = {[weak self] action in
-                    switch action {
-                    case .continueChat:
-                        self?.continueChat()
-                    case .close:
-                        self?.closeChat()
-                    }
-                }
+                cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: PharmacyCloseChatCollectionViewCell.className, for: indexPath)
             case .product(let product):
                 cell = messagesCollectionView.dequeueReusableCell(withReuseIdentifier: ChatProductCollectionViewCell.className, for: indexPath)
                 (cell as? ChatProductCollectionViewCell)?.apply(product: product, actionHandler: {[weak self] action in
@@ -498,8 +487,12 @@ extension ChatModel: ChatServiceDelegate {
         case .changeStatus:
             guard let chat = data.chatBody?.item else { return }
             currentChat = chat
-            if chat.status == .closeRequest {
+            switch chat.status {
+            case .closeRequest:
                 showCloseRequestMessages()
+            case .closed:
+                showEndChatMessage()
+            default: break
             }
             output?.chatDidChange(currentChat.status)
         default:

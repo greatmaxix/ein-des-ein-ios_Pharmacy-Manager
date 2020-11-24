@@ -24,7 +24,7 @@ class ChatProductCollectionViewCell: MessageCollectionViewCell {
         didSet {
             productContainer.layer.cornerRadius = 10.0
             productContainer.layer.masksToBounds = true
-            productContainer.decorationBlackShadow()
+            productContainer.dropBlackShadow()
         }
     }
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!

@@ -24,6 +24,7 @@ protocol ChatsListModelInput: class {
 
 protocol ChatsListModelOutput: class {
     var isSearchBarEmpty: Bool { get }
+    var tableView: UITableView! { get }
     func networkingDidComplete(errorText: String?)
     func didFilterItems()
 }
@@ -36,6 +37,39 @@ class ChatsListModel: Model {
     func cleanSearch() {
         filteredItems = []
         output.didFilterItems()
+    }
+    
+    override init(parent: EventNode?) {
+        super.init(parent: parent)
+        addHandler(.onPropagate) {[weak self] (event: ChatServiceEvent) in
+            switch event {
+            case .didRecive(let message):
+                switch message.messageType {
+                case .changeStatus:
+                    if let c = message.chatBody {
+                        self?.proccess(chat: c.item)
+                    }
+                default: break
+                }
+            }
+        }
+    }
+    
+    private func proccess(chat: Chat) {
+        let tableView = output.tableView!
+        
+        tableView.beginUpdates()
+        if let index = items.firstIndex(where: {$0 == chat}) {
+            items.remove(at: index)
+            items.insert(chat, at: index)
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            items.insert(chat, at: 0)
+            tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+        }
+        
+        tableView.endUpdates()
+        
     }
 }
 

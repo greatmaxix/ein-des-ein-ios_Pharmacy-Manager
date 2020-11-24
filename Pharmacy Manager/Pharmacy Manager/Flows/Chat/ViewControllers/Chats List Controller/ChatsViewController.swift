@@ -11,7 +11,7 @@ import UIKit
 protocol ChatsViewControllerInput: ChatsListModelOutput {}
 protocol ChatsViewControllerOutput: ChatsListModelInput {}
 
-class ChatsViewController: UIViewController {
+class ChatsViewController: UIViewController, ChatsViewControllerInput {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -46,7 +46,8 @@ class ChatsViewController: UIViewController {
     }
 }
     
-extension ChatsViewController: ChatsViewControllerInput {
+extension ChatsViewController {
+    
     func didFilterItems() {
         tableView.reloadData()
     }
@@ -77,7 +78,7 @@ extension ChatsViewController: UITableViewDataSource {
 
 extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90.0
+        return 80.0
     }
 }
 

@@ -49,7 +49,7 @@ extension UIView {
         dropShadow(scale: true, color: Asset.LegacyColors.lightBlue.color, width: 0, height: 0, radius: 2, opacity: 0.1)
     }
     
-    func decorationBlackShadow() {
+    func dropBlackShadow() {
         dropShadow(scale: true, color: .black, width: 0, height: 1, radius: 2, opacity: 0.2)
     }
     
