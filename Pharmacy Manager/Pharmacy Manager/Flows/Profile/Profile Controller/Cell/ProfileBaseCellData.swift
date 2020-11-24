@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileBaseCellData {
     
-    var selectHandler: (() -> Void)?
+    var selectHandler: EmptyClosure?
     
     var nibName: String? {
          nil
@@ -28,16 +28,10 @@ class ProfileBaseCellData {
 
 class ProfileBaseTableViewCell: UITableViewCell {
     
-    func setup(cellData: ProfileBaseCellData) {
-        
-    }
-    
-    func disactivateCell() {
-        
-    }
-    
-    func setup(representObj: Any) {
-        
-    }
-
+    var isApplyState: Bool = false
+    func setup(cellData: ProfileBaseCellData) {}
+    func deactivateCell() {}
+    func defaultCellState() {}
+    func applyCellState() {}
+    func setup(representObj: Any) {}
 }

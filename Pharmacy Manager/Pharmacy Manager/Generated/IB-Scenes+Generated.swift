@@ -12,6 +12,11 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
+  internal enum AboutAppViewController: StoryboardType {
+    internal static let storyboardName = "AboutAppViewController"
+
+    internal static let aboutAppViewController = SceneType<Pharmacy_Manager.AboutAppViewController>(storyboard: AboutAppViewController.self, identifier: "AboutAppViewController")
+  }
   internal enum Auth: StoryboardType {
     internal static let storyboardName = "Auth"
 
@@ -44,6 +49,16 @@ internal enum StoryboardScene {
     internal static let storyboardName = "LaunchScreen"
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
+  }
+  internal enum NeedHelpViewController: StoryboardType {
+    internal static let storyboardName = "NeedHelpViewController"
+
+    internal static let needHelpViewController = SceneType<Pharmacy_Manager.NeedHelpViewController>(storyboard: NeedHelpViewController.self, identifier: "NeedHelpViewController")
+  }
+  internal enum NotificationViewController: StoryboardType {
+    internal static let storyboardName = "NotificationViewController"
+
+    internal static let notificationViewController = SceneType<Pharmacy_Manager.NotificationViewController>(storyboard: NotificationViewController.self, identifier: "NotificationViewController")
   }
   internal enum Product: StoryboardType {
     internal static let storyboardName = "Product"

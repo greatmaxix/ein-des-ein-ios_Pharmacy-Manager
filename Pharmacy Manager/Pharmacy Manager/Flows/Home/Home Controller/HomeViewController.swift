@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func scannerTapped(_ sender: Any) {
-
+        model.openScan()
     }
 
     private func fillChatInfo() {

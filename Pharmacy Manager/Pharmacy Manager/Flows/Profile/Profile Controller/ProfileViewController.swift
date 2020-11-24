@@ -51,10 +51,30 @@ class ProfileViewController: UIViewController {
 
 // MARK: - Model delegate extension
 extension ProfileViewController: ProfileViewControllerInput {
-    func networkingDidComplete(errorText: String?) {
+    func logoutAction() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        blurVisualEffectView.frame = view.bounds
 
+        let alertController = UIAlertController.init(title: "Вы уверены, что хотите выйти из приложения?", message: " до тех пор пока не авторизирутесь снова", preferredStyle: .alert)
+        
+        let actionOK = UIAlertAction(title: "Отмена", style: .default, handler: { _ in blurVisualEffectView.removeFromSuperview()})
+
+        let actionCancel = UIAlertAction(title: "Выйти", style: .default, handler: {[unowned self] _ in
+            blurVisualEffectView.removeFromSuperview()
+            self.model.logoutActionCofirmed()
+        })
+
+        actionCancel.titleTextColor = .red
+        alertController.addAction(actionOK)
+        alertController.addAction(actionCancel)
+        alertController.preferredAction = actionCancel
+        self.view.addSubview(blurVisualEffectView)
+        self.present(alertController, animated: true, completion: nil)
     }
-
+    
+    func networkingDidComplete(errorText: String?) {
+    }
 }
 
 // MARK: - Talbeview DataSource & Delegate extension
@@ -67,9 +87,10 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cellData: ProfileBaseCellData = model.cellDataAt(index: indexPath.row)
         if let cell: ProfileBaseTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellData.nibName!, for: indexPath) as? ProfileBaseTableViewCell {
             
+            // FIXME: - Удалить после создания запроса и получения результата по статистике
             if let data = cellData as? ProfileViewControllerCellData,
                data.title == "Статистика" {
-                cell.disactivateCell()
+                cell.deactivateCell()
                 }
             
             cell.setup(cellData: cellData)

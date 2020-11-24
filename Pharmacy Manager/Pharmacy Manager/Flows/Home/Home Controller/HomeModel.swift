@@ -11,6 +11,7 @@ import EventsTree
 
 enum HomeEvent: Event {
     case openSearch
+    case openScan
 }
 
 protocol HomeModelInput: class {
@@ -21,6 +22,7 @@ protocol HomeModelInput: class {
     func messages() -> [LastChat]
     func openSearch()
     func loadData()
+    func openScan()
 }
 
 protocol HomeModelOutput: class {
@@ -40,7 +42,11 @@ class HomeModel: Model {
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
-
+    
+    func openScan() {
+        raise(event: HomeEvent.openScan)
+    }
+    
     var chatCount: String {
         return "\(total)"
     }
