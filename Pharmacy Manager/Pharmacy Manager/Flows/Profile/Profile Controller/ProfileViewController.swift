@@ -23,6 +23,10 @@ class ProfileViewController: UIViewController {
     }()
 
     var model: ProfileViewControllerOutput!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return UIStatusBarStyle.lightContent
+    }
 
     // MARK: - viewDidLoad
     override func viewDidLoad() {

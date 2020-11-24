@@ -30,12 +30,16 @@ class NotificationViewController: UIViewController {
     
     var model: NotificationViewControllerOutput!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return UIStatusBarStyle.lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavBar()
     }
-    
+
     private func setupTableView() {
         
         tableView.delegate = self

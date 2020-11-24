@@ -24,6 +24,10 @@ class AboutAppViewController: UIViewController {
     
     var model: AboutAppViewControllerOutput!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return UIStatusBarStyle.lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

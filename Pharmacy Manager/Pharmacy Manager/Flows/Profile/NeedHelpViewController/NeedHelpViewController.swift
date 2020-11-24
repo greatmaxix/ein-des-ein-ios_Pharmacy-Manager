@@ -24,12 +24,17 @@ class NeedHelpViewController: UIViewController {
     
     var model: NeedHelpViewControllerOutput!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return UIStatusBarStyle.lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTableView()
         setupNavBar()
     }
+    
     
     // MARK: - Setup TableView
     private func setupTableView() {
