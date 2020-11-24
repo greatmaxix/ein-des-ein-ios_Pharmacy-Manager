@@ -13,6 +13,7 @@ protocol NeedHelpModelInput: class {
     var cellCount: Int { get }
     func cellDataAt(index: Int) -> ProfileBaseCellData
     func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure?
+    func back()
 }
 
 protocol NeedHelpModelOutput: class {
@@ -71,6 +72,10 @@ class NeedHelpModel: Model {
 }
 
 extension NeedHelpModel: NeedHelpModelInput, NeedHelpViewControllerOutput {
+
+    func back() {
+        raise(event: ProfileEvent.back)
+    }
     
     func selectActionAt(index: Int, cellState: Bool) -> EmptyClosure? {
         switch cellState {

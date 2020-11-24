@@ -16,6 +16,8 @@ class NavigationBarView: UIView {
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     
+    private var backButtonHandler: EmptyClosure?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -31,12 +33,16 @@ class NavigationBarView: UIView {
         contentView.fixInView(self)
     }
     
-    func setupBar(backButtonText: String, titleText: String) {
+    func setupBar(backButtonText: String, titleText: String, backButtonAction: EmptyClosure? = nil) {
         self.titleLabel.text = titleText
         self.backButton.setTitle(backButtonText, for: .normal)
+        self.backButtonHandler = backButtonAction
     }
     
     func backButtonIsHidden(state: Bool) {
         self.backButton.isHidden = state
+    }
+    @IBAction func backButtonAction(_ sender: Any) {
+        backButtonHandler?()
     }
 }

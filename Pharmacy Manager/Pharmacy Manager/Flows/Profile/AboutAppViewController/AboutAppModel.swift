@@ -13,6 +13,7 @@ protocol AboutAppModelInput: class {
     var cellCount: Int { get }
     func cellDataAt(index: Int) -> ProfileBaseCellData
     func selectActionAt(index: Int) -> EmptyClosure?
+    func back()
 }
 
 protocol AboutAppModelOutput: class {
@@ -67,6 +68,11 @@ class AboutAppModel: Model {
 }
 
 extension AboutAppModel: AboutAppModelInput, AboutAppViewControllerOutput {
+    
+    func back() {
+        raise(event: ProfileEvent.back)
+    }
+    
     func selectActionAt(index: Int) -> EmptyClosure? {
             cellsData[index].selectHandler
     }

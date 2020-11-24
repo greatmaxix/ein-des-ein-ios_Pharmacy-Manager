@@ -47,7 +47,9 @@ class NotificationViewController: UIViewController {
     
     private func setupNavBar(){
         navigationController?.isNavigationBarHidden = true
-        navBarView.setupBar(backButtonText: "Профиль", titleText: "text")
+        navBarView.setupBar(backButtonText: "Профиль", titleText: "Уведомления", backButtonAction: { [weak self] in
+            self?.model.back()
+        })
     }
 }
 

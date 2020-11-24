@@ -14,6 +14,7 @@ enum ProfileEvent: Event {
     case pushNotificationViewController
     case presentNeedHelpViewController
     case logout
+    case back
 }
 
 protocol ProfileModelInput: class {

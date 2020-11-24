@@ -41,6 +41,9 @@
                     <rect key="frame" x="12" y="50" width="79" height="28"/>
                     <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                     <state key="normal" title="Button" image="leftArrow"/>
+                    <connections>
+                        <action selector="backButtonAction:" destination="-1" eventType="touchUpInside" id="3VU-S0-gLb"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="2yR-ib-hDK"/>
