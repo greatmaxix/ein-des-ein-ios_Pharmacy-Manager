@@ -57,7 +57,7 @@ final class ProductsGallery: UIView, InputItem {
     var inputBarAccessoryView: InputBarAccessoryView?
     var parentStackViewPosition: InputStackView.Position?
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: ChatGalleryLayout())
     let searchTextField = UITextField()
     
     let searchTextFieldDecoration = UIView()
@@ -94,7 +94,7 @@ final class ProductsGallery: UIView, InputItem {
         searchTextFieldDecoration.translatesAutoresizingMaskIntoConstraints = false
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
+        collectionView.decelerationRate = .fast
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: frame.width)
         ])
