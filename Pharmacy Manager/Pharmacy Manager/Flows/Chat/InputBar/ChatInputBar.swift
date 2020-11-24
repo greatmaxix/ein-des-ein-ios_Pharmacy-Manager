@@ -80,7 +80,7 @@ final class ChatInputBar: InputBarAccessoryView {
         inputTextView.placeholderLabel.text = " Что Вас волнует?"
         inputTextView.placeholderLabel.textColor = Asset.LegacyColors.gray.color
         
-        setLeftStackViewWidthConstant(to: 60.0, animated: false)
+        setLeftStackViewWidthConstant(to: 90.0, animated: false)
         
         attachInputItem = AttachInputItem(view: self) {[weak self] _ in
             (self?.delegate as? ChatInputBarDelegate)?.attach()
@@ -89,7 +89,7 @@ final class ChatInputBar: InputBarAccessoryView {
         productsInputItem = ProductInputItem(view: self, action: {[weak self] _ in
             self?.showProductGallery()
         })
-        
+        middleContentViewPadding.left = 16.0
         setStackViewItems([productsInputItem, attachInputItem], forStack: .left, animated: false)
         
         attachInputItem.setSize(CGSize(width: 26.0, height: 38.0), animated: false)
