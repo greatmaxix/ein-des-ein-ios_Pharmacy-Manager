@@ -131,7 +131,7 @@ class ChatViewController: MessagesViewController {
 extension ChatViewController: ChatOutput {
     func chatDidChange(_ status: ChatService.ChatStatus) {
         switch status {
-        case .closed, .opened:
+        case .closed, .opened, .closeRequest:
             navigationItem.setRightBarButtonItems([], animated: true)
         default:
             navigationItem.setRightBarButtonItems([UIBarButtonItem.init(image: Asset.Images.Chat.close.image, style: .plain, target: self, action: #selector(closeChat))], animated: true)

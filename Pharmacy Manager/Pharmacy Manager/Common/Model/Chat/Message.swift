@@ -15,7 +15,7 @@ struct MercuryMessageResponse {
 
 struct Message: MessageType {
     
-    enum CustomMessageKind {
+    enum CustomMessageKind: Equatable {
         case button, routeSwitch, chatClosing, product(ChatProduct), application(FileAttachment), recipe(ChatRecipe)
     }
         
@@ -23,6 +23,15 @@ struct Message: MessageType {
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
+    
+    var customMessageKind: CustomMessageKind?
+    
+    var isSupplementary: Bool {
+        if let c = customMessageKind, c == .chatClosing {
+            return true
+        }
+        return false
+    }
     
     private init(kind: MessageKind, sender: ChatSender, messageId: String, date: Date) {
         self.kind = kind
@@ -49,8 +58,9 @@ struct Message: MessageType {
         self.init(kind: .custom(product), sender: sender, messageId: messageId, date: date)
     }
     
-    init(_ kind: CustomMessageKind, sender: ChatSender, messageId: String, date: Date) {
-        self.init(kind: .custom(kind), sender: sender, messageId: messageId, date: date)
+    init(_ customKind: CustomMessageKind, sender: ChatSender, messageId: String, date: Date) {
+        self.init(kind: .custom(customKind), sender: sender, messageId: messageId, date: date)
+        customMessageKind = customKind
     }
 
     static func unauthorizedMessages() -> [Message] {

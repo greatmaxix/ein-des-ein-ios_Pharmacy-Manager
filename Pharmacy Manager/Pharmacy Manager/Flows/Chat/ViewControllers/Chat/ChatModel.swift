@@ -220,6 +220,7 @@ final class ChatModel: Model, ChatInput {
     private func showCloseRequestMessages() {
         let sender = ChatSender(senderId: currentChat.user.uuid, displayName: currentChat.user.name)
         let a = Message(.chatClosing, sender: sender, messageId: "\(currentChat.lastMessage.id + 1)", date: Date())
+        
         insertMessage(a)
     }
     
@@ -318,7 +319,9 @@ final class ChatModel: Model, ChatInput {
         manageChatProvider.load(target: .initiateChatClosing(currentChat.id)) {[weak self] result in
             self?.output?.hideActivityIndicator()
             switch result {
-            case .success: break
+            case .success(let response):
+                self?.currentChat = response.item
+                self?.output?.chatDidChange(response.item.status)
             case .failure(let error):
                 self?.output?.showError(text: error.localizedDescription)
             }
@@ -492,7 +495,9 @@ extension ChatModel: ChatServiceDelegate {
                 showCloseRequestMessages()
             case .closed:
                 showEndChatMessage()
-            default: break
+            case .answered, .opened:
+                messages = messages.filter({$0.isSupplementary == false})
+                output?.messagesCollectionView.reloadData()
             }
             output?.chatDidChange(currentChat.status)
         default:
