@@ -25,7 +25,7 @@ final class ChatInputBar: InputBarAccessoryView {
         let itemWidth = width / 3.0
         let rect = CGRect(origin: .zero, size: CGSize(width: width, height: itemWidth * 2))
         let g = ChatGallery(frame: rect)
-        setStackViewItems(bottomStackViewItems + [g], forStack: .bottom, animated: false)
+        setStackViewItems( bottomStackViewItems + [g], forStack: .bottom, animated: false)
         g.actionsDelegate = self
         g.isHidden = true
         return g
@@ -145,8 +145,14 @@ final class ChatInputBar: InputBarAccessoryView {
             g.appearanceState = g.appearanceState == .closed ? .opened : .closed
         default: break
         }
+        
         DispatchQueue.main.async {
             self.productsInputItem.isHighlighted = g.appearanceState == .opened
+            
+            if self.chatGallery.isHidden == false {
+                self.hideGallery()
+            }
+            
             UIView.animate(withDuration: 0.3) {
                 self.productsGallery.isHidden = !self.productsInputItem.isHighlighted
                 self.layoutStackViews([.bottom])
@@ -155,12 +161,11 @@ final class ChatInputBar: InputBarAccessoryView {
     }
     
     func hideGallery() {
-        if bottomStackViewItems.count > 0 {
+        if chatGallery.isHidden == false {
             DispatchQueue.main.async { [weak self] in
                 self?.attachInputItem.isHighlighted = false
                 UIView.animate(withDuration: 0.3) {
                     self?.chatGallery.isHidden = true
-                    self?.productsGallery.isHidden = true
                     self?.layoutStackViews([.bottom])
                 }
             }
