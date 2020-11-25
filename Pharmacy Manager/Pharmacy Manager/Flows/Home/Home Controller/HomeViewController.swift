@@ -195,11 +195,11 @@ extension HomeViewController: HomeViewControllerInput {
         if errorText?.isEmpty ?? true {
             setupRecommendedProducts()
         }
+        activityIndicator.hide(animated: true)
     }
     
 
     func networkingDidComplete(errorText: String?) {
-        activityIndicator.hide(animated: true)
         if errorText?.isEmpty ?? true {
             fillChatInfo()
             fillMessagesInfo()

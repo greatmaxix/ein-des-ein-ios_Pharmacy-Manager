@@ -39,8 +39,8 @@ class LastRecommendedView: UIView {
         if let url = URL(string: item.pictureUrls.first ?? "") {
             medicineImageView.loadImageBy(url: url)
         }
-        medicineNameLabel.text = item.productName
-        releaseFormLabel.text = item.releaseForm
-        priceLabel.text = item.minPrice?.description
+        medicineNameLabel.text = item.productName.htmlToString
+        releaseFormLabel.text = item.releaseForm.htmlToString
+        priceLabel.text = item.minPrice?.moneyString(with: "₸") ?? "-"
     }
 }

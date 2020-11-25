@@ -113,8 +113,8 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
                 } else {
                     self.products = response.items.reversed()
                 }
-                
                 self.output.recommendedProductsWasLoaded(errorText: nil)
+                
             case .failure(let error):
                 self.output.recommendedProductsWasLoaded(errorText: error.localizedDescription)
             }
