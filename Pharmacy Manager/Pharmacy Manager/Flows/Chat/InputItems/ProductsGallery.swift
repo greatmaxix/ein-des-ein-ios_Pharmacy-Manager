@@ -174,14 +174,7 @@ final class ProductsGallery: UIView, InputItem {
     func textViewDidChangeAction(with textView: InputTextView) {}
     func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
     func keyboardEditingEndsAction() {}
-    func keyboardEditingBeginsAction() {
-        appearanceState = .closed
-        
-        UIView.animate(withDuration: 0.3) {
-            self.isHidden = true
-            self.superview?.layoutIfNeeded()
-        }
-    }
+    func keyboardEditingBeginsAction() {}
     
     func willShowGallery() {
         productsProvider.load(target: .lastProducts) {[weak self] result in
