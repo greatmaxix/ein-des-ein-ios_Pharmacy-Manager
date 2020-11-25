@@ -8,8 +8,41 @@
 
 import UIKit
 
+final class RoundedNavigationBar: UINavigationBar {
+ 
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+
+        context.saveGState()
+        defer { context.restoreGState() }
+        let cornerRaii = 10.0
+        let path = UIBezierPath(
+          roundedRect: rect,
+          byRoundingCorners: [.bottomLeft, .bottomRight],
+            cornerRadii: CGSize(width: cornerRaii, height: cornerRaii)
+        )
+
+        context.addPath(path.cgPath)
+        context.closePath()
+        context.setFillColor(Asset.LegacyColors.welcomeBlue.color.cgColor)
+        context.fillPath()
+    }
+}
+
 class NavigationController: UINavigationController {
 
+    override init(rootViewController: UIViewController) {
+        super.init(navigationBarClass: RoundedNavigationBar.self, toolbarClass: nil)
+        viewControllers = [rootViewController]
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -28,10 +61,20 @@ class NavigationController: UINavigationController {
     
     private func setupNavigationBar() {
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationBar.tintColor = .white
+        navigationBar.tintColor = UIColor.white
         navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(Asset.Images.Common.navigationBar.image.stretchableImage(withLeftCapWidth: 20,
-                                                                                    topCapHeight: 20),
-                                          for: .default)
+        setStatusBar(backgroundColor: Asset.LegacyColors.welcomeBlue.color)
+    }
+    
+    func setStatusBar(backgroundColor: UIColor) {
+        let statusBarFrame: CGRect
+        if #available(iOS 13.0, *) {
+            statusBarFrame = view.window?.windowScene?.statusBarManager?.statusBarFrame ?? UIApplication.shared.statusBarFrame
+        } else {
+            statusBarFrame = UIApplication.shared.statusBarFrame
+        }
+        let statusBarView = UIView(frame: statusBarFrame)
+        statusBarView.backgroundColor = backgroundColor
+        view.addSubview(statusBarView)
     }
 }

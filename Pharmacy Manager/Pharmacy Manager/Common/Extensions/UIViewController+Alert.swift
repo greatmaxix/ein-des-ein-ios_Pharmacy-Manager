@@ -81,4 +81,19 @@ extension UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    func showMessage(title: String?, message: String?, action: AlertAction) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let uiAction = UIAlertAction(title: action.title, style: .default, handler: { _ in
+            alertVC.dismiss(animated: true, completion: nil)
+            action.callback()
+        })
+        alertVC.addAction(uiAction)
+        
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    func showMessage(_ message: String?) {
+        let alertVC = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        present(alertVC, animated: true, completion: nil)
+    }
 }

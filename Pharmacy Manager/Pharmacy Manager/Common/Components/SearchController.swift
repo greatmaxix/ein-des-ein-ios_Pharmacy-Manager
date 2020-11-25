@@ -10,6 +10,10 @@ import UIKit
 
 class SearchController: UISearchController {
 
+    override var searchBar: UISearchBar {
+        return super.searchBar
+    }
+    
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
         setupSearchBar()
@@ -22,6 +26,10 @@ class SearchController: UISearchController {
     
     func setupSearchBar() {
         searchBar.searchBarStyle = .prominent
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.tintColor = Asset.LegacyColors.textDarkBlue.color
+        }
+        searchBar.tintColor = Asset.LegacyColors.textDarkBlue.color
         obscuresBackgroundDuringPresentation = false
         searchBar.setSearchFieldBackgroundImage(Asset.Images.Search.searchFieldActive.image, for: .normal)
     }
