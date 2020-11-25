@@ -13,7 +13,7 @@ final class SubcategoryTableViewCell: HighlightedTableViewCell {
     @IBOutlet weak var decorationView: UIView! {
         didSet {
             decorationView.layer.cornerRadius = 8.0
-            decorationView.decorationBlackShadow()
+            decorationView.dropBlackShadow()
         }
     }
     

@@ -12,7 +12,7 @@ import Foundation
 internal enum L10n {
 
   internal enum Tabbar {
-    /// 
+    /// Chats
     internal static let chat = L10n.tr("Localizable", "tabbar.chat")
     /// Home
     internal static let home = L10n.tr("Localizable", "tabbar.home")

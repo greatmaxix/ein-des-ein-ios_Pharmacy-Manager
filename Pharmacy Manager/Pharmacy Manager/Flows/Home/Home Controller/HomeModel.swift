@@ -98,6 +98,7 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     }
 
     func loadData() {
+
         loadChats()
         loadLastProducts()
     }
@@ -105,14 +106,17 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     private func loadLastProducts() {
         lastProductsAPI.load(target: .lastProducts) {[weak self] result in
             guard let `self` = self else { return }
+            
             switch result {
             case .success(let response):
+                
                 if response.items.count > 2 {
                     let array = Array(response.items.suffix(2))
                     self.products = array
                 } else {
                     self.products = response.items.reversed()
                 }
+                
                 self.output.recommendedProductsWasLoaded(errorText: nil)
                 
             case .failure(let error):
@@ -122,7 +126,8 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     }
 
     private func loadChats() {
-        lastChatAPI.load(target: .lastChats) { [weak self] result in
+        lastChatAPI.load(target: .lastOpened) { [weak self] result in
+
             guard let `self` = self else {
                 return
             }

@@ -24,16 +24,26 @@ class ChatFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         let model = ChatsListModel(parent: self)
         root.model = model
         model.output = root
-        navigationController = UINavigationController(rootViewController: root)
+        navigationController = NavigationController(rootViewController: root)
         
         return navigationController
     }
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
-
+        addHandler(.onRaise) {[weak self] (event: ChatListEvent) in
+            switch event {
+            case .open(let chat):
+                self?.open(chat)
+            default: break
+            }
+        }
     }
     
+    private func open(_ chat: Chat) {
+        let vc = ChatCoordinator(parent: self, navigation: navigationController, chat: chat).createFlow()
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
 
 extension ChatFlowCoordinator {

@@ -14,13 +14,15 @@ struct UserDTO: Equatable, Codable, Identifiable {
     let email: String?
     let uuid: String
     var avatar: AvatarDTO?
-
+    var topicName: String
+    
     enum Keys: String, CodingKey {
         case uuid
         case id
         case lastName
         case avatar
         case email
+        case topicName
     }
 
     init(from decoder: Decoder) throws {
@@ -31,6 +33,7 @@ struct UserDTO: Equatable, Codable, Identifiable {
         name = try container.decode(String.self, forKey: .lastName)
         avatar = try? container.decode(AvatarDTO.self, forKey: .avatar)
         email = try? container.decode(String.self, forKey: .email)
+        topicName = try container.decode(String.self, forKey: .topicName)
     }
 }
 

@@ -31,9 +31,6 @@ class SignInModel: Model {
 extension SignInModel: SignInModelInput, SignInViewControllerOutput {
 
     func signIn(email: String, password: String) {
-
-
-
         apiLayer.load(target: .signIn(email: email, password: password)) { [weak self] (result) in
             guard let `self` = self else { return }
 
