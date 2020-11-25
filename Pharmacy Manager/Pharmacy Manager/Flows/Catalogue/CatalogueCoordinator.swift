@@ -86,7 +86,7 @@ extension CatalogueCoordinator {
 // MARK: - TabBarEmbedCoordinable
 extension CatalogueCoordinator: TabBarEmbedCoordinable {
     var tabItemInfo: TabBarItemInfo {
-        return TabBarItemInfo(title: "Каталог",
+        return TabBarItemInfo(title: L10n.Catalogue.title,
                               icon: Asset.Images.TabBar.tabbarCatalogue.image,
                               highlightedIcon: Asset.Images.TabBar.tabbarCatalogue.image)
     }

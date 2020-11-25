@@ -69,7 +69,7 @@ extension SearchBar {
     
     private func initialize() {
         self.clipsToBounds = true
-        self.textField.placeholder = "Что необходимо найти?"
+        self.textField.placeholder = L10n.Tabbar.searchPlaceholder
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 }
