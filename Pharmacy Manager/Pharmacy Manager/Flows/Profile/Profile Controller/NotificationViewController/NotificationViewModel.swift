@@ -12,6 +12,7 @@ import EventsTree
 protocol NotificationModelInput: class {
     var cellCount: Int { get }
     var cellData: [(String,Bool)] {get}
+    func back()
 }
 
 protocol NotificationModelOutput: class {
@@ -28,6 +29,11 @@ class NotificationModel: Model {
 }
 
 extension NotificationModel: NotificationModelInput, NotificationViewControllerOutput {
+
+    func back() {
+        raise(event: ProfileEvent.back)
+    }
+    
     var cellData: [(String, Bool)] {
         return [("Push уведомления", true),
                 ("Email рассылка", true),

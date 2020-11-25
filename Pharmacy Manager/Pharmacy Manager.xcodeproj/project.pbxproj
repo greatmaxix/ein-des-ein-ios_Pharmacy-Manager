@@ -18,6 +18,8 @@
 		24408FCB256BDFA300D82445 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FC6256BDFA300D82445 /* AboutAppViewController.swift */; };
 		24408FCC256BDFA300D82445 /* AboutAppViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24408FC7256BDFA300D82445 /* AboutAppViewController.storyboard */; };
 		24408FED256BFEF900D82445 /* UIAlertAction + SetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FEC256BFEF900D82445 /* UIAlertAction + SetColor.swift */; };
+		24408FF6256D2EF100D82445 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24408FF5256D2EF100D82445 /* NavigationBarView.swift */; };
+		24408FFE256D2F1800D82445 /* NavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24408FFD256D2F1800D82445 /* NavigationBarView.xib */; };
 		247C4F6325657F4000A46061 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6225657F4000A46061 /* UITableViewCell.swift */; };
 		247C4F6825666C6300A46061 /* ProfilePersonalInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */; };
 		247C4F6925666C6300A46061 /* ProfilePersonalInfoViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */; };
@@ -304,6 +306,8 @@
 		24408FC6256BDFA300D82445 /* AboutAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		24408FC7256BDFA300D82445 /* AboutAppViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AboutAppViewController.storyboard; sourceTree = "<group>"; };
 		24408FEC256BFEF900D82445 /* UIAlertAction + SetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertAction + SetColor.swift"; sourceTree = "<group>"; };
+		24408FF5256D2EF100D82445 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		24408FFD256D2F1800D82445 /* NavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationBarView.xib; sourceTree = "<group>"; };
 		247C4F6225657F4000A46061 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		247C4F6625666C6300A46061 /* ProfilePersonalInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePersonalInfoViewCell.swift; sourceTree = "<group>"; };
 		247C4F6725666C6300A46061 /* ProfilePersonalInfoViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePersonalInfoViewCell.xib; sourceTree = "<group>"; };
@@ -638,6 +642,15 @@
 				24408FC5256BDFA300D82445 /* AboutAppHeaderViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		24408FF4256D2EBB00D82445 /* NavBarView */ = {
+			isa = PBXGroup;
+			children = (
+				24408FF5256D2EF100D82445 /* NavigationBarView.swift */,
+				24408FFD256D2F1800D82445 /* NavigationBarView.xib */,
+			);
+			path = NavBarView;
 			sourceTree = "<group>";
 		};
 		247C4F5B25657E6F00A46061 /* SearchTableViewCell */ = {
@@ -1522,6 +1535,7 @@
 		61637B46250A4A5D0029E08F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				24408FF4256D2EBB00D82445 /* NavBarView */,
 				24408FC1256BDFA300D82445 /* AboutAppViewController */,
 				24408F552568452500D82445 /* NeedHelpViewController */,
 				61637B61250B9BCA0029E08F /* Profile Controller */,
@@ -1811,6 +1825,7 @@
 				60A3C9FB256861D400690F9B /* ChatTableViewCell.xib in Resources */,
 				24408F5B25684FE300D82445 /* NeedHelpViewController.storyboard in Resources */,
 				61D341592565616600F1DE89 /* EmptySearchView.xib in Resources */,
+				24408FFE256D2F1800D82445 /* NavigationBarView.xib in Resources */,
 				61637B2E250A26F80029E08F /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				6103AB2E2563FD0A00775EF3 /* MedicineCell.xib in Resources */,
 				6103AB0A2563FC0F00775EF3 /* SubcategoryTableViewCell.xib in Resources */,
@@ -2088,6 +2103,7 @@
 				61D341902566A2DD00F1DE89 /* NSPersistentContainer.swift in Sources */,
 				6163794A250A26A70029E08F /* UIColor+Image.swift in Sources */,
 				61D341942566A2DD00F1DE89 /* Storable.swift in Sources */,
+				24408FF6256D2EF100D82445 /* NavigationBarView.swift in Sources */,
 				6163793A250A26A70029E08F /* StringFormatPrecision.swift in Sources */,
 				601613032568126E005151BC /* RoundedButton.swift in Sources */,
 				6103ABD52564011700775EF3 /* UIImage+Blur.swift in Sources */,

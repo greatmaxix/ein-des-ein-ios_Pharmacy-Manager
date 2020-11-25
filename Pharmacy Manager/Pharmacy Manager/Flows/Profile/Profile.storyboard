@@ -19,26 +19,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dmo-VI-4OS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" name="backgroundGray"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nw-tY-io7" customClass="NavigationBarView" customModule="Pharmacy_Manager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="HRn-BA-HfM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JB2-wO-F7Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dmo-VI-4OS" firstAttribute="top" secondItem="8fJ-Qz-BpC" secondAttribute="top" id="54n-6X-BGs"/>
                             <constraint firstItem="JB2-wO-F7Z" firstAttribute="bottom" secondItem="dmo-VI-4OS" secondAttribute="bottom" id="69H-DO-JJB"/>
+                            <constraint firstItem="1nw-tY-io7" firstAttribute="top" secondItem="8fJ-Qz-BpC" secondAttribute="top" id="8mo-v5-Mgv"/>
+                            <constraint firstItem="1nw-tY-io7" firstAttribute="leading" secondItem="JB2-wO-F7Z" secondAttribute="leading" id="ABb-hr-v2K"/>
                             <constraint firstItem="JB2-wO-F7Z" firstAttribute="trailing" secondItem="dmo-VI-4OS" secondAttribute="trailing" id="Hhf-uZ-E8o"/>
+                            <constraint firstItem="1nw-tY-io7" firstAttribute="trailing" secondItem="JB2-wO-F7Z" secondAttribute="trailing" id="LMH-cq-eqj"/>
+                            <constraint firstItem="dmo-VI-4OS" firstAttribute="top" secondItem="1nw-tY-io7" secondAttribute="bottom" id="Nwo-Mh-OhH"/>
                             <constraint firstItem="dmo-VI-4OS" firstAttribute="leading" secondItem="JB2-wO-F7Z" secondAttribute="leading" id="hvk-iT-jxz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navBarView" destination="1nw-tY-io7" id="Hgj-kK-NdX"/>
                         <outlet property="tableView" destination="dmo-VI-4OS" id="ABc-4n-2Ya"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cm-rT-trr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="157.97101449275362" y="114.50892857142857"/>
+            <point key="canvasLocation" x="155.07246376811597" y="114.50892857142857"/>
         </scene>
     </scenes>
     <resources>
