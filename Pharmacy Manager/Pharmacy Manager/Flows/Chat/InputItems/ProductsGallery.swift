@@ -62,10 +62,19 @@ final class ProductsGallery: UIView, InputItem {
     var parentStackViewPosition: InputStackView.Position?
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: ChatGalleryLayout())
-    let searchTextField = UITextField()
+    let searchTextField = UITextView()
     
     let searchTextFieldDecoration = UIView()
+    
     var products: [ChatProduct] = []
+    var filteredProducts: [ChatProduct] = []
+    let clearButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
+    let searchPlaceholder = UILabel()
+    private let searchDebouncer: Executor = .debounce(interval: 0.5)
+    
+    private var isSearching: Bool {
+        return !searchTextField.text.isEmpty
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,17 +91,22 @@ final class ProductsGallery: UIView, InputItem {
         
         searchTextFieldDecoration.backgroundColor = .white
         searchTextFieldDecoration.layer.cornerRadius = 18.0
+        
+        searchPlaceholder.text = "Поиск"
+        searchPlaceholder.textColor = Asset.LegacyColors.greyText.color
+        searchPlaceholder.font = FontFamily.OpenSans.regular.font(size: 16.0)
+        searchPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        
+        clearButton.setImage(Asset.Images.Chat.clear.image, for: .normal)
+        clearButton.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        clearButton.isHidden = true
+        
         searchTextField.textColor = Asset.LegacyColors.textDarkBlue.color
-        searchTextField.placeholder = "Поиск"
         searchTextField.delegate = self
-        let b = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
-        b.setImage(Asset.Images.Chat.clear.image, for: .normal)
-        b.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
-        
-        searchTextField.rightView = b
-        searchTextField.rightViewMode = .whileEditing
-        searchTextField.delegate = self
-        
+        searchTextField.font = FontFamily.OpenSans.regular.font(size: 16.0)
+        searchTextField.isScrollEnabled = false
+        searchTextField.textContainerInset = .zero
         collectionView.backgroundColor = .white
         
         searchTextFieldDecoration.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +133,21 @@ final class ProductsGallery: UIView, InputItem {
             searchTextField.leftAnchor.constraint(equalTo: searchTextFieldDecoration.leftAnchor, constant: 16.0),
             searchTextField.rightAnchor.constraint(equalTo: searchTextFieldDecoration.rightAnchor, constant: -16.0),
             searchTextField.bottomAnchor.constraint(equalTo: searchTextFieldDecoration.bottomAnchor, constant: -6.0)
+        ])
+        
+        addSubview(searchPlaceholder)
+        
+        NSLayoutConstraint.activate([
+            searchPlaceholder.topAnchor.constraint(equalTo: searchTextField.topAnchor, constant: 0.0),
+            searchPlaceholder.leftAnchor.constraint(equalTo: searchTextField.leftAnchor, constant: 4.0)
+        ])
+        
+        addSubview(clearButton)
+        NSLayoutConstraint.activate([
+            clearButton.topAnchor.constraint(equalTo: searchTextField.topAnchor, constant: 1.0),
+            clearButton.trailingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 0.0),
+            clearButton.heightAnchor.constraint(equalToConstant: 24.0),
+            clearButton.widthAnchor.constraint(equalToConstant: 24.0)
         ])
         
         addSubview(collectionView)
@@ -158,7 +187,10 @@ final class ProductsGallery: UIView, InputItem {
         productsProvider.load(target: .lastProducts) {[weak self] result in
             switch result {
             case .success(let response):
+                self?.searchTextField.text = ""
+                self?.searchPlaceholder.isHidden = false
                 self?.products = response.items
+                self?.filteredProducts = response.items
                 self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -167,36 +199,68 @@ final class ProductsGallery: UIView, InputItem {
     }
     
     @objc func clearSearch() {
+        filteredProducts = products
+        clearButton.isHidden = true
         searchTextField.text = ""
+        searchPlaceholder.isHidden = false
         searchTextField.resignFirstResponder()
+        collectionView.reloadData()
     }
 }
 
 extension ProductsGallery: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return filteredProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductGalleryCollectionViewCell.className, for: indexPath)
-        (cell as? ProductGalleryCollectionViewCell)?.apply(product: products[indexPath.row])
+        (cell as? ProductGalleryCollectionViewCell)?.apply(product: filteredProducts[indexPath.row])
         return cell
     }
 }
 
 extension ProductsGallery: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        actionsDelegate?.didSelect(products[indexPath.row])
+        actionsDelegate?.didSelect(filteredProducts[indexPath.row])
     }
 }
 
-extension ProductsGallery: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
+extension ProductsGallery: UITextViewDelegate {
+       
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        clearButton.isHidden = textView.text.isEmpty
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
         return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            searchPlaceholder.isHidden = false
+            clearButton.isHidden = true
+        } else {
+            searchPlaceholder.isHidden = true
+            clearButton.isHidden = false
+        }
+        searchDebouncer.execute {
+            if textView.text.isEmpty {
+                self.filteredProducts = self.products
+            } else {
+                self.filteredProducts = self.products.filter({ $0.name.range(of: textView.text, options: .caseInsensitive, range: nil, locale: nil) != nil })
+            }
+            
+            self.collectionView.reloadData()
+        }
     }
 }
 
