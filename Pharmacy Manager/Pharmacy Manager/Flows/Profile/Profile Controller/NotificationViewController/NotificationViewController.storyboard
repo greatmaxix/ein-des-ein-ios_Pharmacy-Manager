@@ -18,26 +18,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9x1-0M-QFj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDG-1T-l5s" customClass="NavigationBarView" customModule="Pharmacy_Manager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="dKb-Ab-0Gc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VaB-0J-z1a"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="XDG-1T-l5s" firstAttribute="leading" secondItem="VaB-0J-z1a" secondAttribute="leading" id="3dV-vo-RJ6"/>
                             <constraint firstItem="9x1-0M-QFj" firstAttribute="leading" secondItem="VaB-0J-z1a" secondAttribute="leading" id="5bM-sa-sio"/>
-                            <constraint firstItem="9x1-0M-QFj" firstAttribute="top" secondItem="VaB-0J-z1a" secondAttribute="top" id="WVK-zt-bzX"/>
+                            <constraint firstItem="9x1-0M-QFj" firstAttribute="top" secondItem="XDG-1T-l5s" secondAttribute="bottom" id="LFk-oV-QYL"/>
+                            <constraint firstItem="VaB-0J-z1a" firstAttribute="trailing" secondItem="XDG-1T-l5s" secondAttribute="trailing" id="bhd-cY-ztL"/>
                             <constraint firstItem="VaB-0J-z1a" firstAttribute="trailing" secondItem="9x1-0M-QFj" secondAttribute="trailing" id="pwt-1z-ybd"/>
+                            <constraint firstItem="XDG-1T-l5s" firstAttribute="top" secondItem="nj3-Sz-sjH" secondAttribute="top" id="trm-V1-evl"/>
                             <constraint firstItem="VaB-0J-z1a" firstAttribute="bottom" secondItem="9x1-0M-QFj" secondAttribute="bottom" id="xeb-Lw-V4h"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navBarView" destination="XDG-1T-l5s" id="OP2-hx-8A2"/>
                         <outlet property="tableView" destination="9x1-0M-QFj" id="3J2-x5-CZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXc-DA-a2G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417" y="-117"/>
+            <point key="canvasLocation" x="-417.39130434782612" y="-117.1875"/>
         </scene>
     </scenes>
     <resources>

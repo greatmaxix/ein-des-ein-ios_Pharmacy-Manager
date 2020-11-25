@@ -19,26 +19,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EVO-Zm-30y">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" name="backgroundGray"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTu-X4-1xl" customClass="NavigationBarView" customModule="Pharmacy_Manager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="TRX-gY-4Ff"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="45V-Jh-REF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="EVO-Zm-30y" firstAttribute="top" secondItem="45V-Jh-REF" secondAttribute="top" id="GHp-M5-FMV"/>
+                            <constraint firstItem="EVO-Zm-30y" firstAttribute="top" secondItem="CTu-X4-1xl" secondAttribute="bottom" id="4hc-dQ-2zn"/>
+                            <constraint firstItem="CTu-X4-1xl" firstAttribute="leading" secondItem="45V-Jh-REF" secondAttribute="leading" id="5ck-q6-qqR"/>
+                            <constraint firstItem="45V-Jh-REF" firstAttribute="trailing" secondItem="CTu-X4-1xl" secondAttribute="trailing" id="9qr-oq-of6"/>
+                            <constraint firstItem="CTu-X4-1xl" firstAttribute="top" secondItem="tdf-bg-XaA" secondAttribute="top" id="N9k-av-Yob"/>
                             <constraint firstItem="45V-Jh-REF" firstAttribute="trailing" secondItem="EVO-Zm-30y" secondAttribute="trailing" id="WfI-e2-l41"/>
                             <constraint firstItem="45V-Jh-REF" firstAttribute="bottom" secondItem="EVO-Zm-30y" secondAttribute="bottom" id="r4W-J6-naO"/>
                             <constraint firstItem="EVO-Zm-30y" firstAttribute="leading" secondItem="45V-Jh-REF" secondAttribute="leading" id="vbc-80-nqb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navBarView" destination="CTu-X4-1xl" id="qwW-eR-Man"/>
                         <outlet property="tableView" destination="EVO-Zm-30y" id="vkA-3h-UyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kiQ-la-uqr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="-73"/>
+            <point key="canvasLocation" x="-320.28985507246381" y="-73.660714285714278"/>
         </scene>
     </scenes>
     <resources>

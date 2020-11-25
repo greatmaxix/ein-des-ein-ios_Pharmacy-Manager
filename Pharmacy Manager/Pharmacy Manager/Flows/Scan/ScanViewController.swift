@@ -63,7 +63,7 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
         blurView.backgroundColor = GUI.blurViewBackgroundColor
         view.insertSubview(blurView, belowSubview: preview)
         
-        title = "Штрих код"
+        title = L10n.Scan.title
         preview.isHidden = !model.isShouldShowPreview
         doneButton.layer.cornerRadius = doneButton.frame.height / 2
     }

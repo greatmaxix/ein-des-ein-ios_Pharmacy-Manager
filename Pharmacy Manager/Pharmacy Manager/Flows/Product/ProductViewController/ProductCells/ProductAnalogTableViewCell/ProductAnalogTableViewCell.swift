@@ -22,7 +22,7 @@ final class ProductAnalogTableViewCell: HighlightedTableViewCell, ContainerView 
         super.awakeFromNib()
         containerView.layer.cornerRadius = GUI.cornerRadius
         
-        analogsLabel.text = "Аналоги"
+        analogsLabel.text = L10n.Product.analogsLabel
     }
     
     func apply(product: Product) {

@@ -12,6 +12,7 @@ import EventsTree
 protocol NotificationModelInput: class {
     var cellCount: Int { get }
     var cellData: [(String,Bool)] {get}
+    func back()
 }
 
 protocol NotificationModelOutput: class {
@@ -21,6 +22,7 @@ protocol NotificationModelOutput: class {
 class NotificationModel: Model {
     
     weak var output: NotificationModelOutput!
+    private let localizedStrings = L10n.ProfileScreen.Notifications.self
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
@@ -28,12 +30,17 @@ class NotificationModel: Model {
 }
 
 extension NotificationModel: NotificationModelInput, NotificationViewControllerOutput {
+
+    func back() {
+        raise(event: ProfileEvent.back)
+    }
+    
     var cellData: [(String, Bool)] {
-        return [("Push уведомления", true),
-                ("Email рассылка", true),
-                ("test", true),
-                ("Новый запрос в чате", true),
-                ("Обновление рейтинга", false)]
+        return [(localizedStrings.pushNotification, true),
+                (localizedStrings.mailing, true),
+                ("", true),
+                (localizedStrings.newChatRequest, true),
+                (localizedStrings.ratingUpdate, false)]
     }
     
     var cellCount: Int {

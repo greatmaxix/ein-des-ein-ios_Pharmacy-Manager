@@ -127,13 +127,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="183" height="104"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoO-cb-75A">
-                                                        <rect key="frame" x="8" y="28" width="36" height="37.5"/>
+                                                        <rect key="frame" x="8" y="28" width="37" height="44"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="32"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новых запросов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egb-yB-M7W">
-                                                        <rect key="frame" x="8" y="65.5" width="109" height="16.5"/>
+                                                        <rect key="frame" x="8" y="72" width="120" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -272,7 +272,7 @@
                                                 <rect key="frame" x="199" y="0.0" width="183" height="104"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ожидается в разработке" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2Y-TW-Ihd">
-                                                        <rect key="frame" x="8" y="75.5" width="167" height="16.5"/>
+                                                        <rect key="frame" x="8" y="53.5" width="167" height="38.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -318,13 +318,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0n-Hc-Ie5">
-                                                        <rect key="frame" x="80" y="8" width="101.5" height="19"/>
+                                                        <rect key="frame" x="80" y="8" width="109.5" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" name="app_blue_dark"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lna-aC-0ls">
-                                                        <rect key="frame" x="80" y="33" width="290" height="16.5"/>
+                                                        <rect key="frame" x="80" y="36" width="290" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" name="app_blue_dark"/>
                                                         <nil key="highlightedColor"/>
@@ -372,13 +372,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAY-Cq-1jT">
-                                                        <rect key="frame" x="80" y="8" width="101.5" height="19"/>
+                                                        <rect key="frame" x="80" y="8" width="109.5" height="22"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                                         <color key="textColor" name="app_blue_dark"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arlene McCoy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VL6-m4-8ch">
-                                                        <rect key="frame" x="80" y="33" width="290" height="16.5"/>
+                                                        <rect key="frame" x="80" y="36" width="290" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="14"/>
                                                         <color key="textColor" name="app_blue_dark"/>
                                                         <nil key="highlightedColor"/>
@@ -425,13 +425,13 @@
                                 <rect key="frame" x="0.0" y="506" width="414" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы недавно рекомендовали" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKo-kO-fBf">
-                                        <rect key="frame" x="16" y="0.0" width="382" height="19"/>
+                                        <rect key="frame" x="16" y="0.0" width="382" height="22"/>
                                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                         <color key="textColor" name="app_blue_dark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="JUi-So-Gwg">
-                                        <rect key="frame" x="16" y="27" width="382" height="192"/>
+                                        <rect key="frame" x="16" y="30" width="382" height="192"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZG-hG-Q0V" customClass="LastRecommendedView" customModule="Pharmacy_Manager" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="183" height="192"/>
@@ -498,11 +498,14 @@
                         <outlet property="fourthAvatarView" destination="1BW-tp-rPX" id="Ne4-Yv-AhB"/>
                         <outlet property="fourthImageView" destination="lMC-Pu-Kp6" id="d4l-oK-d6g"/>
                         <outlet property="inDevView" destination="Pmw-G5-CId" id="KPL-nT-qap"/>
+                        <outlet property="inDevelopTitleLabel" destination="n2Y-TW-Ihd" id="4bX-No-lGV"/>
                         <outlet property="lowerMessageAvatar" destination="HQY-v6-Uk7" id="lPr-Nf-qoU"/>
                         <outlet property="lowerMessageName" destination="YAY-Cq-1jT" id="Xrt-9U-koR"/>
                         <outlet property="lowerMessageText" destination="VL6-m4-8ch" id="u8H-XP-ihE"/>
                         <outlet property="lowerMessageView" destination="Le6-84-q8b" id="zF6-wg-Irr"/>
                         <outlet property="newChatsView" destination="pJq-yZ-bGY" id="tka-cL-t55"/>
+                        <outlet property="newRequstsTitleLabel" destination="Egb-yB-M7W" id="V7N-3s-KcK"/>
+                        <outlet property="recentRecommendationTitleLabel" destination="GKo-kO-fBf" id="Qb4-kw-LBx"/>
                         <outlet property="secondAvatarView" destination="fmP-VJ-Ro2" id="SeO-WN-gcK"/>
                         <outlet property="secondImageView" destination="3Z0-5g-egY" id="WrM-TK-Ijc"/>
                         <outlet property="thirdAvatarView" destination="zJR-lW-BKD" id="W0v-gn-4uv"/>
@@ -512,8 +515,8 @@
                         <outlet property="upperMessageName" destination="E0n-Hc-Ie5" id="dKa-YQ-afO"/>
                         <outlet property="upperMessageText" destination="lna-aC-0ls" id="Ncj-4X-cel"/>
                         <outlet property="upperMessageView" destination="ION-Ip-QMX" id="DQD-Ia-X0z"/>
-                        <outletCollection property="recommendedViews" destination="CZG-hG-Q0V" collectionClass="NSMutableArray" id="c6R-Bf-H6q"/>
-                        <outletCollection property="recommendedViews" destination="r9u-u4-d78" collectionClass="NSMutableArray" id="yKG-fz-47o"/>
+                        <outletCollection property="recommendedViews" destination="CZG-hG-Q0V" collectionClass="NSMutableArray" id="Hdo-z1-nNF"/>
+                        <outletCollection property="recommendedViews" destination="r9u-u4-d78" collectionClass="NSMutableArray" id="REb-Nk-bKv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAn-wn-VuK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

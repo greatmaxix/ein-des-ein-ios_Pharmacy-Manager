@@ -30,6 +30,10 @@ class HomeViewController: UIViewController {
     }()
 
     @IBOutlet weak var totalChatsLabel: UILabel!
+    
+    @IBOutlet weak var newRequstsTitleLabel: UILabel!
+    @IBOutlet weak var inDevelopTitleLabel: UILabel!
+    @IBOutlet weak var recentRecommendationTitleLabel: UILabel!
 
     @IBOutlet weak var firstAvatarView: UIView!
     @IBOutlet weak var secondAvatarView: UIView!
@@ -58,6 +62,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         containerView.isHidden = true
+        
+        newRequstsTitleLabel.text = L10n.HomeScreen.newRequestTitle
+        inDevelopTitleLabel.text = L10n.HomeScreen.inDevelopment
+        recentRecommendationTitleLabel.text = L10n.HomeScreen.recentRecommendation
 
         upperMessageView.dropLightBlueShadow()
         lowerMessageView.dropLightBlueShadow()
