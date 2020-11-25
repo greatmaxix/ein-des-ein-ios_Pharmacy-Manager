@@ -20,6 +20,7 @@ protocol HomeModelInput: class {
 
     func avatarImages() -> [URL?]
     func messages() -> [LastChat]
+    func recommendedProducts() -> [LastProducts]
     func openSearch()
     func loadData()
     func openScan()
@@ -35,13 +36,20 @@ class HomeModel: Model {
 
     private var chats: [LastChat] = []
     private var total: Int = 0
+    
+    private var products: [LastProducts] = []
 
     private let lastChatAPI = DataManager<ChatAPI, LastChatsResponse>()
+    private let lastProductsAPI = DataManager<ChatAPI, LastProductsRecommendResponse>()
 //    private let wishListProvider = DataManager<WishListAPI, PostResponse>()
 
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+    
+    func recommendedProducts() -> [LastProducts] {
+        products
+    }
     
     func openScan() {
         raise(event: HomeEvent.openScan)
@@ -87,6 +95,31 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     }
 
     func loadData() {
+        loadChats()
+        loadLastProducts()
+    }
+    
+    private func loadLastProducts() {
+        lastProductsAPI.load(target: .lastProducts) {[weak self] result in
+            guard let `self` = self else { return }
+            switch result {
+            case .success(let response):
+                let responseArray = response.items.reversed()
+                
+                if responseArray.count > 2 {
+                    self.products = responseArray.dropLast(2)
+                } else {
+                    self.products = responseArray.reversed()
+                }
+                
+                self.output.networkingDidComplete(errorText: nil)
+            case .failure(let error):
+                self.output.networkingDidComplete(errorText: error.localizedDescription)
+            }
+        }
+    }
+
+    private func loadChats() {
         lastChatAPI.load(target: .lastChats) { [weak self] result in
             guard let `self` = self else {
                 return
@@ -101,5 +134,4 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
             }
         }
     }
-
 }
