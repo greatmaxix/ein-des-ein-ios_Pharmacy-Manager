@@ -40,8 +40,8 @@ class ChatProductCollectionViewCell: MessageCollectionViewCell {
         if let url = product.pictures.first?.url {
             productImage.loadImageBy(url: url)
         }
-        nameLabel.text = product.name
-        detailsLabel.text = product.releaseForm
+        nameLabel.text = product.name.htmlToString
+        detailsLabel.text = product.releaseForm.htmlToString
         if let p = product.priceRange?.minPrice {
             priceLabel.text = "\(p)"
         }

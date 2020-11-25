@@ -9,6 +9,10 @@
 import Foundation
 import InputBarAccessoryView
 
+protocol ProductGalleryDelegate: class {
+    func didSelect(_ product: ChatProduct)
+}
+
 final class ProductsGallery: UIView, InputItem {
     
     private let productsProvider = DataManager<ChatAPI, ProductListResponse>()
@@ -18,7 +22,7 @@ final class ProductsGallery: UIView, InputItem {
         
         var contentHeight: CGFloat {
             switch self {
-            case .closed: return 0.0
+            case .closed: return 300.0
             case .opened: return 300.0
             case .large: return 500.0
             }
@@ -29,7 +33,7 @@ final class ProductsGallery: UIView, InputItem {
         static let size = CGSize(width: 30.0, height: 36.0)
         static let imageRect = CGRect(x: 12.0, y: 0.0, width: 26.0, height: 30.0)
     }
-
+    
     var appearanceState = GaleryState.closed {
         didSet {
             invalidateIntrinsicContentSize()
@@ -52,7 +56,7 @@ final class ProductsGallery: UIView, InputItem {
         return CGSize(width: frame.width, height: 136.0)
     }
   
-    weak var actionsDelegate: AnyObject?
+    weak var actionsDelegate: ProductGalleryDelegate?
     
     var inputBarAccessoryView: InputBarAccessoryView?
     var parentStackViewPosition: InputStackView.Position?
@@ -181,7 +185,9 @@ extension ProductsGallery: UICollectionViewDataSource {
 }
 
 extension ProductsGallery: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        actionsDelegate?.didSelect(products[indexPath.row])
+    }
 }
 
 extension ProductsGallery: UITextFieldDelegate {

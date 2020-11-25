@@ -20,6 +20,7 @@ protocol ChatInput: MessagesDataSource, MessagesDisplayDelegate, MessagesLayoutD
     var title: String { get }
     func load()
     func sendMessage(text: String)
+    func send(_ product: ChatProduct)
     func upload(images: [LibraryImage])
     func closeChat()
 }
@@ -382,6 +383,19 @@ final class ChatModel: Model, ChatInput {
             case .success(let pdfURL):
                 self?.raise(event: ChatEvent.openPDF(pdfURL))
             case .failure: break
+            }
+        }
+    }
+    
+    func send(_ product: ChatProduct) {
+        output?.showActivityIndicator()
+        sendProductProvider.load(target: .createProductMessage(chatId: currentChat.id, productId: product.id)) {[weak self] result in
+            self?.output?.hideActivityIndicator()
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
