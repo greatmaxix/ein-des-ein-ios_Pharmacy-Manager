@@ -20,7 +20,7 @@ protocol HomeModelInput: class {
 
     func avatarImages() -> [URL?]
     func messages() -> [LastChat]
-    func recommendedProducts() -> [LastProducts]
+    var recommendedProducts: [LastProducts] {get}
     func openSearch()
     func loadData()
     func openScan()
@@ -28,6 +28,7 @@ protocol HomeModelInput: class {
 
 protocol HomeModelOutput: class {
     func networkingDidComplete(errorText: String?)
+    func recommendedProductsWasLoaded(errorText: String?)
 }
 
 class HomeModel: Model {
@@ -47,8 +48,10 @@ class HomeModel: Model {
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     
-    func recommendedProducts() -> [LastProducts] {
-        products
+    var recommendedProducts: [LastProducts] {
+        get {
+            return products
+        }
     }
     
     func openScan() {
@@ -104,17 +107,16 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
             guard let `self` = self else { return }
             switch result {
             case .success(let response):
-                let responseArray = response.items.reversed()
-                
-                if responseArray.count > 2 {
-                    self.products = responseArray.dropLast(2)
+                if response.items.count > 2 {
+                    let array = Array(response.items.suffix(2))
+                    self.products = array
                 } else {
-                    self.products = responseArray.reversed()
+                    self.products = response.items.reversed()
                 }
                 
-                self.output.networkingDidComplete(errorText: nil)
+                self.output.recommendedProductsWasLoaded(errorText: nil)
             case .failure(let error):
-                self.output.networkingDidComplete(errorText: error.localizedDescription)
+                self.output.recommendedProductsWasLoaded(errorText: error.localizedDescription)
             }
         }
     }

@@ -51,6 +51,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lowerMessageAvatar: UIImageView!
     @IBOutlet weak var newChatsView: UIView!
     @IBOutlet weak var inDevView: UIView!
+    
+    @IBOutlet private var recommendedViews: [LastRecommendedView]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +82,19 @@ class HomeViewController: UIViewController {
         model.openScan()
     }
 
+    private func setupRecommendedProducts() {
+        switch model.recommendedProducts.count {
+        case 1:
+            recommendedViews.first!.setupView(item: model.recommendedProducts[1])
+        case 2:
+            for index in model.recommendedProducts.indices {
+                recommendedViews[index].setupView(item: model.recommendedProducts[index])
+            }
+        default:
+            recommendedViews.forEach({$0.isHidden = true})
+        }
+    }
+    
     private func fillChatInfo() {
         totalChatsLabel.text = model.chatCount
 
@@ -176,10 +191,15 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewControllerInput {
+    func recommendedProductsWasLoaded(errorText: String?) {
+        if errorText?.isEmpty ?? true {
+            setupRecommendedProducts()
+        }
+    }
+    
 
     func networkingDidComplete(errorText: String?) {
         activityIndicator.hide(animated: true)
-
         if errorText?.isEmpty ?? true {
             fillChatInfo()
             fillMessagesInfo()

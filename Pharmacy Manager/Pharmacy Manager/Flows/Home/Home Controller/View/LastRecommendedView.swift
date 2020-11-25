@@ -35,7 +35,7 @@ class LastRecommendedView: UIView {
         contentView.fixInView(self)
     }
     
-    func setupBar(item: LastProducts) {
+    func setupView(item: LastProducts) {
         if let url = URL(string: item.pictureUrls.first ?? "") {
             medicineImageView.loadImageBy(url: url)
         }
