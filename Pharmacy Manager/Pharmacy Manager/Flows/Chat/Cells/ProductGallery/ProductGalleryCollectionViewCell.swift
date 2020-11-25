@@ -22,9 +22,16 @@ class ProductGalleryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productImage.image = nil
+    }
+    
     func apply(product: ChatProduct) {
         if let url = product.pictures.first?.url {
-            productImage.loadImageBy(url: url)
+            productImage.loadImageBy(url: url, placeholder: Asset.Images.Catalogs.medicineImagePlaceholder.image)
+        } else {
+            productImage.image = Asset.Images.Catalogs.medicineImagePlaceholder.image
         }
         nameLabel.text = product.name.htmlToString
         detailsLabel.text = product.releaseForm.htmlToString

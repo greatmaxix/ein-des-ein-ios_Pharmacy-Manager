@@ -56,7 +56,7 @@ class ChatsListModel: Model {
     }
     
     private func proccess(chat: Chat) {
-        let tableView = output.tableView!
+        guard let tableView = output.tableView else { return }
         
         tableView.beginUpdates()
         if let index = items.firstIndex(where: {$0 == chat}) {

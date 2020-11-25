@@ -37,8 +37,16 @@ class ChatProductCollectionViewCell: MessageCollectionViewCell {
     var actionHandler: ChatProductHandler?
     
     func apply(product: ChatProduct, actionHandler: @escaping ChatProductHandler, isFromCurrentSender: Bool) {
-        if let url = product.pictures.first?.url {
-            productImage.loadImageBy(url: url)
+        if let url = product.pictures.first?.url, url.absoluteString.isEmpty == false {
+            productImage.loadImageBy(url: url, placeholder: Asset.Images.Catalogs.medicineImagePlaceholder.image) {[weak self] result in
+                switch result {
+                case .success(let r):
+                    self?.productImage.image = r.image
+                default: break
+                }
+            }
+        } else {
+            productImage.image = Asset.Images.Catalogs.medicineImagePlaceholder.image
         }
         nameLabel.text = product.name.htmlToString
         detailsLabel.text = product.releaseForm.htmlToString
@@ -56,6 +64,11 @@ class ChatProductCollectionViewCell: MessageCollectionViewCell {
             trailingConstraint.priority = .defaultLow
             leadingConstraint.priority = .required
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
     }
     
     override func handleTapGesture(_ gesture: UIGestureRecognizer) {
