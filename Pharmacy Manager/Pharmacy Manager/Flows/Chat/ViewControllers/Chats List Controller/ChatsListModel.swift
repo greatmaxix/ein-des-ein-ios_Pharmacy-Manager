@@ -23,6 +23,7 @@ protocol ChatsListModelInput: class {
 }
 
 protocol ChatsListModelOutput: class {
+    var searchTerm: String { get }
     var isSearchBarEmpty: Bool { get }
     var tableView: UITableView! { get }
     func networkingDidComplete(errorText: String?)
@@ -30,9 +31,11 @@ protocol ChatsListModelOutput: class {
 }
 
 class ChatsListModel: Model {
+    
     var items: [Chat] = []
     var filteredItems: [Chat] = []
     weak var output: ChatsListModelOutput!
+    
     private let chatListProvider = DataManager<ChatAPI, ChatListResponse>()
     func cleanSearch() {
         filteredItems = []
@@ -49,7 +52,18 @@ class ChatsListModel: Model {
                     if let c = message.chatBody {
                         self?.proccess(chat: c.item)
                     }
-                default: break
+                case .message, .application, .globalProduct, .recipe:
+                    guard let message = message.body?.item else { return }
+                    if var c = self?.items.first(where: {$0.id == message.chatId}), let index = self?.items.firstIndex(of: c) {
+                        c.lastMessage = message
+                        self?.items.remove(at: index)
+                        self?.items.insert(c, at: index)
+                        if self?.output.isSearchBarEmpty == false {
+                            self?.searchChat(self?.output.searchTerm ?? "")
+                        } else {
+                            self?.output.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                        }
+                    }
                 }
             }
         }

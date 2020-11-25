@@ -56,7 +56,15 @@ struct ChatMessage: Decodable, Equatable {
     var product: ChatProduct?
     var file: FileAttachment?
     var recipe: ChatRecipe?
-    
+    var messagePreview: String {
+        switch type {
+        case .application: return "Изображение"
+        case .globalProduct: return "Продукт"
+        case .message: return text ?? ""
+        case .recipe: return "Рецепт"
+        case .changeStatus: return "Статус чата изменён"
+        }
+    }
     var type = ChatMessageType.message
     
     var asMessage: Message {

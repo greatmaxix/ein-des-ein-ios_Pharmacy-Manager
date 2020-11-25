@@ -33,7 +33,7 @@ class ChatTableViewCell: UITableViewCell {
     func apply(chat: Chat) {
         chatId = chat.id
         nameLabel.text = chat.customer.name
-        messageLabel.text = chat.lastMessage.text
+        messageLabel.text = chat.lastMessage.messagePreview
         timeLabel.text = chat.lastMessage.createdAt.date()?.timeString
         if let url = chat.user.avatar?.first?.value {
             avatarImageView.loadImageBy(url: url)
@@ -44,11 +44,6 @@ class ChatTableViewCell: UITableViewCell {
         default:
             avatarImageView.layer.borderColor = Asset.LegacyColors.welcomeGreen.color.cgColor
         }
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
     
 }
