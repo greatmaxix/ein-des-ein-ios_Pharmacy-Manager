@@ -32,12 +32,11 @@ struct ChatProduct: Decodable, Equatable {
         return Medicine(title: name, minPrice: priceRange?.minPrice ?? 0.0, maxPrice: priceRange?.maxPrice ?? 0.0, imageURL: pictures.first?.url.absoluteString, releaseForm: releaseForm, liked: liked, productId: id)
     }
     
-    var currency = "₸"
     var minPrice: String {
-        return  priceRange?.minPrice.moneyString(with: currency) ?? "--"
+        return  priceRange?.minPrice.moneyString(with: "₸") ?? "--"
     }
     var maxPrice: String {
-        return  priceRange?.minPrice.moneyString(with: currency) ?? "--"
+        return  priceRange?.minPrice.moneyString(with: "₸") ?? "--"
     }
     
     static func == (lhs: ChatProduct, rhs: ChatProduct) -> Bool {

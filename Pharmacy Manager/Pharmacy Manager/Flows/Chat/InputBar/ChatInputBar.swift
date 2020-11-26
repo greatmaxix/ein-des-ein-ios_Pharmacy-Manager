@@ -151,25 +151,25 @@ final class ChatInputBar: InputBarAccessoryView {
         default: break
         }
         
-        DispatchQueue.main.async {
-            if self.chatGallery.isHidden == false {
-                self.hideGallery()
+        DispatchQueue.main.async {[weak self] in
+            if self?.chatGallery.isHidden == false {
+                self?.hideGallery()
             }
             
             UIView.animate(withDuration: 0.3) {
                 g.isHidden = !g.isHidden
-                self.productsInputItem.isHighlighted = !g.isHidden
-                self.layoutStackViews([.bottom])
+                self?.productsInputItem.isHighlighted = !g.isHidden
+                self?.layoutStackViews([.bottom])
             }
         }
     }
     
     func hideProductGallery() {
         guard productsGallery.isHidden == false else { return }
-        UIView.animate(withDuration: 0.3) {
-            self.productsInputItem.isHighlighted = false
-            self.productsGallery.appearanceState = .closed
-            self.productsGallery.isHidden = true
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.productsInputItem.isHighlighted = false
+            self?.productsGallery.appearanceState = .closed
+            self?.productsGallery.isHidden = true
         }
     }
     
