@@ -97,7 +97,7 @@ extension ChatsListModel: ChatsListModelInput, ChatsViewControllerOutput {
         chatListProvider.load(target: .chatList) {[weak self] result in
             switch result {
             case .success(let response):
-                self?.items = response.items
+                self?.items = response.items.sorted(by: {$0.status.weight > $1.status.weight})
                 self?.output.networkingDidComplete(errorText: nil)
             case .failure(let error):
                 self?.output.networkingDidComplete(errorText: error.localizedDescription)
