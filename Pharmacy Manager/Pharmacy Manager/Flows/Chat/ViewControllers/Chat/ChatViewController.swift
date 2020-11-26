@@ -37,9 +37,6 @@ class ChatViewController: MessagesViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        messageInputBar = ChatInputBar()
-        messageInputBar.delegate = self
-        messageInputBar.inputPlugins.append(attachmentManager)
     }
     
     @objc
@@ -66,8 +63,17 @@ class ChatViewController: MessagesViewController {
         cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        chatBar?.prepareSubviews()
+    }
+    
     func setup() {
-        messagesCollectionView.contentInset = UIEdgeInsets(top: 12.0, left: 0.0, bottom: 0.0, right: 12.0)
+        messageInputBar = ChatInputBar()
+        messageInputBar.delegate = self
+        messageInputBar.inputPlugins.append(attachmentManager)
+        
+        messagesCollectionView.contentInset = UIEdgeInsets(top: 12.0, left: 0.0, bottom: 12.0, right: 0.0)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardIfNeeded))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
@@ -282,6 +288,13 @@ extension ChatViewController: AttachmentManagerDelegate {
 }
 
 extension ChatViewController: ChatInputBarDelegate {
+    func send(_ product: ChatProduct) {
+        if isKeyboardVisible {
+            navigationController?.view.endEditing(true)
+        }
+        model.send(product)
+    }
+    
     func attach() {
         closeGallery()
         present(attachDialogue, animated: true, completion: nil)

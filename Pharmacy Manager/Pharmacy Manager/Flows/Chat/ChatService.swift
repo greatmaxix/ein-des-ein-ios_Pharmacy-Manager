@@ -22,6 +22,13 @@ final class ChatService {
     
     enum ChatStatus: String, Codable, Equatable {
         case opened, answered, closeRequest = "close_request", closed
+        
+        var weight: Int {
+            switch self {
+            case .opened, .answered, .closeRequest: return 1
+            case .closed: return 0
+            }
+        }
     }
     
     enum ChatEvent: String {

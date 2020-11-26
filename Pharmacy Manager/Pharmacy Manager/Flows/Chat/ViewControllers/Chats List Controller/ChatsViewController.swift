@@ -48,6 +48,10 @@ class ChatsViewController: UIViewController, ChatsViewControllerInput {
     
 extension ChatsViewController {
     
+    var searchTerm: String {
+        return searchController.searchBar.text ?? ""
+    }
+    
     func didFilterItems() {
         tableView.reloadData()
     }
