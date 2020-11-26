@@ -14,7 +14,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="Pharmacy" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NavigationBar" customModule="Pharmacy_Manager" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="ayr-iR-W0Y" id="xie-fD-tGS"/>
                 <outlet property="backButtonConstraint" destination="s23-MD-rFy" id="mcA-yM-V4Z"/>
@@ -60,7 +60,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YP0-IU-yky">
                             <rect key="frame" x="18" y="185" width="415" height="43"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xco-T6-RjQ" customClass="SearchBar" customModule="Pharmacy" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xco-T6-RjQ" customClass="SearchBar" customModule="Pharmacy_Manager" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="367" height="43"/>
                                     <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>

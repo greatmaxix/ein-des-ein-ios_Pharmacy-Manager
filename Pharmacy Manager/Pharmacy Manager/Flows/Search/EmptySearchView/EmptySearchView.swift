@@ -33,7 +33,7 @@ class EmptySearchView: UIView, NibView {
 extension EmptySearchView {
     
     private func initialize() {
-        titleLabel.text = "Ой, кажется такого товара нет в нашей базе"
-        descriptionLabel.text = "Повторите поиск или попробуйте найти другой препарат"
+        titleLabel.text = L10n.Search.EmptySearch.titleLabel
+        descriptionLabel.text = L10n.Search.EmptySearch.descriptionLabel
     }
 }

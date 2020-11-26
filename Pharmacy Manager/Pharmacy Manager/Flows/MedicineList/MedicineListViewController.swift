@@ -118,9 +118,9 @@ extension MedicineListViewController: UITableViewDelegate {
 extension MedicineListViewController {
     
     fileprivate func titleAttributed(count: Int) -> NSAttributedString {
-        let foundText = "Найдено"
+        let foundText = L10n.MedicineList.foundedTitle
         let countText = "\(count)"
-        let productText = count == 1 ?  "продукт" : "продукт(ов)"
+        let productText = count == 1 ?  L10n.MedicineList.foundedTitleBodySingle : L10n.MedicineList.foundedTitleBodyMany
         let text = "\(foundText) \(countText) \(productText)"
         
         let countFont = FontFamily.OpenSans.bold.font(size: 16)

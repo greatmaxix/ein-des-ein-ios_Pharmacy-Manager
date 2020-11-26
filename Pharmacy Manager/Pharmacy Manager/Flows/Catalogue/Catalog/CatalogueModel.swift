@@ -50,7 +50,7 @@ class CatalogueModel: Model {
     var searchTerm = ""
     
     init(category: Category? = nil, parent: EventNode?) {
-        self.title = category?.shortTitle ?? "Категории"
+        self.title = category?.shortTitle ?? L10n.Catalogue.title
         categories = category?.subCategories ?? []
         super.init(parent: parent)
     }

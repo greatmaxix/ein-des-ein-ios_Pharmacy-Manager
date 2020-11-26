@@ -20,6 +20,7 @@ protocol HomeModelInput: class {
 
     func avatarImages() -> [URL?]
     func messages() -> [LastChat]
+    var recommendedProducts: [LastProducts] {get}
     func openSearch()
     func loadData()
     func openScan()
@@ -27,6 +28,7 @@ protocol HomeModelInput: class {
 
 protocol HomeModelOutput: class {
     func networkingDidComplete(errorText: String?)
+    func recommendedProductsWasLoaded(errorText: String?)
 }
 
 class HomeModel: Model {
@@ -35,13 +37,22 @@ class HomeModel: Model {
 
     private var chats: [LastChat] = []
     private var total: Int = 0
+    
+    private var products: [LastProducts] = []
 
     private let lastChatAPI = DataManager<ChatAPI, LastChatsResponse>()
+    private let lastProductsAPI = DataManager<ChatAPI, LastProductsRecommendResponse>()
 //    private let wishListProvider = DataManager<WishListAPI, PostResponse>()
 
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+    
+    var recommendedProducts: [LastProducts] {
+        get {
+            return products
+        }
+    }
     
     func openScan() {
         raise(event: HomeEvent.openScan)
@@ -87,7 +98,36 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     }
 
     func loadData() {
+
+        loadChats()
+        loadLastProducts()
+    }
+    
+    private func loadLastProducts() {
+        lastProductsAPI.load(target: .lastProducts) {[weak self] result in
+            guard let `self` = self else { return }
+            
+            switch result {
+            case .success(let response):
+                
+                if response.items.count > 2 {
+                    let array = Array(response.items.suffix(2))
+                    self.products = array
+                } else {
+                    self.products = response.items.reversed()
+                }
+                
+                self.output.recommendedProductsWasLoaded(errorText: nil)
+                
+            case .failure(let error):
+                self.output.recommendedProductsWasLoaded(errorText: error.localizedDescription)
+            }
+        }
+    }
+
+    private func loadChats() {
         lastChatAPI.load(target: .lastOpened) { [weak self] result in
+
             guard let `self` = self else {
                 return
             }
@@ -101,5 +141,4 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
             }
         }
     }
-
 }

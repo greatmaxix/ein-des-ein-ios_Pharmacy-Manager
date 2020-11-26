@@ -17,7 +17,7 @@ class SearchController: UISearchController {
     override init(searchResultsController: UIViewController?) {
         super.init(searchResultsController: searchResultsController)
         setupSearchBar()
-        searchBar.placeholder = "Поиск"
+        searchBar.placeholder = L10n.SearchBar.placeholder
     }
     
     required init?(coder: NSCoder) {

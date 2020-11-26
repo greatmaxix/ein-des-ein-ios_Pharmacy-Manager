@@ -43,6 +43,8 @@ class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self.presentNotificationViewController()
             case .presentNeedHelpViewController:
                 self.presentNeedHelpViewController()
+            case .back:
+                self.popViewController()
             default:
                 break
             }
@@ -59,6 +61,10 @@ private extension ProfileFlowCoordinator {
         model.output = viewController
         
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func popViewController() {
+        navigationController.popViewController(animated: true)
     }
 
     func presentNotificationViewController() {

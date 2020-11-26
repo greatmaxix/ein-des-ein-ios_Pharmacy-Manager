@@ -14,6 +14,7 @@ enum ProfileEvent: Event {
     case pushNotificationViewController
     case presentNeedHelpViewController
     case logout
+    case back
 }
 
 protocol ProfileModelInput: class {
@@ -32,6 +33,7 @@ class ProfileModel: Model {
     private var cellsData: [ProfileBaseCellData] = []
     //private var user: UserDisplayable?
     //private let provider = DataManager<ProfileAPI, ProfileResponse>()
+    private let localizedStrings = L10n.ProfileScreen.self
     weak var output: ProfileModelOutput!
     
     override init(parent: EventNode?) {
@@ -58,14 +60,12 @@ class ProfileModel: Model {
         }
 
         do {
-            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileStatistic",
-                                                                                        title: "Статистика")
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileStatistic", title: localizedStrings.statistic)
             cellsData.append(cellData)
         }
         
         do {
-            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileBell on",
-                                                                                        title: "Уведомления")
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileBell on", title: localizedStrings.Notifications.title)
             cellData.selectHandler = {[weak self] in
                 self?.raise(event: ProfileEvent.pushNotificationViewController)
             }
@@ -80,7 +80,7 @@ class ProfileModel: Model {
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileAttension",
-                                                         title: "О приложении")
+                                                         title: localizedStrings.AboutApp.title)
             
             cellData.selectHandler = {[weak self] in
                 self?.raise(event: ProfileEvent.presentAboutAppViewController)
@@ -90,8 +90,8 @@ class ProfileModel: Model {
         }
         
         do {
-            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuestion",
-                                                                                        title: "Нужна помощь?")
+            let cellData: ProfileViewControllerCellData = ProfileViewControllerCellData(imageName: "profileQuestion", title: localizedStrings.needHelp)
+            
             cellData.selectHandler = {[weak self] in
                 self?.raise(event: ProfileEvent.presentNeedHelpViewController)
             }
@@ -106,7 +106,7 @@ class ProfileModel: Model {
         
         do {
             let cellData = ProfileViewControllerCellData(imageName: "profileQuit",
-                                                         title: "Выйти из аккаунта",
+                                                         title: localizedStrings.exit,
                                                          tintColor: .red)
             cellData.selectHandler = {[weak self] in
                 self?.output.logoutAction()

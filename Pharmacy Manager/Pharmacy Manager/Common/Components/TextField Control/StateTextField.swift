@@ -169,23 +169,23 @@ extension StateTextField {
     private func validate(text: String) -> (Bool, String?) {
         switch validationType {
         case .email:
-            let validator = Validator(rules: [EmailRegexRule(errorMessage: "Ой! Неверный формат почты!")])
+            let validator = Validator(rules: [EmailRegexRule(errorMessage: L10n.Validator.emailRegexRule)])
             if validator.validate(text) == false {
-                return (false, "Ой! Неверный формат почты!")
+                return (false, L10n.Validator.emailRegexRule)
             } else {
                 return (true, nil)
             }
         case .password:
-            let validator = Validator(rules: [PasswordRule(errorMessage: "Ой! Неверный пароль!")])
+            let validator = Validator(rules: [PasswordRule(errorMessage: L10n.Validator.passwordRule)])
             if validator.validate(text) == false {
-                return (false, "Ой! Неверная длинна пароля!")
+                return (false, L10n.Validator.passwordRuleMessage)
             } else {
                 return (true, nil)
             }
         case .nonEmpty:
-            let validator = Validator(rules: [RequiredRule(errorMessage: "Ой! Неверные данные!")])
+            let validator = Validator(rules: [RequiredRule(errorMessage: L10n.Validator.requiredRule)])
             if validator.validate(text) == false {
-                return (false, "Ой! Неверные данные!")
+                return (false, L10n.Validator.requiredRule)
             } else {
                 return (true, nil)
             }

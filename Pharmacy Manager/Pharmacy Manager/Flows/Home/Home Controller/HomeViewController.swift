@@ -30,6 +30,10 @@ class HomeViewController: UIViewController {
     }()
 
     @IBOutlet weak var totalChatsLabel: UILabel!
+    
+    @IBOutlet weak var newRequstsTitleLabel: UILabel!
+    @IBOutlet weak var inDevelopTitleLabel: UILabel!
+    @IBOutlet weak var recentRecommendationTitleLabel: UILabel!
 
     @IBOutlet weak var firstAvatarView: UIView!
     @IBOutlet weak var secondAvatarView: UIView!
@@ -51,11 +55,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lowerMessageAvatar: UIImageView!
     @IBOutlet weak var newChatsView: UIView!
     @IBOutlet weak var inDevView: UIView!
+    
+    @IBOutlet private var recommendedViews: [LastRecommendedView]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         containerView.isHidden = true
+        
+        newRequstsTitleLabel.text = L10n.HomeScreen.newRequestTitle
+        inDevelopTitleLabel.text = L10n.HomeScreen.inDevelopment
+        recentRecommendationTitleLabel.text = L10n.HomeScreen.recentRecommendation
 
         upperMessageView.dropLightBlueShadow()
         lowerMessageView.dropLightBlueShadow()
@@ -80,6 +90,19 @@ class HomeViewController: UIViewController {
         model.openScan()
     }
 
+    private func setupRecommendedProducts() {
+        switch model.recommendedProducts.count {
+        case 1:
+            recommendedViews.first!.setupView(item: model.recommendedProducts[1])
+        case 2:
+            for index in model.recommendedProducts.indices {
+                recommendedViews[index].setupView(item: model.recommendedProducts[index])
+            }
+        default:
+            recommendedViews.forEach({$0.isHidden = true})
+        }
+    }
+    
     private func fillChatInfo() {
         totalChatsLabel.text = model.chatCount
 
@@ -176,10 +199,15 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: HomeViewControllerInput {
+    func recommendedProductsWasLoaded(errorText: String?) {
+        if errorText?.isEmpty ?? true {
+            setupRecommendedProducts()
+        }
+        activityIndicator.hide(animated: true)
+    }
+    
 
     func networkingDidComplete(errorText: String?) {
-        activityIndicator.hide(animated: true)
-
         if errorText?.isEmpty ?? true {
             fillChatInfo()
             fillMessagesInfo()
