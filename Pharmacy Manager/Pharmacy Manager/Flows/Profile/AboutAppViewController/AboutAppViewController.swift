@@ -16,7 +16,6 @@ class AboutAppViewController: UIViewController {
     
     // MARK: - @IBOutlets & Properties
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var navBarView: NavigationBarView!
     
     private lazy var activityIndicator: MBProgressHUD = {
         setupActivityIndicator()
@@ -32,7 +31,7 @@ class AboutAppViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        setupNavBar()
+        title = L10n.ProfileScreen.AboutApp.title
     }
 
     private func setupTableView() {
@@ -42,15 +41,6 @@ class AboutAppViewController: UIViewController {
         
         tableView.register(UINib(nibName: String(describing: AboutAppHeaderViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: AboutAppHeaderViewCell.self))
         tableView.register(UINib(nibName: String(describing: ProfileViewControllerViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: ProfileViewControllerViewCell.self))
-    }
-    
-    private func setupNavBar(){
-        navigationController?.isNavigationBarHidden = true
-        navBarView.setupBar(backButtonText: L10n.ProfileScreen.title,
-                            titleText: L10n.ProfileScreen.AboutApp.title,
-                            backButtonAction: {[weak self] in
-            self?.model.back()
-        })
     }
 }
 

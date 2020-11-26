@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+@available(*, deprecated, message: "not used")
 class NavigationBarView: UIView {
     let CONTENT_XIB_NAME = "NavigationBarView"
     

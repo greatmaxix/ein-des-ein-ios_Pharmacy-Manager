@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
     
     // MARK: - @IBOutlets & Properties
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var navBarView: NavigationBarView!
     
     private lazy var activityIndicator: MBProgressHUD = {
         setupActivityIndicator()
@@ -32,7 +31,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        setupNavBar()
+        title = L10n.ProfileScreen.title
         //activityIndicator.show(animated: true)
     }
 
@@ -47,13 +46,6 @@ class ProfileViewController: UIViewController {
         
         tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: String(describing: EmptyTableViewCell.self))
     
-    }
-    
-    private func setupNavBar(){
-        navigationController?.isNavigationBarHidden = true
-        navBarView.setupBar(backButtonText: "", titleText: "Профиль")
-
-        navBarView.backButtonIsHidden(state: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
