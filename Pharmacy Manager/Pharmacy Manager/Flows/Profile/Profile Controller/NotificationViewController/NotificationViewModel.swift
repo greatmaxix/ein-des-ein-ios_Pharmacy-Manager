@@ -22,6 +22,7 @@ protocol NotificationModelOutput: class {
 class NotificationModel: Model {
     
     weak var output: NotificationModelOutput!
+    private let localizedStrings = L10n.ProfileScreen.Notifications.self
     
     override init(parent: EventNode?) {
         super.init(parent: parent)
@@ -35,11 +36,11 @@ extension NotificationModel: NotificationModelInput, NotificationViewControllerO
     }
     
     var cellData: [(String, Bool)] {
-        return [("Push уведомления", true),
-                ("Email рассылка", true),
-                ("test", true),
-                ("Новый запрос в чате", true),
-                ("Обновление рейтинга", false)]
+        return [(localizedStrings.pushNotification, true),
+                (localizedStrings.mailing, true),
+                ("", true),
+                (localizedStrings.newChatRequest, true),
+                (localizedStrings.ratingUpdate, false)]
     }
     
     var cellCount: Int {

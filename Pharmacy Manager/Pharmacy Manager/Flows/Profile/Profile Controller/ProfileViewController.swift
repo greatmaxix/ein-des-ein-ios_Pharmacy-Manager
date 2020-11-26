@@ -69,11 +69,11 @@ extension ProfileViewController: ProfileViewControllerInput {
         let blurVisualEffectView = UIVisualEffectView(effect: blurEffect)
         blurVisualEffectView.frame = view.bounds
 
-        let alertController = UIAlertController.init(title: "Вы уверены, что хотите выйти из приложения?", message: " до тех пор пока не авторизирутесь снова", preferredStyle: .alert)
+        let alertController = UIAlertController.init(title: L10n.ProfileScreen.exitAlertTitle, message: L10n.ProfileScreen.exitAlertBody, preferredStyle: .alert)
         
-        let actionOK = UIAlertAction(title: "Отмена", style: .default, handler: { _ in blurVisualEffectView.removeFromSuperview()})
+        let actionOK = UIAlertAction(title: L10n.ProfileScreen.exitAlertButtonCancel, style: .default, handler: { _ in blurVisualEffectView.removeFromSuperview()})
 
-        let actionCancel = UIAlertAction(title: "Выйти", style: .default, handler: {[unowned self] _ in
+        let actionCancel = UIAlertAction(title: L10n.ProfileScreen.exitAlertButtonExit, style: .default, handler: {[unowned self] _ in
             blurVisualEffectView.removeFromSuperview()
             self.model.logoutActionCofirmed()
         })
@@ -102,7 +102,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             
             // FIXME: - Удалить после создания запроса и получения результата по статистике
             if let data = cellData as? ProfileViewControllerCellData,
-               data.title == "Статистика" {
+               data.title == L10n.ProfileScreen.statistic {
                 cell.deactivateCell()
                 }
             
