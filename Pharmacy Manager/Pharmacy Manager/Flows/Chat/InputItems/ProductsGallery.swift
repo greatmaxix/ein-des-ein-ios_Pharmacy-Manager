@@ -15,7 +15,7 @@ protocol ProductGalleryDelegate: class {
 
 final class ProductsGallery: UIView, InputItem {
     
-    private let productsProvider = DataManager<ChatAPI, ProductListResponse>()
+    private let productsProvider = DataManager<ProductAPI, ChatProductsListResponse>()
     
     enum GaleryState {
         case closed, opened, large
@@ -66,11 +66,15 @@ final class ProductsGallery: UIView, InputItem {
     
     let searchTextFieldDecoration = UIView()
     
+    var currentPageInfo: ChatProductsListResponse?
     var products: [ChatProduct] = []
-    var filteredProducts: [ChatProduct] = []
+    
     let clearButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
     let searchPlaceholder = UILabel()
+    
     private let searchDebouncer: Executor = .debounce(interval: 0.5)
+    private var indexPathsToLoad: [IndexPath] = []
+    private var searchTerm = ""
     
     private var isSearching: Bool {
         return !searchTextField.text.isEmpty
@@ -164,6 +168,8 @@ final class ProductsGallery: UIView, InputItem {
         collectionView.register(ProductGalleryCollectionViewCell.nib, forCellWithReuseIdentifier: ProductGalleryCollectionViewCell.className)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: (frame.width / 2) - 1.0, height: 220.0)
             layout.minimumLineSpacing = 1.0
@@ -177,13 +183,12 @@ final class ProductsGallery: UIView, InputItem {
     func keyboardEditingBeginsAction() {}
     
     func willShowGallery() {
-        productsProvider.load(target: .lastProducts) {[weak self] result in
+        guard currentPageInfo == nil else { return }
+        productsProvider.load(target: .search(searchTerm, page: 1)) {[weak self] result in
             switch result {
             case .success(let response):
-                self?.searchTextField.text = ""
-                self?.searchPlaceholder.isHidden = false
                 self?.products = response.items
-                self?.filteredProducts = response.items
+                self?.currentPageInfo = response
                 self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -192,30 +197,82 @@ final class ProductsGallery: UIView, InputItem {
     }
     
     @objc func clearSearch() {
-        filteredProducts = products
-        clearButton.isHidden = true
+        searchTerm = ""
         searchTextField.text = ""
+        currentPageInfo = nil
+        clearButton.isHidden = true
         searchPlaceholder.isHidden = false
         searchTextField.resignFirstResponder()
         collectionView.reloadData()
+        willShowGallery()
+    }
+    
+    func loadNextPage() {
+        guard let currentPage = currentPageInfo?.currentPageNumber else {
+            willShowGallery()
+            return
+        }
+        productsProvider.load(target: .search(searchTerm, page: currentPage + 1)) {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.currentPageInfo = response
+                self?.products.append(contentsOf: response.items)
+                self?.pageDidLoad()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func pageDidLoad() {
+        let productsCount = products.count
+        let indexPathToReload = indexPathsToLoad.filter({ productsCount > $0.row })
+        collectionView.reloadItems(at: indexPathToReload)
+        indexPathsToLoad.removeAll(where: {indexPathToReload.contains($0)})
     }
 }
 
 extension ProductsGallery: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredProducts.count
+        return currentPageInfo?.totalCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductGalleryCollectionViewCell.className, for: indexPath)
-        (cell as? ProductGalleryCollectionViewCell)?.apply(product: filteredProducts[indexPath.row])
+        
+        var product: ChatProduct?
+        
+        if products.count > indexPath.row {
+            product = products[indexPath.row]
+        }
+        
+        (cell as? ProductGalleryCollectionViewCell)?.apply(product: product)
+        
         return cell
     }
 }
 
 extension ProductsGallery: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        actionsDelegate?.didSelect(filteredProducts[indexPath.row])
+        actionsDelegate?.didSelect(products[indexPath.row])
+    }
+}
+
+extension ProductsGallery: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let indexes = indexPaths.filter({ index -> Bool in
+            return (0..<products.count).contains(index.row) == false
+        })
+        
+        if indexes.count > 0 {
+            print(indexes)
+            indexPathsToLoad.append(contentsOf: indexes)
+            loadNextPage()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        
     }
 }
 
@@ -245,20 +302,19 @@ extension ProductsGallery: UITextViewDelegate {
             searchPlaceholder.isHidden = true
             clearButton.isHidden = false
         }
-        searchDebouncer.execute {
-            if textView.text.isEmpty {
-                self.filteredProducts = self.products
-            } else {
-                self.filteredProducts = self.products.filter({ $0.name.range(of: textView.text, options: .caseInsensitive, range: nil, locale: nil) != nil })
+        searchDebouncer.execute {[weak self] in
+            self?.productsProvider.load(target: .search(textView.text, page: 1)) { result in
+                switch result {
+                case .success(let response):
+                    self?.searchTerm = textView.text
+                    self?.indexPathsToLoad = []
+                    self?.currentPageInfo = response
+                    self?.products = response.items
+                    self?.collectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
-            
-            self.collectionView.reloadData()
         }
     }
 }
-
-final class ProductGalleryFlowLayout: UICollectionViewFlowLayout {
-    
-}
-
-

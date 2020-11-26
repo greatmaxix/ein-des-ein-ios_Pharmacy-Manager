@@ -27,7 +27,14 @@ class ProductGalleryCollectionViewCell: UICollectionViewCell {
         productImage.image = nil
     }
     
-    func apply(product: ChatProduct) {
+    
+    func apply(product: ChatProduct?) {
+        
+        guard let product = product else {
+            productContainer.isHidden = true
+            return
+        }
+        productContainer.isHidden = false
         if let url = product.pictures.first?.url {
             productImage.loadImageBy(url: url, placeholder: Asset.Images.Catalogs.medicineImagePlaceholder.image)
         } else {
@@ -35,8 +42,6 @@ class ProductGalleryCollectionViewCell: UICollectionViewCell {
         }
         nameLabel.text = product.name.htmlToString
         detailsLabel.text = product.releaseForm.htmlToString
-        if let p = product.priceRange?.minPrice {
-            priceLabel.text = "\(p)"
-        }
+        priceLabel.text = product.minPrice
     }
 }
