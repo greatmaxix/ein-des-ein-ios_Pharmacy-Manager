@@ -46,7 +46,9 @@ class AboutAppViewController: UIViewController {
     
     private func setupNavBar(){
         navigationController?.isNavigationBarHidden = true
-        navBarView.setupBar(backButtonText: "Профиль", titleText: "О приложении", backButtonAction: {[weak self] in
+        navBarView.setupBar(backButtonText: L10n.ProfileScreen.title,
+                            titleText: L10n.ProfileScreen.AboutApp.title,
+                            backButtonAction: {[weak self] in
             self?.model.back()
         })
     }

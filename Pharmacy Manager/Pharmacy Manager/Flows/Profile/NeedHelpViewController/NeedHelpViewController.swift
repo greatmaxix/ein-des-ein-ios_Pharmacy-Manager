@@ -49,7 +49,9 @@ class NeedHelpViewController: UIViewController {
     
     private func setupNavBar(){
         navigationController?.isNavigationBarHidden = true
-        navBarView.setupBar(backButtonText: "Профиль", titleText: "Есть вопросы?", backButtonAction: {[weak self] in
+        navBarView.setupBar(backButtonText: L10n.ProfileScreen.title,
+                            titleText: L10n.ProfileScreen.HaveQuestions.title,
+                            backButtonAction: {[weak self] in
             self?.model.back()
         })
     }
