@@ -89,7 +89,20 @@ class HomeViewController: UIViewController {
     @IBAction func scannerTapped(_ sender: Any) {
         model.openScan()
     }
-
+    
+    @IBAction func openRequests(_ sender: Any) {
+        model.open(chat: nil)
+    }
+    @IBAction func openUpperChat(_ sender: Any) {
+        let chat = model.messages()[0]
+        model.open(chat: chat)
+    }
+    
+    @IBAction func openLowerChat(_ sender: Any) {
+        let chat = model.messages()[1]
+        model.open(chat: chat)
+    }
+    
     private func setupRecommendedProducts() {
         switch model.recommendedProducts.count {
         case 1:
@@ -178,9 +191,9 @@ class HomeViewController: UIViewController {
             return
         } else if let message = messages.first {
 
-            upperMessageName.text = message.customerName
-            upperMessageText.text = message.message
-            if let url = URL(string: message.customerAvatar ?? "") {
+            upperMessageName.text = message.customer.name
+            upperMessageText.text = message.lastMessage.messagePreview
+            if let url = message.customer.avatar?.first?.value {
                 upperMessageAvatar.af.setImage(withURL: url)
             }
         }
@@ -189,9 +202,9 @@ class HomeViewController: UIViewController {
             return
         } else if let message = messages.last {
 
-            lowerMessageName.text = message.customerName
-            lowerMessageText.text = message.message
-            if let url = URL(string: message.customerAvatar ?? "") {
+            lowerMessageName.text = message.customer.name
+            lowerMessageText.text = message.lastMessage.messagePreview
+            if let url = message.customer.avatar?.first?.value {
                 lowerMessageAvatar.af.setImage(withURL: url)
             }
         }
