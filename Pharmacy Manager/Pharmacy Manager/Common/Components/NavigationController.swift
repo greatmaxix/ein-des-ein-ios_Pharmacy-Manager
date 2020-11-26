@@ -35,8 +35,15 @@ class NavigationController: UINavigationController {
 
     override init(rootViewController: UIViewController) {
         super.init(navigationBarClass: RoundedNavigationBar.self, toolbarClass: nil)
+        if #available(iOS 14.0, *) {
+          rootViewController.navigationItem.backButtonDisplayMode = .minimal
+        } else {
+          let backItem = UIBarButtonItem()
+          backItem.title = " "
+          rootViewController.navigationItem.backBarButtonItem = backItem
+        }
         viewControllers = [rootViewController]
-    }
+      }
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,12 +59,17 @@ class NavigationController: UINavigationController {
         setupNavigationBar()
     }
     
+    
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        let backItem = UIBarButtonItem()
-        backItem.title = " "
-        viewController.navigationItem.backBarButtonItem = backItem
+        if #available(iOS 14.0, *) {
+          viewController.navigationItem.backButtonDisplayMode = .minimal
+        } else {
+          let backItem = UIBarButtonItem()
+          backItem.title = " "
+          viewController.navigationItem.backBarButtonItem = backItem
+        }
         super.pushViewController(viewController, animated: animated)
-    }
+      }
     
     private func setupNavigationBar() {
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

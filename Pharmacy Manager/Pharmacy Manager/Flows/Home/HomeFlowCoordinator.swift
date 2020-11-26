@@ -25,7 +25,7 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         root.model = model
         model.output = root
 
-        navigationController = UINavigationController(rootViewController: root)
+        navigationController = NavigationController(rootViewController: root)
         navigationController.setNavigationBarHidden(true, animated: false)
 
         return navigationController
@@ -41,6 +41,7 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
             case .openScan:
                 self?.openScan()
             case .openProductDetail(let product):
+                self?.navigationController.isNavigationBarHidden = false
                 self?.openProductMedicineFor(medicine: product)
             }
         }

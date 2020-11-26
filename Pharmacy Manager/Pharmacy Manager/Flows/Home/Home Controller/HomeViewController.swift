@@ -81,7 +81,7 @@ class HomeViewController: UIViewController {
         activityIndicator.show(animated: true)
         model.loadData()
     }
-
+    
     @IBAction func searchTapped(_ sender: Any) {
         model.openSearch()
     }
