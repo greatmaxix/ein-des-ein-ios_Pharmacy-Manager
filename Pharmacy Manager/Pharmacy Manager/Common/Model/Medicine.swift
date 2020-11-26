@@ -84,6 +84,18 @@ struct Medicine: Codable {
         self.liked = liked
     }
     
+    init(product: LastProducts) {
+        id = product.productId
+        name = product.productName
+        releaseForm = product.releaseForm
+        pictureUrls = product.pictureUrls
+        manufacturerName = ""
+        manufacturerCountryCode = ""
+        self.minPrice = product.minPrice
+        self.maxPrice = product.maxPrice
+        self.liked = false
+    }
+    
     var title: String {
         return name.htmlToString
     }

@@ -40,7 +40,8 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self?.openSearch()
             case .openScan:
                 self?.openScan()
-                
+            case .openProductDetail(let product):
+                self?.openProductMedicineFor(medicine: product)
             }
         }
 
@@ -52,9 +53,7 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 return
             }
         }
-
     }
-
 }
 
 private extension HomeFlowCoordinator {

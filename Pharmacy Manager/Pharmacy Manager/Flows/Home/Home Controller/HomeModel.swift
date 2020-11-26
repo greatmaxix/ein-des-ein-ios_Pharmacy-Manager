@@ -12,6 +12,7 @@ import EventsTree
 enum HomeEvent: Event {
     case openSearch
     case openScan
+    case openProductDetail(product: Medicine)
 }
 
 protocol HomeModelInput: class {
@@ -24,6 +25,7 @@ protocol HomeModelInput: class {
     func openSearch()
     func loadData()
     func openScan()
+    func openProductDetail(productIndex: Int)
 }
 
 protocol HomeModelOutput: class {
@@ -47,6 +49,12 @@ class HomeModel: Model {
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+    
+    func openProductDetail(productIndex: Int) {
+        let item = products[productIndex]
+        let medicine = Medicine(product: item)
+        raise(event: HomeEvent.openProductDetail(product: medicine))
+    }
     
     var recommendedProducts: [LastProducts] {
         get {

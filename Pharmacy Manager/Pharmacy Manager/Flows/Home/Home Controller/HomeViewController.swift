@@ -97,6 +97,9 @@ class HomeViewController: UIViewController {
         case 2:
             for index in model.recommendedProducts.indices {
                 recommendedViews[index].setupView(item: model.recommendedProducts[index])
+                recommendedViews[index].tapActionHandler = {[weak self] in
+                    self?.model.openProductDetail(productIndex: index)
+                }
             }
         default:
             recommendedViews.forEach({$0.isHidden = true})
