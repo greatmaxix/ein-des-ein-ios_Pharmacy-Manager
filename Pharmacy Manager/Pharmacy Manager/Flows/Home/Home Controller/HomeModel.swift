@@ -17,9 +17,9 @@ enum HomeEvent: Event {
 protocol HomeModelInput: class {
     var chatCount: String { get }
     var messageCount: Int { get }
-
+    func open(chat: Chat?)
     func avatarImages() -> [URL?]
-    func messages() -> [LastChat]
+    func messages() -> [Chat]
     var recommendedProducts: [LastProducts] {get}
     func openSearch()
     func loadData()
@@ -35,7 +35,7 @@ class HomeModel: Model {
 
     weak var output: HomeModelOutput!
 
-    private var chats: [LastChat] = []
+    private var chats: [Chat] = []
     private var total: Int = 0
     
     private var products: [LastProducts] = []
@@ -47,6 +47,9 @@ class HomeModel: Model {
 }
 
 extension HomeModel: HomeModelInput, HomeViewControllerOutput {
+    func open(chat: Chat?) {
+        raise(event: HomeFlowEvent.open(chat: chat))
+    }
     
     var recommendedProducts: [LastProducts] {
         get {
@@ -66,8 +69,8 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
         return chats.count
     }
 
-    func messages() -> [LastChat] {
-        var messages: [LastChat] = []
+    func messages() -> [Chat] {
+        var messages: [Chat] = []
 
         if chats.count >= 1 {
             messages.append(chats[0])
@@ -83,7 +86,7 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
     func avatarImages() -> [URL?] {
         var urls: [URL?] = []
         for chat in chats {
-            if let url = URL(string: chat.customerAvatar ?? "") {
+            if let url = chat.customer.avatar?.first?.value {
                 urls.append(url)
             } else {
                 urls.append(nil)

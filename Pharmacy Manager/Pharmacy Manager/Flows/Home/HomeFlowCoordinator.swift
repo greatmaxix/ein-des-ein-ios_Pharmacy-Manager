@@ -9,6 +9,10 @@
 import Foundation
 import EventsTree
 
+enum HomeFlowEvent: Event {
+    case open(chat: Chat?)
+}
+
 class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
     let tabItemInfo = TabBarItemInfo(
@@ -40,7 +44,13 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self?.openSearch()
             case .openScan:
                 self?.openScan()
-                
+            }
+        }
+        
+        addHandler(.onRaise) {[weak self] (event: HomeFlowEvent) in
+            switch event {
+            case .open(let chat):
+                self?.open(chat: chat)
             }
         }
 
@@ -54,11 +64,19 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         }
 
     }
-
 }
 
 private extension HomeFlowCoordinator {
 
+    func open(chat: Chat?) {
+        if let c = chat {
+            raise(event: TabBarEvent.userWantsToChangeTab(newTab: Tab.chats))
+            raise(event: ChatFlowEvent.open(c))
+        } else {
+            raise(event: TabBarEvent.userWantsToChangeTab(newTab: Tab.chats))
+        }
+    }
+    
      func openScan() {
         let viewController = StoryboardScene.Scan.initialScene.instantiate()
         let model = ScanModel(parent: self)

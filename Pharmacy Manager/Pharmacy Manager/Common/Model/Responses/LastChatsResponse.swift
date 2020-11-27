@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct LastChatsResponse: Codable {
+struct LastChatsResponse: Decodable {
 
-    var items: [LastChat]
+    var items: [Chat]
     var totalCount: Int
 
     enum Keys: String, CodingKey {
@@ -21,7 +21,7 @@ struct LastChatsResponse: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
 
-        items = try container.decode([LastChat].self, forKey: .items)
+        items = try container.decode([Chat].self, forKey: .items)
         totalCount = try container.decode(Int.self, forKey: .totalCount)
     }
 

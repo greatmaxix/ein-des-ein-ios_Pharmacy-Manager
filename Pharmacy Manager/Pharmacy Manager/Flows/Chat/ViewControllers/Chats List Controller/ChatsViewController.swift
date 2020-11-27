@@ -26,7 +26,13 @@ class ChatsViewController: UIViewController, ChatsViewControllerInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        showActivityIndicator()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if model.items.count == 0 {
+            showActivityIndicator()
+        }
         model.load()
     }
     

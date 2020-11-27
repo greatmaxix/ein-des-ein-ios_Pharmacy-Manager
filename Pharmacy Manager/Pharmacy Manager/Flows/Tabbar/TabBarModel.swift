@@ -9,10 +9,10 @@
 import EventsTree
 
 enum Tab: Int {
-
     case feed = 0
+    case catalog
+    case chats
     case settings
-
 }
 
 enum TabBarEvent: Event {
@@ -24,9 +24,7 @@ enum TabBarEvent: Event {
 protocol TabBarModelInput: ControllerVisibilityOutput {}
 
 protocol TabBarModelOutput: class {
-
     func changeCurrentTab(_ tab: Tab)
-
 }
 
 class TabBarModel: Model {
