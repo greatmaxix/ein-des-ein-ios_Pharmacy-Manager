@@ -36,7 +36,7 @@ class NavigationController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(navigationBarClass: RoundedNavigationBar.self, toolbarClass: nil)
         if #available(iOS 14.0, *) {
-          rootViewController.navigationItem.backButtonDisplayMode = .minimal
+            rootViewController.navigationItem.backButtonDisplayMode = .default
         } else {
           let backItem = UIBarButtonItem()
           backItem.title = " "
@@ -58,7 +58,6 @@ class NavigationController: UINavigationController {
         super.viewDidLoad()
         setupNavigationBar()
     }
-    
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if #available(iOS 14.0, *) {
