@@ -21,10 +21,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9Ry-1h-URK" customClass="ChatProductCollectionViewCell" customModule="Pharmacy_Manager" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
+            <rect key="frame" x="0.0" y="0.0" width="272" height="233"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="OaM-W5-SuR">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
+                <rect key="frame" x="0.0" y="0.0" width="272" height="233"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-xw-gck">
@@ -54,7 +54,7 @@
                                 <color key="textColor" name="welcomeBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDs-yN-R4h">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDs-yN-R4h">
                                 <rect key="frame" x="124" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="5cq-QR-dD5"/>
@@ -79,7 +79,7 @@
                             <constraint firstAttribute="trailing" secondItem="ZLU-Hy-lYp" secondAttribute="trailing" constant="8" id="0ep-zm-N5W"/>
                             <constraint firstItem="q0r-bg-XQd" firstAttribute="top" secondItem="ZLU-Hy-lYp" secondAttribute="bottom" constant="4" id="3IO-d9-Nbz"/>
                             <constraint firstItem="9ru-nK-ILa" firstAttribute="leading" secondItem="c9Y-Pu-MOx" secondAttribute="trailing" constant="4" id="4NI-Yc-x6t"/>
-                            <constraint firstAttribute="bottom" secondItem="c9Y-Pu-MOx" secondAttribute="bottom" constant="18" id="5ZM-wx-grl"/>
+                            <constraint firstAttribute="bottom" secondItem="c9Y-Pu-MOx" secondAttribute="bottom" priority="750" constant="18" id="5ZM-wx-grl"/>
                             <constraint firstItem="ZPg-W2-u7Q" firstAttribute="top" secondItem="BDG-xw-gck" secondAttribute="top" id="9wo-Pv-IuZ"/>
                             <constraint firstItem="q0r-bg-XQd" firstAttribute="leading" secondItem="BDG-xw-gck" secondAttribute="leading" constant="8" id="C4w-sx-h6p"/>
                             <constraint firstItem="ZLU-Hy-lYp" firstAttribute="leading" secondItem="BDG-xw-gck" secondAttribute="leading" constant="8" id="KWG-52-YOz"/>
@@ -90,6 +90,7 @@
                             <constraint firstAttribute="trailing" secondItem="q0r-bg-XQd" secondAttribute="trailing" constant="8" id="nsk-sy-ElW"/>
                             <constraint firstAttribute="width" constant="164" id="pVZ-72-t05"/>
                             <constraint firstAttribute="trailing" secondItem="cDs-yN-R4h" secondAttribute="trailing" id="tr9-R2-uQg"/>
+                            <constraint firstItem="9ru-nK-ILa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q0r-bg-XQd" secondAttribute="bottom" constant="10" id="uYI-og-keG"/>
                             <constraint firstItem="ZLU-Hy-lYp" firstAttribute="top" secondItem="ZPg-W2-u7Q" secondAttribute="bottom" constant="8" id="zDu-Jg-7vO"/>
                             <constraint firstItem="c9Y-Pu-MOx" firstAttribute="leading" secondItem="BDG-xw-gck" secondAttribute="leading" constant="8" id="zmq-5J-tkK"/>
                         </constraints>
@@ -103,7 +104,7 @@
                     <constraint firstItem="BDG-xw-gck" firstAttribute="leading" secondItem="OaM-W5-SuR" secondAttribute="leading" constant="16" id="jZn-47-8Zw"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="320" height="227"/>
+            <size key="customSize" width="272" height="227"/>
             <connections>
                 <outlet property="detailsLabel" destination="q0r-bg-XQd" id="LqP-I1-51o"/>
                 <outlet property="leadingConstraint" destination="jZn-47-8Zw" id="nTy-Xa-6JZ"/>
@@ -114,7 +115,7 @@
                 <outlet property="productImage" destination="ZPg-W2-u7Q" id="UkS-uj-S4P"/>
                 <outlet property="trailingConstraint" destination="Ae7-sM-qQr" id="XIW-6b-pbJ"/>
             </connections>
-            <point key="canvasLocation" x="179.71014492753625" y="63.950892857142854"/>
+            <point key="canvasLocation" x="144.92753623188406" y="63.950892857142854"/>
         </collectionViewCell>
     </objects>
     <resources>

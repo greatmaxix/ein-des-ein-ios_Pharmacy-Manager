@@ -13,6 +13,7 @@ protocol ChatInputBarDelegate: InputBarAccessoryViewDelegate {
     func attach()
     func didSelect(action: ImageSelectionAction)
     func openCamera()
+    func send(_ product: ChatProduct)
 }
 
 final class ChatInputBar: InputBarAccessoryView {
@@ -25,7 +26,6 @@ final class ChatInputBar: InputBarAccessoryView {
         let itemWidth = width / 3.0
         let rect = CGRect(origin: .zero, size: CGSize(width: width, height: itemWidth * 2))
         let g = ChatGallery(frame: rect)
-        setStackViewItems( bottomStackViewItems + [g], forStack: .bottom, animated: false)
         g.actionsDelegate = self
         g.isHidden = true
         return g
@@ -33,10 +33,9 @@ final class ChatInputBar: InputBarAccessoryView {
     
     lazy var productsGallery: ProductsGallery = {
         let width = bottomStackView.frame.width
-        let itemWidth = width / 3.0
         let rect = CGRect(origin: .zero, size: CGSize(width: width, height: 300.0))
         let g = ProductsGallery(frame: rect)
-        setStackViewItems(bottomStackViewItems + [g], forStack: .bottom, animated: false)
+        g.actionsDelegate = self
         g.isHidden = true
         return g
     }()
@@ -46,7 +45,7 @@ final class ChatInputBar: InputBarAccessoryView {
         static let maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         static let backgroundColor = UIColor.white
     }
-    
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -55,8 +54,8 @@ final class ChatInputBar: InputBarAccessoryView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    private func configure() {
+    
+    func configure() {
         setupSendButton()
         separatorLine.height = 8.0
         backgroundColor = .clear
@@ -79,7 +78,7 @@ final class ChatInputBar: InputBarAccessoryView {
         inputTextView.textContainerInset = textInset
         inputTextView.placeholderLabel.text = " Что Вас волнует?"
         inputTextView.placeholderLabel.textColor = Asset.LegacyColors.gray.color
-        
+      
         setLeftStackViewWidthConstant(to: 90.0, animated: false)
         
         attachInputItem = AttachInputItem(view: self) {[weak self] _ in
@@ -95,8 +94,14 @@ final class ChatInputBar: InputBarAccessoryView {
         attachInputItem.setSize(CGSize(width: 26.0, height: 38.0), animated: false)
         
         middleContentViewPadding.right = -62.0
+        
         bottomStackView.axis = .vertical
+        bottomStackView.layer.masksToBounds = true
         dropBlackShadow()
+    }
+    
+    func prepareSubviews() {
+        setStackViewItems([chatGallery, productsGallery], forStack: .bottom, animated: false)
     }
     
     private func setupSendButton() {
@@ -126,9 +131,9 @@ final class ChatInputBar: InputBarAccessoryView {
     }
     
     func showGallery() {
-        
         DispatchQueue.main.async { [weak self] in
             self?.attachInputItem.isHighlighted = true
+            self?.hideProductGallery()
             UIView.animate(withDuration: 0.3) {
                 self?.chatGallery.isHidden = false
                 self?.layoutStackViews([.bottom])
@@ -146,17 +151,25 @@ final class ChatInputBar: InputBarAccessoryView {
         default: break
         }
         
-        DispatchQueue.main.async {
-            self.productsInputItem.isHighlighted = g.appearanceState == .opened
-            
-            if self.chatGallery.isHidden == false {
-                self.hideGallery()
+        DispatchQueue.main.async {[weak self] in
+            if self?.chatGallery.isHidden == false {
+                self?.hideGallery()
             }
             
             UIView.animate(withDuration: 0.3) {
-                self.productsGallery.isHidden = !self.productsInputItem.isHighlighted
-                self.layoutStackViews([.bottom])
+                g.isHidden = !g.isHidden
+                self?.productsInputItem.isHighlighted = !g.isHidden
+                self?.layoutStackViews([.bottom])
             }
+        }
+    }
+    
+    func hideProductGallery() {
+        guard productsGallery.isHidden == false else { return }
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.productsInputItem.isHighlighted = false
+            self?.productsGallery.appearanceState = .closed
+            self?.productsGallery.isHidden = true
         }
     }
     
@@ -239,5 +252,11 @@ class ChatSendButton: InputBarSendButton {
             }
         }
     }
-    
+}
+
+extension ChatInputBar: ProductGalleryDelegate {
+    func didSelect(_ product: ChatProduct) {
+        hideProductGallery()
+        (delegate as? ChatInputBarDelegate)?.send(product)
+    }
 }

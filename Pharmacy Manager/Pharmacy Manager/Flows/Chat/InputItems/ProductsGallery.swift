@@ -9,16 +9,20 @@
 import Foundation
 import InputBarAccessoryView
 
+protocol ProductGalleryDelegate: class {
+    func didSelect(_ product: ChatProduct)
+}
+
 final class ProductsGallery: UIView, InputItem {
     
-    private let productsProvider = DataManager<ChatAPI, ProductListResponse>()
+    private let productsProvider = DataManager<ProductAPI, ChatProductsListResponse>()
     
     enum GaleryState {
         case closed, opened, large
         
         var contentHeight: CGFloat {
             switch self {
-            case .closed: return 0.0
+            case .closed: return 300.0
             case .opened: return 300.0
             case .large: return 500.0
             }
@@ -29,7 +33,7 @@ final class ProductsGallery: UIView, InputItem {
         static let size = CGSize(width: 30.0, height: 36.0)
         static let imageRect = CGRect(x: 12.0, y: 0.0, width: 26.0, height: 30.0)
     }
-
+    
     var appearanceState = GaleryState.closed {
         didSet {
             invalidateIntrinsicContentSize()
@@ -52,16 +56,29 @@ final class ProductsGallery: UIView, InputItem {
         return CGSize(width: frame.width, height: 136.0)
     }
   
-    weak var actionsDelegate: AnyObject?
+    weak var actionsDelegate: ProductGalleryDelegate?
     
     var inputBarAccessoryView: InputBarAccessoryView?
     var parentStackViewPosition: InputStackView.Position?
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: ChatGalleryLayout())
-    let searchTextField = UITextField()
+    let searchTextField = UITextView()
     
     let searchTextFieldDecoration = UIView()
+    
+    var currentPageInfo: ChatProductsListResponse?
     var products: [ChatProduct] = []
+    
+    let clearButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
+    let searchPlaceholder = UILabel()
+    
+    private let searchDebouncer: Executor = .debounce(interval: 0.5)
+    private var indexPathsToLoad: [IndexPath] = []
+    private var searchTerm = ""
+    
+    private var isSearching: Bool {
+        return !searchTextField.text.isEmpty
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,17 +95,22 @@ final class ProductsGallery: UIView, InputItem {
         
         searchTextFieldDecoration.backgroundColor = .white
         searchTextFieldDecoration.layer.cornerRadius = 18.0
+        
+        searchPlaceholder.text = "Поиск"
+        searchPlaceholder.textColor = Asset.LegacyColors.greyText.color
+        searchPlaceholder.font = FontFamily.OpenSans.regular.font(size: 16.0)
+        searchPlaceholder.translatesAutoresizingMaskIntoConstraints = false
+        
+        clearButton.setImage(Asset.Images.Chat.clear.image, for: .normal)
+        clearButton.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        clearButton.isHidden = true
+        
         searchTextField.textColor = Asset.LegacyColors.textDarkBlue.color
-        searchTextField.placeholder = "Поиск"
         searchTextField.delegate = self
-        let b = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 24.0, height: 24.0)))
-        b.setImage(Asset.Images.Chat.clear.image, for: .normal)
-        b.addTarget(self, action: #selector(clearSearch), for: .touchUpInside)
-        
-        searchTextField.rightView = b
-        searchTextField.rightViewMode = .whileEditing
-        searchTextField.delegate = self
-        
+        searchTextField.font = FontFamily.OpenSans.regular.font(size: 16.0)
+        searchTextField.isScrollEnabled = false
+        searchTextField.textContainerInset = .zero
         collectionView.backgroundColor = .white
         
         searchTextFieldDecoration.translatesAutoresizingMaskIntoConstraints = false
@@ -117,6 +139,21 @@ final class ProductsGallery: UIView, InputItem {
             searchTextField.bottomAnchor.constraint(equalTo: searchTextFieldDecoration.bottomAnchor, constant: -6.0)
         ])
         
+        addSubview(searchPlaceholder)
+        
+        NSLayoutConstraint.activate([
+            searchPlaceholder.topAnchor.constraint(equalTo: searchTextField.topAnchor, constant: 0.0),
+            searchPlaceholder.leftAnchor.constraint(equalTo: searchTextField.leftAnchor, constant: 4.0)
+        ])
+        
+        addSubview(clearButton)
+        NSLayoutConstraint.activate([
+            clearButton.topAnchor.constraint(equalTo: searchTextField.topAnchor, constant: 1.0),
+            clearButton.trailingAnchor.constraint(equalTo: searchTextField.trailingAnchor, constant: 0.0),
+            clearButton.heightAnchor.constraint(equalToConstant: 24.0),
+            clearButton.widthAnchor.constraint(equalToConstant: 24.0)
+        ])
+        
         addSubview(collectionView)
         
         let bottomConstraint = collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -6.0)
@@ -131,6 +168,8 @@ final class ProductsGallery: UIView, InputItem {
         collectionView.register(ProductGalleryCollectionViewCell.nib, forCellWithReuseIdentifier: ProductGalleryCollectionViewCell.className)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: (frame.width / 2) - 1.0, height: 220.0)
             layout.minimumLineSpacing = 1.0
@@ -141,20 +180,15 @@ final class ProductsGallery: UIView, InputItem {
     func textViewDidChangeAction(with textView: InputTextView) {}
     func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
     func keyboardEditingEndsAction() {}
-    func keyboardEditingBeginsAction() {
-        appearanceState = .closed
-        
-        UIView.animate(withDuration: 0.3) {
-            self.isHidden = true
-            self.superview?.layoutIfNeeded()
-        }
-    }
+    func keyboardEditingBeginsAction() {}
     
     func willShowGallery() {
-        productsProvider.load(target: .lastProducts) {[weak self] result in
+        guard currentPageInfo == nil else { return }
+        productsProvider.load(target: .search(searchTerm, page: 1)) {[weak self] result in
             switch result {
             case .success(let response):
                 self?.products = response.items
+                self?.currentPageInfo = response
                 self?.collectionView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -163,39 +197,124 @@ final class ProductsGallery: UIView, InputItem {
     }
     
     @objc func clearSearch() {
+        searchTerm = ""
         searchTextField.text = ""
+        currentPageInfo = nil
+        clearButton.isHidden = true
+        searchPlaceholder.isHidden = false
         searchTextField.resignFirstResponder()
+        collectionView.reloadData()
+        willShowGallery()
+    }
+    
+    func loadNextPage() {
+        guard let currentPage = currentPageInfo?.currentPageNumber else {
+            willShowGallery()
+            return
+        }
+        productsProvider.load(target: .search(searchTerm, page: currentPage + 1)) {[weak self] result in
+            switch result {
+            case .success(let response):
+                self?.currentPageInfo = response
+                self?.products.append(contentsOf: response.items)
+                self?.pageDidLoad()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func pageDidLoad() {
+        let productsCount = products.count
+        let indexPathToReload = indexPathsToLoad.filter({ productsCount > $0.row })
+        collectionView.reloadItems(at: indexPathToReload)
+        indexPathsToLoad.removeAll(where: {indexPathToReload.contains($0)})
     }
 }
 
 extension ProductsGallery: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return currentPageInfo?.totalCount ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductGalleryCollectionViewCell.className, for: indexPath)
-        (cell as? ProductGalleryCollectionViewCell)?.apply(product: products[indexPath.row])
+        
+        var product: ChatProduct?
+        
+        if products.count > indexPath.row {
+            product = products[indexPath.row]
+        }
+        
+        (cell as? ProductGalleryCollectionViewCell)?.apply(product: product)
+        
         return cell
     }
 }
 
 extension ProductsGallery: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        actionsDelegate?.didSelect(products[indexPath.row])
+    }
 }
 
-extension ProductsGallery: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
+extension ProductsGallery: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let indexes = indexPaths.filter({ index -> Bool in
+            return (0..<products.count).contains(index.row) == false
+        })
+        
+        if indexes.count > 0 {
+            print(indexes)
+            indexPathsToLoad.append(contentsOf: indexes)
+            loadNextPage()
+        }
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        
+    }
+}
+
+extension ProductsGallery: UITextViewDelegate {
+       
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        clearButton.isHidden = textView.text.isEmpty
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
         return true
     }
-}
-
-final class ProductGalleryFlowLayout: UICollectionViewFlowLayout {
     
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            searchPlaceholder.isHidden = false
+            clearButton.isHidden = true
+        } else {
+            searchPlaceholder.isHidden = true
+            clearButton.isHidden = false
+        }
+        searchDebouncer.execute {[weak self] in
+            self?.productsProvider.load(target: .search(textView.text, page: 1)) { result in
+                switch result {
+                case .success(let response):
+                    self?.searchTerm = textView.text
+                    self?.indexPathsToLoad = []
+                    self?.currentPageInfo = response
+                    self?.products = response.items
+                    self?.collectionView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }
-
-

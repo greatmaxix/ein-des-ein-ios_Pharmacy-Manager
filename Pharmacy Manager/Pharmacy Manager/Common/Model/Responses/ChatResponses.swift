@@ -45,6 +45,13 @@ struct CustomerImageUploadResponse: Decodable, Equatable {
     let item: UploadedImage
 }
 
+struct ChatProductsListResponse: Decodable {
+    let items: [ChatProduct]
+    let currentPageNumber: Int
+    let numItemsPerPage: Int
+    let totalCount: Int
+}
+
 // From Mercury
 
 enum ChatMessageType: String, Decodable, Equatable {

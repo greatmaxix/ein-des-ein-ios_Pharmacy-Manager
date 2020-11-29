@@ -20,6 +20,7 @@ protocol ChatInput: MessagesDataSource, MessagesDisplayDelegate, MessagesLayoutD
     var title: String { get }
     func load()
     func sendMessage(text: String)
+    func send(_ product: ChatProduct)
     func upload(images: [LibraryImage])
     func closeChat()
 }
@@ -346,7 +347,7 @@ final class ChatModel: Model, ChatInput {
     private func recursiveUpload(images: [LibraryImage]) {
         if let image = images.first, let data = image.original.jpegData(compressionQuality: 0.5) {
             let mime = "image/\(image.url?.lastPathComponent.components(separatedBy: ".").last ?? "jpg")"
-            uploadProvider.load(target: .upload(data: data, mime: mime, name: image.url?.lastPathComponent ?? "image")) {[weak self] result in
+            uploadProvider.load(target: .uploadUser(data: data, mime: mime, name: image.url?.lastPathComponent ?? "image")) {[weak self] result in
                 self?.output?.uploadFinished(image: image, with: result)
                 switch result {
                 case .success(let response):
@@ -382,6 +383,19 @@ final class ChatModel: Model, ChatInput {
             case .success(let pdfURL):
                 self?.raise(event: ChatEvent.openPDF(pdfURL))
             case .failure: break
+            }
+        }
+    }
+    
+    func send(_ product: ChatProduct) {
+        output?.showActivityIndicator()
+        sendProductProvider.load(target: .createProductMessage(chatId: currentChat.id, productId: product.id)) {[weak self] result in
+            self?.output?.hideActivityIndicator()
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

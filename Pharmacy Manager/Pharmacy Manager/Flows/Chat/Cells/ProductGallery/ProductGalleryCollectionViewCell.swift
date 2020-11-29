@@ -22,14 +22,26 @@ class ProductGalleryCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func apply(product: ChatProduct) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productImage.image = nil
+    }
+    
+    
+    func apply(product: ChatProduct?) {
+        
+        guard let product = product else {
+            productContainer.isHidden = true
+            return
+        }
+        productContainer.isHidden = false
         if let url = product.pictures.first?.url {
-            productImage.loadImageBy(url: url)
+            productImage.loadImageBy(url: url, placeholder: Asset.Images.Catalogs.medicineImagePlaceholder.image)
+        } else {
+            productImage.image = Asset.Images.Catalogs.medicineImagePlaceholder.image
         }
         nameLabel.text = product.name.htmlToString
         detailsLabel.text = product.releaseForm.htmlToString
-        if let p = product.priceRange?.minPrice {
-            priceLabel.text = "\(p)"
-        }
+        priceLabel.text = product.minPrice
     }
 }

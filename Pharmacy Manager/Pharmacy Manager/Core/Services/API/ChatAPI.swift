@@ -40,7 +40,7 @@ extension ChatAPI: RequestConvertible {
         case .create: return "customer/chat"
         case .lastOpened: return "user/chat/last-opened-chats"
         case .upload: return "customer/image"
-        case .uploadUser: return "customer/image"
+        case .uploadUser: return "user/image"
         case .sendImage(let chatId, let uuid): return "chat/chat/\(chatId)/application/\(uuid)"
         case .createProductMessage(let chatId, let productId): return "chat/chat/\(chatId)/global-product/\(productId)"
         case .closeChat(let id): return "customer/chat/\(id)/close"

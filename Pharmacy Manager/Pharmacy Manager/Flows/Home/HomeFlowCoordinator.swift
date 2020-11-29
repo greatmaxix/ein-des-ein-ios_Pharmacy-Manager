@@ -43,9 +43,11 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
             case .openProductDetail(let product):
                 self?.navigationController.isNavigationBarHidden = false
                 self?.openProductMedicineFor(medicine: product)
+            case .open(let chat):
+                self?.open(chat: chat)
             }
         }
-
+        
         addHandler(.onRaise) { [weak self] (event: SearchModelEvent) in
             switch event {
             case .open(let medecine):
@@ -59,6 +61,15 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
 private extension HomeFlowCoordinator {
 
+    func open(chat: Chat?) {
+        if let c = chat {
+            raise(event: TabBarEvent.userWantsToChangeTab(newTab: Tab.chats))
+            raise(event: ChatFlowEvent.open(c))
+        } else {
+            raise(event: TabBarEvent.userWantsToChangeTab(newTab: Tab.chats))
+        }
+    }
+    
      func openScan() {
         let viewController = StoryboardScene.Scan.initialScene.instantiate()
         let model = ScanModel(parent: self)

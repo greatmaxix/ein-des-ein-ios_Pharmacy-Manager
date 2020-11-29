@@ -36,11 +36,11 @@ class NavigationController: UINavigationController {
     override init(rootViewController: UIViewController) {
         super.init(navigationBarClass: RoundedNavigationBar.self, toolbarClass: nil)
         if #available(iOS 14.0, *) {
-            rootViewController.navigationItem.backButtonDisplayMode = .default
+            rootViewController.navigationItem.backButtonDisplayMode = .minimal
         } else {
-          let backItem = UIBarButtonItem()
-          backItem.title = " "
-          rootViewController.navigationItem.backBarButtonItem = backItem
+            let backItem = UIBarButtonItem()
+            backItem.title = " "
+            rootViewController.navigationItem.backBarButtonItem = backItem
         }
         viewControllers = [rootViewController]
       }
@@ -61,11 +61,11 @@ class NavigationController: UINavigationController {
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if #available(iOS 14.0, *) {
-          viewController.navigationItem.backButtonDisplayMode = .minimal
+            viewController.navigationItem.backButtonDisplayMode = .minimal
         } else {
-          let backItem = UIBarButtonItem()
-          backItem.title = " "
-          viewController.navigationItem.backBarButtonItem = backItem
+            let backItem = UIBarButtonItem()
+            backItem.title = " "
+            viewController.navigationItem.backBarButtonItem = backItem
         }
         super.pushViewController(viewController, animated: animated)
       }

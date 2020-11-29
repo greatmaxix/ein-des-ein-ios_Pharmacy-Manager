@@ -9,6 +9,10 @@
 import Foundation
 import EventsTree
 
+enum ChatFlowEvent: Event {
+    case open(Chat)
+}
+
 class ChatFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     
     let tabItemInfo = TabBarItemInfo(
@@ -38,14 +42,18 @@ class ChatFlowCoordinator: EventNode, TabBarEmbedCoordinable {
             default: break
             }
         }
+        
+        addHandler(.onPropagate) {[weak self] (event: ChatFlowEvent) in
+            switch event {
+            case .open(let chat):
+                self?.navigationController.popToRootViewController(animated: false)
+                self?.open(chat, animated: false)
+            }
+        }
     }
     
-    private func open(_ chat: Chat) {
+    private func open(_ chat: Chat, animated: Bool = true) {
         let vc = ChatCoordinator(parent: self, navigation: navigationController, chat: chat).createFlow()
-        navigationController.pushViewController(vc, animated: true)
+        navigationController.pushViewController(vc, animated: animated)
     }
-}
-
-extension ChatFlowCoordinator {
-    
 }
