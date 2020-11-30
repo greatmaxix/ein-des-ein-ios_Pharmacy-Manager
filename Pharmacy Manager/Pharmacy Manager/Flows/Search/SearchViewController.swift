@@ -77,6 +77,7 @@ extension SearchViewController {
         navigationItem.rightBarButtonItem?.action = #selector(tapScan)
         
         searchBar.delegate = self
+        searchBar.textField.placeholder = L10n.SearchBar.placeholder
         
         searchBar.heightAnchor.constraint(equalToConstant: 36).isActive = true
 
