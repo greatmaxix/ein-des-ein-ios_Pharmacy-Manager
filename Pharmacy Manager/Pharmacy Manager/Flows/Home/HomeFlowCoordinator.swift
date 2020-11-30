@@ -58,6 +58,8 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
             switch event {
             case .open(let medecine):
                 self?.openProductMedicineFor(medicine: medecine)
+            case .openScan:
+                self?.openScan()
             default:
                 return
             }

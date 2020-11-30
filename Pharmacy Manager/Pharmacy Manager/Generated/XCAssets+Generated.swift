@@ -124,6 +124,7 @@ internal enum Asset {
     }
     internal enum Chat {
       internal static let inputBarRectangle = ImageAsset(name: "InputBarRectangle")
+      internal static let starSelected = ImageAsset(name: "StarSelected")
       internal static let attachment = ImageAsset(name: "attachment")
       internal static let attachmentHighlighted = ImageAsset(name: "attachmentHighlighted")
       internal static let chevronUp = ImageAsset(name: "chevronUp")
@@ -137,7 +138,6 @@ internal enum Asset {
       internal static let radiobuttonChecked = ImageAsset(name: "radiobutton_checked")
       internal static let send = ImageAsset(name: "send")
       internal static let star = ImageAsset(name: "star")
-      internal static let starSelected = ImageAsset(name: "starSelected")
     }
     internal enum Common {
       internal static let crosshair = ImageAsset(name: "crosshair")
