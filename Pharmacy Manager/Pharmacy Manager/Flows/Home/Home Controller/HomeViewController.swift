@@ -75,13 +75,14 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
-
+        recommendedViews.forEach({$0.isHidden = true})
+        
         activityIndicator.show(animated: true)
         model.loadData()
     }
-
+    
     @IBAction func searchTapped(_ sender: Any) {
         model.openSearch()
     }
@@ -107,10 +108,15 @@ class HomeViewController: UIViewController {
         switch model.recommendedProducts.count {
         case 1:
             recommendedViews.first!.setupView(item: model.recommendedProducts[1])
+            recommendedViews.first!.isHidden = false
         case 2:
             for index in model.recommendedProducts.indices {
                 recommendedViews[index].setupView(item: model.recommendedProducts[index])
+                recommendedViews[index].tapActionHandler = {[weak self] in
+                    self?.model.openProductDetail(productIndex: index)
+                }
             }
+            recommendedViews.forEach({$0.isHidden = false})
         default:
             recommendedViews.forEach({$0.isHidden = true})
         }

@@ -25,7 +25,7 @@ class ProfileFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         root.model = model
         model.output = root
 
-        navigationController = UINavigationController(rootViewController: root)
+        navigationController = NavigationController(rootViewController: root)
 
         return navigationController
     }

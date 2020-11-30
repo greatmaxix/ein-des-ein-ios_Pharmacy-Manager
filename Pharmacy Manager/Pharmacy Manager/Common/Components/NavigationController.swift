@@ -43,7 +43,7 @@ class NavigationController: UINavigationController {
             rootViewController.navigationItem.backBarButtonItem = backItem
         }
         viewControllers = [rootViewController]
-    }
+      }
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,7 +68,7 @@ class NavigationController: UINavigationController {
             viewController.navigationItem.backBarButtonItem = backItem
         }
         super.pushViewController(viewController, animated: animated)
-    }
+      }
     
     private func setupNavigationBar() {
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]

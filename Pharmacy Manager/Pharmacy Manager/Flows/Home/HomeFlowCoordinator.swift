@@ -9,10 +9,6 @@
 import Foundation
 import EventsTree
 
-enum HomeFlowEvent: Event {
-    case open(chat: Chat?)
-}
-
 class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
 
     let tabItemInfo = TabBarItemInfo(
@@ -29,7 +25,7 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
         root.model = model
         model.output = root
 
-        navigationController = UINavigationController(rootViewController: root)
+        navigationController = NavigationController(rootViewController: root)
         navigationController.setNavigationBarHidden(true, animated: false)
 
         return navigationController
@@ -44,16 +40,14 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self?.openSearch()
             case .openScan:
                 self?.openScan()
-            }
-        }
-        
-        addHandler(.onRaise) {[weak self] (event: HomeFlowEvent) in
-            switch event {
+            case .openProductDetail(let product):
+                self?.navigationController.isNavigationBarHidden = false
+                self?.openProductMedicineFor(medicine: product)
             case .open(let chat):
                 self?.open(chat: chat)
             }
         }
-
+        
         addHandler(.onRaise) { [weak self] (event: SearchModelEvent) in
             switch event {
             case .open(let medecine):
@@ -64,7 +58,6 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 return
             }
         }
-
     }
 }
 

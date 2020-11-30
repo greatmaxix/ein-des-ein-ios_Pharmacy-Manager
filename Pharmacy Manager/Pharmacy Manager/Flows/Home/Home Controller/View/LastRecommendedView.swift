@@ -18,7 +18,7 @@ class LastRecommendedView: UIView {
     @IBOutlet private weak var releaseFormLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     
-    private var tapActionHandler: EmptyClosure?
+    var tapActionHandler: EmptyClosure?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +33,9 @@ class LastRecommendedView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(CONTENT_XIB_NAME, owner: self, options: nil)
         contentView.fixInView(self)
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(tapAction))
+        self.addGestureRecognizer(tap)
     }
     
     func setupView(item: LastProducts) {
@@ -42,5 +45,9 @@ class LastRecommendedView: UIView {
         medicineNameLabel.text = item.productName.htmlToString
         releaseFormLabel.text = item.releaseForm.htmlToString
         priceLabel.text = item.minPrice?.moneyString(with: "₸") ?? "-"
+    }
+    
+    @objc func tapAction() {
+        tapActionHandler?()
     }
 }
