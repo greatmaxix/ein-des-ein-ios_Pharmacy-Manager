@@ -55,6 +55,16 @@ final class MedicineListModel: Model {
         self.category = category
         super.init(parent: parent)
     }
+    
+    /**
+            Init for setup model from medicine detail screen from homeFlow
+            - Parameter product: enter product object for setup model
+     */
+    init(product: Product, parent: EventNode?) {
+        self.category = Category(title: product.activeSubstances.first ?? "",
+                                 imageURL: nil)
+        super.init(parent: parent)
+    }
 }
 
 // MARK: - Private methods
