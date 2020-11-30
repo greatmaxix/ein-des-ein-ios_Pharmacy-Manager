@@ -24,9 +24,12 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
     @IBOutlet private weak var scanImageView: UIImageView!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var preview: UIView!
+    @IBOutlet private weak var codeCaptureView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     private var captureSession = AVCaptureSession()
     private var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    private var emptyResultsView: EmptyResultsView?
     
     private var blurView: UIVisualEffectView!
     
@@ -112,9 +115,9 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
         }
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
+        previewLayer.frame = codeCaptureView.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
-        view.layer.insertSublayer(previewLayer, at: 0)
+        codeCaptureView.layer.insertSublayer(previewLayer, at: 0)
         
         captureSession.startRunning()
     }
@@ -127,8 +130,6 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
     private func found(code: String) {
         print(code)
         model.searchItemBy(code: code)
-//        let view =
-//        showActionSheetView(content: R.nib.medicineCell(owner: self)!)
     }
     
     private func hidePreview() {
@@ -140,6 +141,16 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
         })
     }
     
+    private func initEmptyStyle() {
+        emptyResultsView = setupEmptyView(title: L10n.Scan.emptySearchTitle,
+                                          decriptionText: L10n.Scan.emptySearchBody,
+                                          buttonTitle: L10n.Scan.tryAgainButton,
+                                          imageName: Asset.Images.EmptyViews.emptyScan.name,
+                                          actionHandler: {[weak self] in
+                                            self?.model.tryScanAgaing()
+    })
+}
+    
 // MARK: - Actions
     
     @IBAction func doneAction(_ sender: UIButton) {
@@ -150,11 +161,17 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
 // MARK: - ScanViewControllerInput
 
 extension ScanViewController: ScanViewControllerInput {
+    func tryAgain() {
+        self.emptyResultsView?.removeFromSuperview()
+        captureSession.startRunning()
+    }
+    
     func didFoundItem(item: String?) {
-        if !captureSession.isRunning {
-            captureSession.startRunning()
+        if captureSession.isRunning {
+            captureSession.stopRunning()
         }
         descriptionLabel.isHidden = item != nil
+        initEmptyStyle()
     }
 }
 

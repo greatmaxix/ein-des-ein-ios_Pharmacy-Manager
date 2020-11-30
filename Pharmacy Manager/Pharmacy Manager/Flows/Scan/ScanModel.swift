@@ -9,15 +9,18 @@
 import Foundation
 import EventsTree
 
-enum ScanModelEvent: Event { }
+enum ScanModelEvent: Event {
+}
 
 protocol ScanModelInput: class {
     var isShouldShowPreview: Bool { get }
     func searchItemBy(code: String)
+    func tryScanAgaing()
 }
 
 protocol ScanModelOutput: class {
     func didFoundItem(item: String?)
+    func tryAgain()
 }
 
 final class ScanModel: Model {
@@ -29,11 +32,17 @@ final class ScanModel: Model {
 // MARK: - ScanViewControllerOutput
 
 extension ScanModel: ScanViewControllerOutput {
+    
+    func tryScanAgaing() {
+        output.tryAgain()
+    }
+    
     var isShouldShowPreview: Bool {
         true
     }
     
     func searchItemBy(code: String) {
+        
         output.didFoundItem(item: code)
     }
 }

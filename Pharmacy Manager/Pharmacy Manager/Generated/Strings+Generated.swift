@@ -17,8 +17,14 @@ internal enum L10n {
   }
 
   internal enum Scan {
+    /// Попробуйте отсканировать еще раз или другую упаковку
+    internal static let emptySearchBody = L10n.tr("Localizable", "Scan.emptySearchBody")
+    /// Ой, по скану ничего не найдено
+    internal static let emptySearchTitle = L10n.tr("Localizable", "Scan.emptySearchTitle")
     /// Штрих код
     internal static let title = L10n.tr("Localizable", "Scan.title")
+    /// Попробовать снова
+    internal static let tryAgainButton = L10n.tr("Localizable", "Scan.tryAgainButton")
   }
 
   internal enum HomeScreen {

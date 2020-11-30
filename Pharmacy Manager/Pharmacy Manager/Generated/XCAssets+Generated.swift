@@ -249,6 +249,7 @@ internal enum Asset {
     internal enum EmptyViews {
       internal static let emptyOrders = ImageAsset(name: "emptyOrders")
       internal static let emptyReciept = ImageAsset(name: "emptyReciept")
+      internal static let emptyScan = ImageAsset(name: "emptyScan")
       internal static let emptyWishList = ImageAsset(name: "emptyWishList")
     }
   }
