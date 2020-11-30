@@ -83,7 +83,6 @@ extension CatalogueModel: CatalogueModelInput {
             switch result {
             case .success(let response):
                 self.categories = response.categories
-                //response.categories.forEach({print("XXXX - \($0.imageTitle)")})
                 self.reloadCategories()
             case .failure(let error):
                 print(error.localizedDescription)

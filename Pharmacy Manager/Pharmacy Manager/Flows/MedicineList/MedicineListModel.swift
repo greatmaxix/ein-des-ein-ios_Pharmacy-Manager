@@ -62,7 +62,8 @@ final class MedicineListModel: Model {
      */
     init(product: Product, parent: EventNode?) {
         self.category = Category(title: product.activeSubstances.first ?? "",
-                                 imageURL: nil)
+                                 imageURL: nil,
+                                 code: product.categoryCode)
         super.init(parent: parent)
     }
 }
