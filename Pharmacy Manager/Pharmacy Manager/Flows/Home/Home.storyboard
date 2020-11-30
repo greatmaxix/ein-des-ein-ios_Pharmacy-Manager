@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -45,9 +45,10 @@
                                                     <constraint firstAttribute="height" constant="24" id="alp-p7-Vky"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SW-H1-Pwj">
-                                                <rect key="frame" x="0.0" y="0.0" width="334" height="36"/>
-                                                <inset key="titleEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3SW-H1-Pwj">
+                                                <rect key="frame" x="40" y="0.0" width="294" height="36"/>
+                                                <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
+                                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Что необходимо найти?">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -58,8 +59,8 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="3SW-H1-Pwj" firstAttribute="leading" secondItem="caB-lH-9D7" secondAttribute="leading" id="6er-g9-dCz"/>
                                             <constraint firstAttribute="trailing" secondItem="3SW-H1-Pwj" secondAttribute="trailing" id="DM1-3Q-NxT"/>
+                                            <constraint firstItem="3SW-H1-Pwj" firstAttribute="leading" secondItem="Ewy-VF-VHd" secondAttribute="trailing" id="Oqd-Zl-8eU"/>
                                             <constraint firstAttribute="bottom" secondItem="3SW-H1-Pwj" secondAttribute="bottom" id="Yhd-Qq-ymB"/>
                                             <constraint firstItem="Ewy-VF-VHd" firstAttribute="centerY" secondItem="caB-lH-9D7" secondAttribute="centerY" id="bHz-6H-mmk"/>
                                             <constraint firstItem="3SW-H1-Pwj" firstAttribute="top" secondItem="caB-lH-9D7" secondAttribute="top" id="dCu-hm-5rR"/>

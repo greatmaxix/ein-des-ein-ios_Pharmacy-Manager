@@ -39,8 +39,8 @@ final class ProductCoordinator: EventNode, Coordinator {
             guard let self = self else { return }
             
             switch event {
-            case .openAnalogsFor, .openCatalogsFor:
-                self.openMedicineList()
+            case .openAnalogsFor(let product), .openCatalogsFor(let product):
+                self.openMedicineList(product: product)
             }
         }
     }
@@ -48,9 +48,9 @@ final class ProductCoordinator: EventNode, Coordinator {
 
 fileprivate extension ProductCoordinator {
     
-    func openMedicineList() {
+    func openMedicineList(product: Product) {
         let viewController = StoryboardScene.Catalogue.medicineListViewController.instantiate()
-        let model = MedicineListModel(parent: self)
+        let model = MedicineListModel(product: product, parent: self)
         viewController.model = model
         model.output = viewController
         navigation.pushViewController(viewController, animated: true)

@@ -35,7 +35,6 @@ final class CatalogueCoordinator: EventNode, Coordinator {
                 self?.openProductMedicineFor(medicine: medicine)
             }
         }
-
     }
 
     // MARK: - Public methods

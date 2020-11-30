@@ -22,13 +22,7 @@ final class MedicineListViewController: UIViewController {
     var model: MedicineListViewControllerOutput!
     
     private lazy var activityIndicator: MBProgressHUD = {
-        let hud = MBProgressHUD(view: view)
-        hud.backgroundView.style = .solidColor
-        hud.backgroundView.color = UIColor.black.withAlphaComponent(0.2)
-        hud.removeFromSuperViewOnHide = false
-        view.addSubview(hud)
-        
-        return hud
+        setupActivityIndicator()
     }()
     
     // MARK: - Lifecycle
@@ -159,7 +153,6 @@ extension UIViewController {
             background.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             background.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
-        
         view.bringSubviewToFront(background)
     }
 }

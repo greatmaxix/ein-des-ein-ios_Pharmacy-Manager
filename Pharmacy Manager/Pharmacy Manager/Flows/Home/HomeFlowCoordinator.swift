@@ -58,6 +58,13 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 return
             }
         }
+        
+        addHandler(.onRaise) {  [weak self] (event: MedicineListModelEvent) in
+            switch event {
+            case .openProduct(let medicine):
+                self?.openProductMedicineFor(medicine: medicine)
+            }
+        }
     }
 }
 

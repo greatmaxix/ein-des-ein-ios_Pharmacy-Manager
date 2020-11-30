@@ -54,7 +54,7 @@ final class MedicineCell: HighlightedTableViewCell, NibReusable {
         typeLabel.text = medicine.releaseFormFormatted
         factoryLabel.text = medicine.manufacturerName
         medicineProductID = medicine.id
-        titleLabel.text = medicine.name
+        titleLabel.text = medicine.name.htmlToString
         
         let placeholder: UIImage?
         if medicine.minPrice != nil {
