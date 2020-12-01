@@ -162,7 +162,9 @@ final class ScanViewController: UIViewController, NavigationBarStyled {
 
 extension ScanViewController: ScanViewControllerInput {
     func tryAgain() {
-        self.emptyResultsView?.removeFromSuperview()
+        emptyViewAnimate {[weak self] in
+            self?.emptyResultsView?.removeFromSuperview()
+        }
         captureSession.startRunning()
     }
     
