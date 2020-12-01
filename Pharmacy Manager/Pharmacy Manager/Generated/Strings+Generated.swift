@@ -59,12 +59,12 @@ internal enum L10n {
     internal static let exit = L10n.tr("Localizable", "profileScreen.exit")
     /// до тех пор пока не авторизирутесь снова
     internal static let exitAlertBody = L10n.tr("Localizable", "profileScreen.exitAlertBody")
-    /// Отмена
-    internal static let exitAlertButtonCancel = L10n.tr("Localizable", "profileScreen.exitAlertButtonCancel")
-    /// Выйти
-    internal static let exitAlertButtonExit = L10n.tr("Localizable", "profileScreen.exitAlertButtonExit")
     /// Вы уверены, что хотите выйти из приложения?
     internal static let exitAlertTitle = L10n.tr("Localizable", "profileScreen.exitAlertTitle")
+    /// Отмена
+    internal static let exitButtonCancel = L10n.tr("Localizable", "profileScreen.exitButtonCancel")
+    /// Выйти
+    internal static let exitButtonExit = L10n.tr("Localizable", "profileScreen.exitButtonExit")
     /// Нужна помощь?
     internal static let needHelp = L10n.tr("Localizable", "profileScreen.needHelp")
     /// Статистика

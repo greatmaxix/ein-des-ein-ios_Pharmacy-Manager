@@ -28,8 +28,8 @@
 "profileScreen.exit" = "Выйти из аккаунта";
 "profileScreen.exitAlertTitle" = "Вы уверены, что хотите выйти из приложения?";
 "profileScreen.exitAlertBody" = "до тех пор пока не авторизирутесь снова";
-"profileScreen.exitAlertbuttonCancel" = "Отмена";
-"profileScreen.exitAlertbuttonExit" = "Выйти";
+"profileScreen.exitButtonCancel" = "Отмена";
+"profileScreen.exitButtonExit" = "Выйти";
 
 "profileScreen.notifications.title" = "Уведомления";
 "profileScreen.notifications.pushNotification" = "Push уведомления";
