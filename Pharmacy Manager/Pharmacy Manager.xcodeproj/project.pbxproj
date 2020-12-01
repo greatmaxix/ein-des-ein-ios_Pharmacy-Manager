@@ -36,6 +36,8 @@
 		247C4FD82567057C00A46061 /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4FD62567057C00A46061 /* NotificationViewCell.swift */; };
 		247C4FD92567057C00A46061 /* NotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247C4FD72567057C00A46061 /* NotificationViewCell.xib */; };
 		247C4FDC2567081400A46061 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C4FDB2567081400A46061 /* NotificationViewModel.swift */; };
+		24D4808B25754DCA007895CB /* EmptyResultsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D4808925754DCA007895CB /* EmptyResultsView.xib */; };
+		24D4808C25754DCA007895CB /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D4808A25754DCA007895CB /* EmptyResultsView.swift */; };
 		601612972567D9F6005151BC /* ChatResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601612962567D9F6005151BC /* ChatResponses.swift */; };
 		601612A72567DB22005151BC /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016129F2567DB22005151BC /* Chat.swift */; };
 		601612A82567DB22005151BC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601612A02567DB22005151BC /* Message.swift */; };
@@ -327,6 +329,8 @@
 		247C4FD62567057C00A46061 /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
 		247C4FD72567057C00A46061 /* NotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewCell.xib; sourceTree = "<group>"; };
 		247C4FDB2567081400A46061 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		24D4808925754DCA007895CB /* EmptyResultsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyResultsView.xib; sourceTree = "<group>"; };
+		24D4808A25754DCA007895CB /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
 		601612962567D9F6005151BC /* ChatResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatResponses.swift; sourceTree = "<group>"; };
 		6016129F2567DB22005151BC /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		601612A02567DB22005151BC /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -707,6 +711,15 @@
 				247C4FD72567057C00A46061 /* NotificationViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		24D4808825754DCA007895CB /* EmptyResultsView */ = {
+			isa = PBXGroup;
+			children = (
+				24D4808925754DCA007895CB /* EmptyResultsView.xib */,
+				24D4808A25754DCA007895CB /* EmptyResultsView.swift */,
+			);
+			path = EmptyResultsView;
 			sourceTree = "<group>";
 		};
 		6016129E2567DB22005151BC /* Chat */ = {
@@ -1161,6 +1174,7 @@
 		6103AC7A2564120F00775EF3 /* Scan */ = {
 			isa = PBXGroup;
 			children = (
+				24D4808825754DCA007895CB /* EmptyResultsView */,
 				6103AC7B2564120F00775EF3 /* ScanModel.swift */,
 				6103AC7C2564120F00775EF3 /* ScanViewController.swift */,
 				6103AC7D2564120F00775EF3 /* Scan.storyboard */,
@@ -1860,6 +1874,7 @@
 				6103AB9D2563FEFB00775EF3 /* ProductInfoTableViewCell.xib in Resources */,
 				61637AAC250A26EE0029E08F /* Auth.storyboard in Resources */,
 				601612F32567DCFD005151BC /* ChatApplicationCollectionViewCell.xib in Resources */,
+				24D4808B25754DCA007895CB /* EmptyResultsView.xib in Resources */,
 				61637B2B250A26F80029E08F /* OpenSans-ExtraBold.ttf in Resources */,
 				61637B2F250A26F80029E08F /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				247C4FCC256704AD00A46061 /* NotificationViewController.storyboard in Resources */,
@@ -2095,6 +2110,7 @@
 				24408F5725684F2300D82445 /* NeedHelpViewController.swift in Sources */,
 				6103ABB12563FFAE00775EF3 /* Product.swift in Sources */,
 				6103AC5525640C3700775EF3 /* NavigationBar.swift in Sources */,
+				24D4808C25754DCA007895CB /* EmptyResultsView.swift in Sources */,
 				61D341A02566A2DD00F1DE89 /* AvatarDTO.swift in Sources */,
 				60CD355E256D3E1200DE702C /* ProductInputItem.swift in Sources */,
 				6163793B250A26A70029E08F /* UIScrollView+ScrollUpButton.swift in Sources */,
@@ -2326,14 +2342,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = B9H63QRDPT;
+				DEVELOPMENT_TEAM = 8YM8U69AT5;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eindesein.pharmacymanager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eindesein.pharmacymanager1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2348,14 +2364,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = B9H63QRDPT;
+				DEVELOPMENT_TEAM = 8YM8U69AT5;
 				INFOPLIST_FILE = "Pharmacy Manager/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eindesein.pharmacymanager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eindesein.pharmacymanager1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

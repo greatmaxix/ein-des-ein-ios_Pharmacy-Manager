@@ -82,6 +82,8 @@ private extension HomeFlowCoordinator {
      func openScan() {
         let viewController = StoryboardScene.Scan.initialScene.instantiate()
         let model = ScanModel(parent: self)
+        
+        navigationController.isNavigationBarHidden = false
 
         viewController.model = model
         model.output = viewController

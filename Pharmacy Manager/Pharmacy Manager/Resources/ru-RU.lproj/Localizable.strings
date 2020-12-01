@@ -74,6 +74,9 @@
 
 // MARK: - Scan screen
 "Scan.title" = "Штрих код";
+"Scan.emptySearchTitle" = "Ой, по скану ничего не найдено";
+"Scan.emptySearchBody" = "Попробуйте отсканировать еще раз или другую упаковку";
+"Scan.tryAgainButton" = "Попробовать снова";
 
 // MARK: - Catalogue screen
 "Catalogue.title" = "Категории";
