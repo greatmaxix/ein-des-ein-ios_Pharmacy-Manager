@@ -35,6 +35,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
+        hideKeyboardByTap()
     }
 
     fileprivate func setupUI() {

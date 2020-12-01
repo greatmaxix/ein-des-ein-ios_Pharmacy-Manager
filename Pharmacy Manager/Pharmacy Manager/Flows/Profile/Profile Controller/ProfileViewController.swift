@@ -63,9 +63,9 @@ extension ProfileViewController: ProfileViewControllerInput {
 
         let alertController = UIAlertController.init(title: L10n.ProfileScreen.exitAlertTitle, message: L10n.ProfileScreen.exitAlertBody, preferredStyle: .alert)
         
-        let actionOK = UIAlertAction(title: L10n.ProfileScreen.exitAlertButtonCancel, style: .default, handler: { _ in blurVisualEffectView.removeFromSuperview()})
+        let actionOK = UIAlertAction(title:  L10n.ProfileScreen.exitButtonCancel, style: .default, handler: { _ in blurVisualEffectView.removeFromSuperview()})
 
-        let actionCancel = UIAlertAction(title: L10n.ProfileScreen.exitAlertButtonExit, style: .default, handler: {[unowned self] _ in
+        let actionCancel = UIAlertAction(title: L10n.ProfileScreen.exitButtonExit, style: .default, handler: {[unowned self] _ in
             blurVisualEffectView.removeFromSuperview()
             self.model.logoutActionCofirmed()
         })
