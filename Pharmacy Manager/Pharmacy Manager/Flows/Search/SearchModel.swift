@@ -68,7 +68,7 @@ final class SearchModel: Model {
         super.init(parent: parent)
         addHandler(.onPropagate) { [weak self] (event: TabBarEvent) in
                     switch event {
-                    case .userWantsToChangeTab(let tab):
+                    case .userWantsToChangeTab(_):
                         return
                     }
                 }

@@ -3,6 +3,56 @@ PODS:
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
   - EventsTree (1.0.0)
+  - Firebase/CoreOnly (7.3.0):
+    - FirebaseCore (= 7.3.0)
+  - Firebase/Messaging (7.3.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.3.0)
+  - FirebaseCore (7.3.0):
+    - FirebaseCoreDiagnostics (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.3.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30906.0)
+  - FirebaseInstallations (7.4.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (7.4.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseMessaging (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstanceID (~> 7.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Reachability (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+  - GoogleDataTransport (8.1.0):
+    - nanopb (~> 2.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.1.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.1.1):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.1.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.1.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.1.1)"
+  - GoogleUtilities/Reachability (7.1.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.1.1):
+    - GoogleUtilities/Logger
   - InputBarAccessoryView (5.2.1):
     - InputBarAccessoryView/Core (= 5.2.1)
   - InputBarAccessoryView/Core (5.2.1)
@@ -17,6 +67,12 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - nanopb (2.30906.0):
+    - nanopb/decode (= 2.30906.0)
+    - nanopb/encode (= 2.30906.0)
+  - nanopb/decode (2.30906.0)
+  - nanopb/encode (2.30906.0)
+  - PromisesObjC (1.2.12)
   - Result (4.0.1)
   - SwiftGen (6.3.0)
   - TPKeyboardAvoiding (1.3.4)
@@ -25,6 +81,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - AlamofireImage (~> 4.1)
   - EventsTree
+  - Firebase/Messaging
   - Kingfisher (~> 5.0)
   - LDSwiftEventSource (~> 1.2)
   - MBProgressHUD (~> 1.2.0)
@@ -39,12 +96,22 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - EventsTree
+    - Firebase
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleUtilities
     - InputBarAccessoryView
     - Kingfisher
     - LDSwiftEventSource
     - MBProgressHUD
     - MessageKit
     - Moya
+    - nanopb
+    - PromisesObjC
     - Result
     - SwiftGen
     - TPKeyboardAvoiding
@@ -53,16 +120,26 @@ SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   EventsTree: 137f90ebbfd9f3aa57040f4da972583d6196f0d0
+  Firebase: 26223c695fe322633274198cb19dca8cb7e54416
+  FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
+  FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
+  FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
+  FirebaseInstanceID: 46d93d287108246fabbd85371ca27141d2c21ff9
+  FirebaseMessaging: 68d1bcb14880189558a8ae57167abe0b7e417232
+  GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
+  GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   InputBarAccessoryView: 39a7ed22727baf3b8550ecdf6c8a4d28b2c6aa91
   Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
   LDSwiftEventSource: fcbd7dd561f0bf4130c9667735cb8d2454c38555
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MessageKit: 5ff0908bce5a7b6e11bd0b60e13a33e03697d161
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   Result: a6e784bebf48b471d59cddc1adb81f41f678c487
   SwiftGen: 3d5024a47ea79e408cded20763d7a17d18a4548c
   TPKeyboardAvoiding: 7c2187e2338052b2c5be4a8052f297fdb124e261
 
-PODFILE CHECKSUM: 3a98e6c7ccd8df7004b2a6838033b0f43cafb904
+PODFILE CHECKSUM: 94db24f1012b6265e31fa5df0dbaaabd13010493
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

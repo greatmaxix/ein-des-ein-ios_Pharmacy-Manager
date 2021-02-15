@@ -295,6 +295,7 @@
 		61D341A12566A2DD00F1DE89 /* AvatarEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3418D2566A2DD00F1DE89 /* AvatarEntity.swift */; };
 		61D341A62566A4B400F1DE89 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D341A52566A4B400F1DE89 /* LoginResponse.swift */; };
 		8611E403B4BA09B41A73F7CF /* Pods_Pharmacy_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084D34A002BDA0D5747842B1 /* Pods_Pharmacy_Manager.framework */; };
+		F520BA0225DAC9060077CB03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F520BA0125DAC9060077CB03 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -590,6 +591,7 @@
 		61D3418C2566A2DD00F1DE89 /* AvatarDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarDTO.swift; sourceTree = "<group>"; };
 		61D3418D2566A2DD00F1DE89 /* AvatarEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarEntity.swift; sourceTree = "<group>"; };
 		61D341A52566A4B400F1DE89 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		F520BA0125DAC9060077CB03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FF10604725809160F6D8148F /* Pods-Pharmacy Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy Manager.release.xcconfig"; path = "Target Support Files/Pods-Pharmacy Manager/Pods-Pharmacy Manager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1633,6 +1635,7 @@
 				61637B0D250A26F80029E08F /* Resources */,
 				61BDECA9250911E000475EE6 /* AppDelegate.swift */,
 				61BDECB7250911E100475EE6 /* Info.plist */,
+				F520BA0125DAC9060077CB03 /* GoogleService-Info.plist */,
 			);
 			path = "Pharmacy Manager";
 			sourceTree = "<group>";
@@ -1852,6 +1855,7 @@
 				24408FCC256BDFA300D82445 /* AboutAppViewController.storyboard in Resources */,
 				61637B27250A26F80029E08F /* introAnimation.gif in Resources */,
 				6103AB0F2563FC0F00775EF3 /* Catalogue.storyboard in Resources */,
+				F520BA0225DAC9060077CB03 /* GoogleService-Info.plist in Resources */,
 				6103AB8A2563FEFB00775EF3 /* Product.storyboard in Resources */,
 				60CD355B256D172F00DE702C /* PharmacyCloseChatCollectionViewCell.xib in Resources */,
 				60A3C9FB256861D400690F9B /* ChatTableViewCell.xib in Resources */,

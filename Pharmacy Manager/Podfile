@@ -18,5 +18,5 @@ target 'Pharmacy Manager' do
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'MessageKit'
   pod 'LDSwiftEventSource', '~> 1.2'
-
+  pod 'Firebase/Messaging' 
 end

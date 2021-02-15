@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         appNavigationCoordinator = AppNavigation(window: window!)
         appNavigationCoordinator.startFlow()
-
+        FirebaseApp.configure()
         return true
     }
 }

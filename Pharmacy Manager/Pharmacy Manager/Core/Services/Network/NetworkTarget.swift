@@ -30,7 +30,7 @@ extension NetworkTarget {
     var sampleData: Data { Data() }
     
     var headers: [String: String]? {
-        var data = ["Content-type": "application/json; charset=utf-8"]
+        let data = ["Content-type": "application/json; charset=utf-8"]
 
         return data
     }

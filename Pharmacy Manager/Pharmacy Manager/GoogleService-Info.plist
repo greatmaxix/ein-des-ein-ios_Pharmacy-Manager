@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>565632125142-cmjo5mt0fst84csa0ebjpoauu38jidag.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.565632125142-cmjo5mt0fst84csa0ebjpoauu38jidag</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDI0uoviV_59gM_Sf8_aWpUsnn6e9dbGLo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>565632125142</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.eindesein.pharmacymanager</string>
+	<key>PROJECT_ID</key>
+	<string>pulse-pharma</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pulse-pharma.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:565632125142:ios:52063c5a370ab2b435a177</string>
+</dict>
+</plist>

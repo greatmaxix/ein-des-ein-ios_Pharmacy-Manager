@@ -116,14 +116,17 @@ extension MedicineListViewController {
         let countText = "\(count)"
         let productText = count == 1 ?  L10n.MedicineList.foundedTitleBodySingle : L10n.MedicineList.foundedTitleBodyMany
         let text = "\(foundText) \(countText) \(productText)"
-        
-        let countFont = FontFamily.OpenSans.bold.font(size: 16)
-        let font =  FontFamily.OpenSans.regular.font(size: 14)
         let color = Asset.LegacyColors.textDarkBlue.color
+        
+        guard
+            let countFont = FontFamily.OpenSans.bold.font(size: 16),
+            let font = FontFamily.OpenSans.regular.font(size: 14)
+        else {
+            return NSAttributedString()
+        }
         
         let att = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font: font, .foregroundColor: color])
         att.addAttribute(.font, value: countFont, range: NSRange(location: foundText.count + 1, length: countText.count))
-        
         return att
     }
 }
