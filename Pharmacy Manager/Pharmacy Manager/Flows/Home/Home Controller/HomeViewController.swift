@@ -180,37 +180,38 @@ class HomeViewController: UIViewController {
             return
         }
     }
-
+    
     private func fillMessagesInfo() {
-        if model.messageCount == 1 {
-            lowerMessageView.isHidden = true
-        }
-
-        if model.messageCount == 0 {
-            upperMessageView.isHidden = true
-            return
-        }
-
         let messages = model.messages()
-
-        if messages.count == 0 {
-            return
-        } else if let message = messages.first {
-
+        lowerMessageView.isHidden = true
+        upperMessageView.isHidden = true
+        
+        switch messages.count {
+        case 1:
+            upperMessageView.isHidden = false
+            let message = messages[0]
             upperMessageName.text = message.customer.name
             upperMessageText.text = message.lastMessage.messagePreview
             if let url = message.customer.avatar?.first?.value {
                 upperMessageAvatar.af.setImage(withURL: url)
             }
-        }
-
-        if messages.count == 1 {
-            return
-        } else if let message = messages.last {
-
-            lowerMessageName.text = message.customer.name
-            lowerMessageText.text = message.lastMessage.messagePreview
+        case 0:
+            lowerMessageView.isHidden = true
+            upperMessageView.isHidden = true
+        default:
+            upperMessageView.isHidden = false
+            let message = messages[0]
+            upperMessageName.text = message.customer.name
+            upperMessageText.text = message.lastMessage.messagePreview
             if let url = message.customer.avatar?.first?.value {
+                upperMessageAvatar.af.setImage(withURL: url)
+            }
+            
+            lowerMessageView.isHidden = false
+            let secondMessage = messages[1]
+            lowerMessageName.text = secondMessage.customer.name
+            lowerMessageText.text = secondMessage.lastMessage.messagePreview
+            if let url = secondMessage.customer.avatar?.first?.value {
                 lowerMessageAvatar.af.setImage(withURL: url)
             }
         }

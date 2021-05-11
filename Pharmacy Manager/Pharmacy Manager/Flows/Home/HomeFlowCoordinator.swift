@@ -18,13 +18,14 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
     )
 
     private var navigationController: UINavigationController!
+    private weak var homeViewModel: HomeModel!
 
     func createFlow() -> UIViewController {
         let root = StoryboardScene.Home.homeViewController.instantiate()
         let model = HomeModel(parent: self)
         root.model = model
         model.output = root
-
+        homeViewModel = model
         navigationController = NavigationController(rootViewController: root)
         navigationController.setNavigationBarHidden(true, animated: false)
 
@@ -45,6 +46,8 @@ class HomeFlowCoordinator: EventNode, TabBarEmbedCoordinable {
                 self?.openProductMedicineFor(medicine: product)
             case .open(let chat):
                 self?.open(chat: chat)
+            case .updateData:
+                self?.homeViewModel.loadData()
             }
         }
         

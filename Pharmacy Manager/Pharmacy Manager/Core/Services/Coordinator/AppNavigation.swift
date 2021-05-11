@@ -15,6 +15,7 @@ final class AppNavigation: EventNode {
     fileprivate unowned let window: UIWindow
     
     private var chatService: ChatService!
+    private weak var homeFlow: HomeFlowCoordinator?
     
     init(window: UIWindow) {
         self.window = window
@@ -83,6 +84,7 @@ extension AppNavigation {
         let catalogFlow = CatalogueCoordinator(parent: coordinator)
         let chatFlow = ChatFlowCoordinator(parent: coordinator)
         let profileFlow = ProfileFlowCoordinator(parent: coordinator)
+        self.homeFlow = homeFlow
 
         return [homeFlow, catalogFlow, chatFlow, profileFlow]
     }
@@ -97,5 +99,6 @@ extension AppNavigation {
 extension AppNavigation: ChatServiceDelegate {
     func didRecive(data: ChatMessagesResponse) {
         raise(event: ChatServiceEvent.didRecive(message: data))
+        self.homeFlow?.raise(event: HomeEvent.updateData)
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import EventsTree
 
 enum HomeEvent: Event {
+    case updateData
     case openSearch
     case openScan
     case openProductDetail(product: Medicine)
@@ -148,6 +149,8 @@ extension HomeModel: HomeModelInput, HomeViewControllerOutput {
                 self.total = response.totalCount
                 self.chats = response.items
                 self.output.networkingDidComplete(errorText: nil)
+
+                
             case .failure(let error):
                 self.output.networkingDidComplete(errorText: error.localizedDescription)
             }
